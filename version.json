@@ -1,0 +1,9 @@
+{
+  "version": "1.5.28",
+  "date": "2026-11-02",
+  "changes": [
+    "Corrigida a publicação: uma única fonte de código na branch main.",
+    "Corrigido o cache da aplicação para não apresentar o calendário em pedidos JSON ou páginas inexistentes.",
+    "Mantido o cabeçalho simplificado e o crédito Powered by KhauzLabs na aba Dados."
+  ]
+}
