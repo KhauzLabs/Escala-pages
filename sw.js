@@ -1,5 +1,5 @@
 /* Escala — correção de atualização PWA, mantendo os dados locais intactos. */
-const CACHE = 'escala-pages-v1522-20261102';
+const CACHE = 'escala-pages-v1523-20261102';
 const CORE = './index.html';
 const OPTIONAL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 
@@ -17,7 +17,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
     await Promise.all(keys
-      .filter((key) => key.startsWith('minha-escala-app-') && key !== CACHE)
+      .filter((key) => (key.startsWith('minha-escala-app-') || key.startsWith('escala-pages-')) && key !== CACHE)
       .map((key) => caches.delete(key)));
     await self.clients.claim();
   })());
