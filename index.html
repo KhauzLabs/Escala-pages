@@ -1,0 +1,1546 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="manifest" href="./manifest.webmanifest" />
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<meta name="application-name" content="Escala" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="description" content="Escala: calendário de serviços, folgas e férias anuais, com notas completas e cópias de segurança." />
+<title>Escala</title>
+<script>
+try{document.documentElement.dataset.theme=localStorage.getItem('minha-escala-theme')==='dark'?'dark':'light'}
+catch(_){document.documentElement.dataset.theme='light'}
+</script>
+
+<style>
+:root{color-scheme:dark;--bg:#0b1120;--surface:#131d30;--surface2:#1a2740;--surface3:#21314b;--stroke:#2a3a56;--text:#f2f5fb;--muted:#98a9c4;--gold:#f2cb70;--gold2:#ffdf99;--green:#6dd6b1;--red:#ff8d93;--shadow:0 22px 75px #03081270;--radius:22px;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 25% -10%,#23375a 0,transparent 45%),var(--bg);color:var(--text);-webkit-tap-highlight-color:transparent}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.48;cursor:not-allowed}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}button{border:0;color:inherit}button svg{flex:none}svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}h1,h2,h3,p{margin:0}h1{font-size:23px;letter-spacing:-.9px}h2{font-size:17px;letter-spacing:-.35px}h3{font-size:14px}.muted{color:var(--muted)}.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:800;color:var(--gold)}.caption{font-size:12px;line-height:1.5;color:var(--muted)}.wrap{max-width:1120px;margin:auto;display:flex;min-height:100dvh;justify-content:center}.app{position:relative;width:100%;max-width:510px;min-height:100dvh;box-shadow:0 0 120px #0003;background:linear-gradient(155deg,#131f34 0,#0b1323 180px,#0b1323 100%);padding:0 18px 120px}.topbar{display:flex;align-items:center;justify-content:space-between;padding:calc(20px + env(safe-area-inset-top)) 0 23px;gap:12px}.branding{display:flex;align-items:center;gap:12px}.logo{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#f9dc93,#e5af52);color:#192237;box-shadow:0 6px 24px #efb65729}.logo svg{width:23px;height:23px;stroke-width:2.2}.brand-caption{font-size:11px;color:var(--muted);margin-top:3px}.square-button{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;background:#1b2942;border:1px solid #33435e}.square-button svg{width:18px;height:18px}.view{display:none;animation:fadeUp .18s ease}.view.active{display:block}@keyframes fadeUp{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}.hero{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px}.hero h2{font-size:28px;letter-spacing:-1px;margin-top:6px}.hero-right{display:flex;gap:7px}.round-button{border:1px solid var(--stroke);border-radius:12px;background:var(--surface);width:37px;height:37px;display:grid;place-items:center}.round-button svg{width:17px;height:17px}.surface{background:linear-gradient(160deg,#17233a,#121d31);border:1px solid #2a3955;border-radius:var(--radius);box-shadow:0 12px 30px #00000014}.calendar-panel{padding:15px 12px 13px}.week-grid,.month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.week-grid{margin-bottom:7px;text-align:center}.week-grid span{color:#7489a7;font-size:10px;font-weight:750;padding:4px 0;text-transform:uppercase}.date-cell{aspect-ratio: .86;border-radius:12px;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;border:1px solid transparent;font-weight:650;font-size:14px;min-width:0;transition:background .15s,border .15s}.date-cell:hover{background:#273754}.date-cell.is-selected{background:#293952;border-color:#5e7392}.date-cell.is-today .day-number{border-bottom:1px solid var(--gold)}.date-cell.outside{color:#556981;cursor:default}.date-cell.outside:hover{background:transparent}.indicator{height:5px;width:5px;border-radius:50%;background:transparent}.date-cell.service .indicator{width:6px;height:6px;background:var(--gold);box-shadow:0 0 9px #efc47733}.date-cell.off .indicator{width:6px;height:6px;background:var(--green)}.cal-bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #273751;padding:15px 5px 2px;margin-top:10px}.legend{display:flex;gap:14px}.legend span{display:flex;align-items:center;gap:6px;font-size:11px;color:#a2b2c9}.legend i{display:block;width:7px;height:7px;border-radius:50%;background:var(--gold)}.legend .green{background:var(--green)}.link-button{display:flex;align-items:center;gap:4px;background:none;color:var(--gold2);font-size:12px;font-weight:700;padding:4px}.link-button svg{width:13px;height:13px}.day-panel{margin-top:17px;padding:19px}.day-panel-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.date-display{font-size:18px;font-weight:800;letter-spacing:-.4px;line-height:1.35}.tag{font-size:11px;font-weight:750;border-radius:100px;padding:6px 10px;white-space:nowrap;background:#293247;color:#c9d5e8}.tag.service{background:#463b28;color:var(--gold2)}.tag.off{background:#1b413b;color:#8ce2c3}.empty-day{padding:26px 8px 20px;text-align:center}.empty-icon{margin:auto auto 12px;width:46px;height:46px;background:#223249;border-radius:16px;display:grid;place-items:center;color:#91a5c1}.empty-icon svg{width:23px;height:23px}.empty-day p{font-size:13px;color:var(--muted);line-height:1.65;max-width:260px;margin:auto}.cta-row{display:flex;gap:9px;margin-top:16px}.btn{min-height:44px;border-radius:13px;padding:11px 13px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:750}.btn svg{width:17px;height:17px}.btn-primary{background:var(--gold);color:#192334}.btn-primary:hover{background:var(--gold2)}.btn-quiet{background:#223149;color:#d4deef;border:1px solid #344660}.btn-danger{background:#402c37;color:#ffb7bf}.btn-full{width:100%}.day-service{margin-top:14px}.service-main{display:flex;align-items:center;justify-content:space-between;gap:12px}.service-code{font-size:22px;font-weight:850;letter-spacing:-.55px}.schedule{display:grid;grid-template-columns:1fr auto 1fr;gap:9px;align-items:center;margin-top:15px}.schedule .time{font-weight:850;font-size:23px;letter-spacing:-.8px}.schedule .place{font-size:12px;color:var(--muted);line-height:1.4;margin-top:4px}.schedule .arrival{text-align:right}.schedule .middle{display:grid;place-items:center;color:#607893}.schedule .middle svg{width:20px;height:20px}.metadata{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.meta-pill{background:#203048;padding:7px 10px;border-radius:9px;color:#b8c9e2;font-size:11px}.note-preview{border-top:1px solid #30405a;padding-top:13px;font-size:13px;line-height:1.7;color:#c1cee0;white-space:pre-wrap;overflow-wrap:anywhere}.content-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:24px 0 13px}.content-heading p{font-size:12px;color:var(--muted);margin-top:4px}.month-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.mini-stat{background:#162238;border:1px solid #2b3b55;border-radius:15px;padding:15px 12px}.mini-stat strong{font-size:22px;letter-spacing:-.7px;display:block}.mini-stat span{font-size:10px;color:var(--muted);display:block;line-height:1.4;margin-top:4px}.section-title{font-size:23px;letter-spacing:-.6px;margin:5px 0 6px}.section-description{font-size:13px;line-height:1.6;color:var(--muted);margin-bottom:20px}.search{display:flex;align-items:center;gap:10px;background:#17243a;border:1px solid #33435e;border-radius:14px;padding:0 13px}.search svg{width:18px;height:18px;color:#91a5c0}.search input{background:none;border:0;outline:0;color:#fff;min-height:48px;min-width:0;flex:1;width:100%;font-size:14px}.search input::placeholder{color:#8091ac}.history-list{margin-top:13px;display:grid;gap:9px}.history-row{width:100%;text-align:left;display:flex;align-items:center;gap:12px;padding:14px;background:#17243a;border:1px solid #2b3b55;border-radius:15px}.history-icon{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;background:#3f3929;color:#f3ca75}.history-icon.off{background:#1c453b;color:#8be1bc}.history-icon svg{width:18px;height:18px}.history-text{min-width:0;flex:1}.history-text strong{display:block;font-size:13px;margin-bottom:5px}.history-text small{font-size:11px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.history-row>.chevron{width:16px;height:16px;color:#758aa8}.empty-list{padding:40px 16px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6}.range-switch{display:flex;gap:7px;margin:16px 0}.switch-btn{padding:9px 13px;background:#1b2a42;border-radius:10px;color:#aabbd3;font-size:12px;font-weight:650}.switch-btn.selected{background:#3a4250;color:#ffdf99}.chart-bars{display:flex;gap:8px;align-items:end;height:145px;border-bottom:1px solid #42516a;margin-top:25px;padding-bottom:2px}.chart-bar{flex:1;min-width:0;background:linear-gradient(0deg,#b9894e,#ffdb8a);border-radius:7px 7px 0 0;position:relative;min-height:2px}.chart-bar.empty{background:#273852}.chart-labels{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:9px}.chart-labels span{color:#8fa1bd;font-size:11px;text-align:center}.setting-card{padding:19px;margin-bottom:13px}.setting-card h3{font-size:15px;margin-bottom:8px}.setting-card p{font-size:12px;line-height:1.65;color:var(--muted)}.setting-card .btn{margin-top:14px}.security-info{background:#20334a;border:1px solid #37516d;padding:14px;border-radius:14px;color:#c7d6ea;line-height:1.6;font-size:12px}.security-info svg{width:16px;height:16px;vertical-align:-3px;margin-right:4px}.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:510px;z-index:10;background:#111b2ef2;backdrop-filter:blur(20px);border-top:1px solid #2b3b53;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:10px 5px calc(11px + env(safe-area-inset-bottom));box-shadow:0 -15px 35px #08101e66}.nav-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:transparent;color:#7f93b0;font-size:10px;font-weight:650;min-height:43px;border-radius:12px}.nav-btn svg{width:20px;height:20px}.nav-btn.current{color:var(--gold)}.nav-btn.current svg{stroke-width:2.3}.fab{position:fixed;bottom:calc(90px + env(safe-area-inset-bottom));right:max(calc((100vw - 510px)/2 + 18px),18px);z-index:9;background:var(--gold);color:#1c283b;width:53px;height:53px;border-radius:19px;display:grid;place-items:center;box-shadow:0 11px 28px #edbe6a42}.fab svg{width:24px;height:24px;stroke-width:2.5}.hidden{display:none!important}.overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center;background:#02060bc2;backdrop-filter:blur(5px)}.sheet{width:100%;max-width:510px;max-height:95dvh;overflow:auto;overscroll-behavior:contain;background:#131e31;border:1px solid #3a4b66;border-radius:25px 25px 0 0;padding:15px 20px calc(24px + env(safe-area-inset-bottom));box-shadow:var(--shadow);animation:slideUp .25s ease}.sheet:focus{outline:0}@keyframes slideUp{from{transform:translateY(20px);opacity:.7}to{transform:translateY(0);opacity:1}}.sheet-handle{width:42px;height:4px;background:#41536c;border-radius:8px;margin:0 auto 17px}.sheet-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:19px}.sheet-header h2{font-size:22px;letter-spacing:-.5px;margin-top:5px}.icon-button{background:#22324b;border-radius:11px;padding:8px;display:grid;place-items:center}.icon-button svg{width:17px;height:17px}.upload-area{position:relative;border:1px dashed #657692;background:#1d2d44;border-radius:15px;min-height:78px;display:flex;align-items:center;justify-content:center;padding:12px;gap:12px;cursor:pointer}.upload-area svg{color:var(--gold)}.upload-area strong{font-size:13px}.upload-area span{display:block;font-size:11px;color:#a1b1c9;margin-top:4px}.upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}.ocr-row{display:flex;align-items:center;gap:10px;margin:10px 0 18px}.ocr-row .btn{flex:none}.ocr-message{flex:1;font-size:11px;line-height:1.5;color:var(--muted)}.two-cols{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field{margin:12px 0 0;min-width:0}.field label{display:block;margin-bottom:7px;font-size:11px;font-weight:700;color:#aebdd2}.field input,.field textarea{width:100%;border:1px solid #344661;border-radius:12px;background:#0e192b;color:#fff;padding:11px 12px;min-height:43px;font-size:14px;outline:0}.field input:focus,.field textarea:focus{border-color:#d2ae67}.field input::placeholder,.field textarea::placeholder{color:#647791}.field textarea{min-height:126px;resize:vertical;line-height:1.55}.separator{height:1px;background:#34445b;margin:20px 0 6px}.field-group-title{font-size:13px;color:#e6ecf6;font-weight:800;margin:18px 0 0;display:flex;align-items:center;gap:7px}.field-group-title svg{width:16px;height:16px;color:var(--gold)}.sheet-actions{display:flex;gap:9px;margin-top:20px}.sheet-actions .btn{flex:1}.tiny-warning{font-size:11px;line-height:1.55;color:#b8c6d8;margin-top:12px}.toast{position:fixed;z-index:70;left:50%;transform:translateX(-50%);bottom:calc(95px + env(safe-area-inset-bottom));width:calc(100% - 40px);max-width:470px;border:1px solid #4b654d;background:#223d34;color:#e4fff1;border-radius:14px;padding:14px 16px;font-size:13px;box-shadow:var(--shadow)}.toast.error{background:#472b35;border-color:#78434e;color:#ffe5eb}#backupFile,#verifyFile{display:none}@media(min-width:680px){.app{border-left:1px solid #293d5d;border-right:1px solid #293d5d}.topbar{padding-top:25px}.sheet{border-radius:25px;margin-bottom:30px;max-height:88vh}.overlay{align-items:flex-end}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+
+.backup-reminder{display:flex;align-items:center;gap:12px;background:#453922;border:1px solid #82683c;color:#fce2a5;border-radius:13px;padding:12px 14px;margin:0 0 14px;font-size:12px;line-height:1.55}.backup-reminder button{background:#f3d18a;color:#1b2332;border-radius:9px;padding:9px 11px;font-weight:800;font-size:12px;white-space:nowrap}.backup-reminder.hidden{display:none}.storage-message{margin-top:5px;color:#9fdbcd!important}.storage-message.danger,.ocr-warning{color:#f6b3a8!important}
+.past-readonly{margin:11px 0 14px;padding:11px 13px;border:1px solid var(--stroke);background:var(--surface2);color:var(--muted);border-radius:12px;font-size:12px;line-height:1.55}
+.past-readonly strong{display:block;color:var(--text);margin-bottom:3px}
+/* v0.8 — interação compacta e painel de dia */
+.hero h2{font-size:clamp(19px,6vw,24px);white-space:nowrap}
+.hero-right{flex-shrink:0}
+.month-inline{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;padding:15px 3px 0;color:var(--muted);font-size:11px}
+.month-inline strong{color:var(--text);font-weight:850;font-size:13px}
+.calendar-panel{touch-action:pan-y}
+.date-cell{aspect-ratio: .92;min-height:43px}
+.date-cell.service{background:linear-gradient(160deg,#2b2b34,#342f35)}
+.date-cell.off{background:linear-gradient(160deg,#1a3536,#213c3d)}
+.date-cell.service.is-selected{border-color:var(--gold);background:#433b39}
+.date-cell.off.is-selected{border-color:var(--green);background:#24483e}
+.date-cell.is-selected .day-number{font-weight:850}
+.date-cell .indicator{margin-top:0}
+.day-quick{margin-top:14px;display:flex;align-items:center;gap:12px;padding:14px 15px;min-height:81px}
+.quick-status{width:38px;height:38px;border-radius:12px;background:#273751;color:var(--muted);display:grid;place-items:center;flex:none}
+.quick-status.service{background:#463b28;color:var(--gold)}
+.quick-status.off{background:#224239;color:var(--green)}
+.quick-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.quick-main strong{font-size:13px;letter-spacing:-.2px}
+.quick-main span{color:var(--muted);font-size:12px;line-height:1.5;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.quick-chevron{color:#8799b5}
+.day-drawer{z-index:43}
+.day-drawer .sheet{max-height:85dvh}
+.day-panel{margin:0;padding:18px;border-radius:18px;box-shadow:none}
+.day-drawer .sheet-header{margin-bottom:12px}
+.day-drawer .sheet-header h2{font-size:17px}
+.date-jump{position:relative;overflow:hidden}
+.date-jump input[type=date]{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;color-scheme:dark}
+.day-drawer .cta-row{flex-wrap:wrap}
+.day-drawer .cta-row .btn{flex:1}
+@media(max-width:370px){.date-cell{font-size:12px;border-radius:9px;min-height:38px}.calendar-panel{padding:12px 8px}.week-grid,.month-grid{gap:2px}.hero h2{font-size:23px}}
+
+/* Minha Escala v1.0 — teste de publicação automática: tema branco. Não altera os dados. */
+:root{color-scheme:light;--bg:#ffffff;--surface:#ffffff;--surface2:#f4f7fb;--surface3:#edf2f8;--stroke:#e1e8f1;--text:#172538;--muted:#61738a;--gold:#b97b19;--gold2:#8b5b10;--green:#177b60;--red:#c33f54;--shadow:0 16px 42px #1e355015}
+html,body{background:#ffffff!important;color:var(--text)}
+.app{background:#ffffff!important;box-shadow:0 0 32px #18345a0a}
+.topbar{background:#fff}
+.brand-caption,.caption,.muted,.section-description,.content-heading p{color:var(--muted)}
+.eyebrow{color:#94651f}
+.logo{background:linear-gradient(145deg,#fce6af,#e8b653);color:#24354b;box-shadow:0 5px 17px #cea34c25}
+.square-button,.round-button,.icon-button{background:#f3f6fa;border:1px solid #e2e8f0;color:#324760}
+.surface{background:#fff;border-color:#e2e8f0;box-shadow:0 7px 24px #23415b0d}
+.calendar-panel{background:#fff}
+.week-grid span{color:#718198}
+.date-cell{color:#22354b}
+.date-cell:hover{background:#f4f7fb}
+.date-cell.is-selected{background:#edf3fb;border-color:#9aafca}
+.date-cell.outside{color:#b5c0d0}
+.date-cell.service{background:#fff3d9}
+.date-cell.off{background:#def5e9}
+.date-cell.service.is-selected{background:#ffedc4;border-color:#be881b}
+.date-cell.off.is-selected{background:#d0f0e1;border-color:#288a6a}
+.date-cell.service .indicator{background:#c98a24}
+.date-cell.off .indicator{background:#208766}
+.cal-bottom,.note-preview{border-color:#e5eaf1}
+.legend span{color:#586a81}
+.legend i{background:#c98a24}
+.link-button{color:#925d13}
+.day-quick{background:#fff}
+.quick-status,.empty-icon{background:#edf2f8;color:#5b7089}
+.quick-status.service{background:#fff1d2;color:#a26b17}
+.quick-status.off{background:#d9f5e7;color:#197d5d}
+.quick-chevron{color:#8190a4}
+.tag{background:#edf2f8;color:#465973}
+.tag.service{background:#fff0cd;color:#8a5b12}
+.tag.off{background:#dbf5e8;color:#116c51}
+.empty-day p{color:var(--muted)}
+.btn-primary,.fab{background:#ecc36f;color:#24334a;box-shadow:0 6px 16px #d1a14c24}
+.btn-primary:hover{background:#e5b95c}
+.btn-quiet{background:#f2f6fb;color:#2e435e;border:1px solid #dfe7f0}
+.btn-danger{background:#fee9ec;color:#a32c41}
+.meta-pill{background:#edf2f8;color:#38516a}
+.note-preview{color:#394e65}
+.mini-stat{background:#f7f9fc;border-color:#e2e8f0}
+.history-row{background:#fff;border-color:#e3eaf2;color:var(--text)}
+.history-icon{background:#fff0ce;color:#9f6b16}
+.history-icon.off{background:#def4e9;color:#14785b}
+.history-row>.chevron{color:#91a0b2}
+.search{background:#f6f8fb;border-color:#dfe7f0}
+.search input{color:#172538}
+.search input::placeholder{color:#8493a5}
+.search svg{color:#718298}
+.switch-btn{background:#f0f4f9;color:#586c84}
+.switch-btn.selected{background:#fff0ce;color:#8d5c12}
+.chart-bars{border-color:#dbe2eb}
+.chart-bar.empty{background:#e9eef5}
+.chart-labels span{color:#65778d}
+.security-info{background:#eff6ff;color:#425b76;border-color:#d3e5f8}
+.bottom-nav{background:#ffffffed;border-top:1px solid #e1e8f1;box-shadow:0 -10px 24px #1e38500d}
+.nav-btn{color:#6c7c91}
+.nav-btn.current{color:#a56b18}
+.overlay{background:#15233892}
+.sheet{background:#ffffff;border-color:#d9e3ee;color:var(--text)}
+.sheet-handle{background:#c7d1de}
+.upload-area{background:#f4f8fd;border-color:#9eafc3}
+.upload-area svg{color:#a66e1b}
+.upload-area span,.ocr-message,.tiny-warning{color:#647991}
+.field label{color:#4b6179}
+.field input,.field textarea{background:#fff;border-color:#d2deeb;color:#172538;color-scheme:light}
+.field input::placeholder,.field textarea::placeholder{color:#8b9bb0}
+.field-group-title{color:#253951}
+.field-group-title svg{color:#a66e1b}
+.separator{background:#e2e8f0}
+.date-jump input[type=date]{color-scheme:light}
+.backup-reminder{background:#fff4de;border-color:#e7cca0;color:#79541e}
+.backup-reminder button{background:#e9c57a;color:#26354a}
+.storage-message{color:#136d57!important}
+.storage-message.danger,.ocr-warning{color:#b63e4b!important}
+.toast{background:#e5f5ec;color:#166246;border-color:#a5d8bb}
+.toast.error{background:#ffebef;color:#a33048;border-color:#efb3bf}
+@media(min-width:680px){.app{border-left:1px solid #edf1f6;border-right:1px solid #edf1f6}}
+/* Minha Escala v1.2 — contagem FO por mês; observações do serviço */
+.date-cell{min-height:64px;aspect-ratio:auto;gap:1px;padding:5px 1px;justify-content:flex-start}
+.date-cell .day-number{font-size:13px;line-height:18px;font-weight:760}
+.date-cell .indicator{height:5px;margin-top:1px}
+.date-cell .cell-hours{display:flex;flex-direction:column;align-items:center;gap:1px;margin-top:2px;font-weight:800;font-size:9px;line-height:11px;letter-spacing:-.2px;color:#84550e;white-space:nowrap}
+.date-cell.off .cell-hours{display:none}
+.date-cell .cell-hours .end{color:#6b5d42}
+.date-cell.service.no-times .cell-hours{color:#96734b}
+.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:15px}
+.detail-item{min-width:0;background:#f6f8fb;border:1px solid #e3eaf2;padding:11px 12px;border-radius:12px}
+.detail-item .detail-label{font-size:10px;color:#6b7d91;display:block;margin-bottom:4px;font-weight:700}
+.detail-item .detail-value{font-size:13px;color:#1c2c42;font-weight:750;line-height:1.4;overflow-wrap:anywhere}
+.detail-item .detail-value.empty{color:#8290a1;font-weight:500}
+.detail-meta{margin-top:13px;background:#fff5e0;border-radius:10px;color:#805514;padding:9px 11px;font-size:12px;font-weight:700}
+.note-title{font-size:12px;margin:18px 0 0;color:#52677f;font-weight:800}
+.detail-note{margin-top:7px}
+.advanced-search{margin-top:13px;background:#fff;border:1px solid #e2e8f0;border-radius:15px;overflow:hidden}
+.advanced-search summary{cursor:pointer;list-style:none;padding:13px 15px;font-size:12px;font-weight:800;color:#374e66;display:flex;align-items:center;justify-content:space-between}
+.advanced-search summary::after{content:'⌄';font-size:16px;color:#7f90a7}
+.advanced-search[open] summary::after{content:'⌃'}
+.advanced-search summary::-webkit-details-marker{display:none}
+.advanced-search .advanced-body{padding:0 14px 15px}
+.filter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.filter-grid label{display:grid;gap:6px;color:#596f86;font-size:11px;font-weight:750}
+.filter-grid input,.filter-grid select{min-width:0;width:100%;border:1px solid #d9e4ef;border-radius:10px;background:#fff;color:#172538;padding:10px 8px;font-size:12px;min-height:42px;color-scheme:light}
+.filter-meta{margin:12px 0 2px;display:flex;justify-content:space-between;align-items:center;gap:10px;color:#64758b;font-size:12px}
+.filter-meta button{background:#edf3f9;color:#415a73;padding:8px 11px;border-radius:10px;font-size:11px;font-weight:800}
+.history-results{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:#64758b}
+.history-results strong{color:#2f455f}
+.load-more{width:100%;margin:12px 0 0;background:#f2f6fb;border:1px solid #dfe7ef;border-radius:12px;padding:12px;color:#3b5670;font-size:12px;font-weight:800}
+.backup-verify-status{margin-top:10px;font-size:12px;line-height:1.5;color:#45627b}
+.backup-verify-status.error{color:#b43d4b}
+.version-notice{background:#eef6ff;color:#435d77;border:1px solid #d6e7f8;padding:12px;border-radius:12px;font-size:12px;line-height:1.55;margin-bottom:14px}
+@media(max-width:360px){.date-cell{min-height:59px}.date-cell .cell-hours{font-size:8px;letter-spacing:-.35px}.detail-grid{gap:7px}.detail-item{padding:10px}}
+/* Indicação FO: não altera a cor dos restantes serviços ou folgas. */
+.holiday-summary{color:#9b5c15;font-weight:700}
+.holiday-mark{position:absolute;top:2px;right:2px;font-size:8px;font-weight:900;color:#9b5c15;background:#fff0cd;border-radius:4px;padding:1px 2px;line-height:12px}
+.fo-detail{background:#fff2d8;border:1px solid #edd4a2;color:#885b14}
+.holiday-stats{padding:17px;margin-top:16px;background:#fff;border-color:#e2e8f0}
+.holiday-stats-head{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:flex-start}
+.holiday-stats-head h2{margin-bottom:6px}
+.holiday-stats-head label{font-size:11px;color:#5b6f85;display:grid;gap:4px;min-width:0;flex:1 1 220px}
+.holiday-stats-head input{display:block;width:100%;max-width:100%;min-width:0;background:#fff;color:#25394e;border:1px solid #dce4ed;border-radius:9px;min-height:42px;padding:7px 10px;font-size:14px;color-scheme:light}
+.monthly-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0 20px}
+.monthly-summary-grid>div{padding:12px;background:#f6f9fc;border:1px solid #e7edf4;border-radius:12px}
+.monthly-summary-grid strong{display:block;font-size:23px;color:#192d45}
+.monthly-summary-grid span{display:block;font-size:11px;color:#607388;line-height:1.45;margin-top:3px}
+.holiday-list-title{margin-bottom:8px}
+.holiday-month-row{display:flex;justify-content:space-between;gap:7px;padding:10px 3px;border-top:1px solid #e9edf2;font-size:12px;color:#5a6f85}
+.holiday-month-row strong{color:#835412;text-align:right}
+
+/* Minha Escala v1.3 — completar três módulos: calendário, ficha, estatísticas. */
+.date-cell{position:relative}
+.period-mark{position:absolute;left:3px;top:3px;min-width:13px;height:13px;line-height:13px;font-size:8px;font-weight:900;border-radius:4px;background:#dceafc;color:#26558e}
+.period-mark.afternoon{background:#ffe8bd;color:#865617}
+.period-mark.night{background:#e7e4f8;color:#554a93}
+.date-cell.service .day-number{margin-top:2px}
+.legend{flex-wrap:wrap;gap:7px}
+.period-legend{font-size:10px!important;font-weight:700;color:#687c91!important}
+.stats-coverage,.stats-compare{margin:13px 0;padding:12px;background:#f1f6fc;border:1px solid #dbe6f4;border-radius:11px;color:#50677d;font-size:12px;line-height:1.55}
+.stats-compare{background:#fff9ec;border-color:#efdfbf;color:#725624}
+.period-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:11px}
+.period-summary>div{background:#f4f7fb;border:1px solid #e5ecf4;border-radius:11px;padding:12px 6px;display:grid;gap:5px;text-align:center}
+.period-summary span{font-size:11px;color:#697d92}
+.period-summary strong{font-size:21px;color:#243b55}
+@media(max-width:385px){.period-mark{top:1px;left:1px;min-width:11px;font-size:7px}.date-cell .day-number{font-size:12px}.period-legend{flex-basis:100%}}
+
+/* v1.4.2: aparência opcional. O modo claro continua a ser o padrão.
+   As regras são isoladas por data-theme; não alteram os registos. */
+html[data-theme="dark"]{color-scheme:dark;--bg:#0b1120;--surface:#131d30;--surface2:#1a2740;--surface3:#21314b;--stroke:#2a3a56;--text:#f2f5fb;--muted:#a6b6cb;--gold:#f2cb70;--gold2:#ffdf99;--green:#6dd6b1;--red:#ff8d93;--shadow:0 22px 75px #03081270}
+html[data-theme="dark"],html[data-theme="dark"] body{background:#0b1120!important;color:var(--text)}
+html[data-theme="dark"] .app{background:linear-gradient(155deg,#131f34 0,#0b1323 180px,#0b1323 100%)!important;box-shadow:0 0 100px #0003}
+html[data-theme="dark"] .topbar{background:transparent}
+html[data-theme="dark"] .eyebrow{color:var(--gold)}
+html[data-theme="dark"] .logo{background:linear-gradient(145deg,#f9dc93,#e5af52);color:#192237;box-shadow:0 6px 24px #efb65729}
+html[data-theme="dark"] .square-button,html[data-theme="dark"] .round-button,html[data-theme="dark"] .icon-button{background:#1b2942;color:#e5eefa;border-color:#33435e}
+html[data-theme="dark"] .surface,html[data-theme="dark"] .calendar-panel{background:#152138;border-color:#2a3955;box-shadow:0 12px 30px #00000014}
+html[data-theme="dark"] .week-grid span{color:#9caec8}
+html[data-theme="dark"] .date-cell{color:#f0f5fc}
+html[data-theme="dark"] .date-cell:hover{background:#273754}
+html[data-theme="dark"] .date-cell.is-selected{background:#293952;border-color:#8297b6}
+html[data-theme="dark"] .date-cell.outside{color:#7e91ab}
+html[data-theme="dark"] .date-cell.service{background:#3d352d}
+html[data-theme="dark"] .date-cell.off{background:#1b3d35}
+html[data-theme="dark"] .date-cell.service.is-selected{background:#514232;border-color:#e4bf70}
+html[data-theme="dark"] .date-cell.off.is-selected{background:#255143;border-color:#64c59e}
+html[data-theme="dark"] .date-cell.service .indicator{background:#f2cb70}
+html[data-theme="dark"] .date-cell.off .indicator{background:#6dd6b1}
+html[data-theme="dark"] .cal-bottom,html[data-theme="dark"] .note-preview{border-color:#30405a}
+html[data-theme="dark"] .legend span,html[data-theme="dark"] .period-legend{color:#b6c6da!important}
+html[data-theme="dark"] .legend i{background:#f2cb70}
+html[data-theme="dark"] .link-button{color:#ffdf99}
+html[data-theme="dark"] .day-quick{background:#192840}
+html[data-theme="dark"] .quick-status,html[data-theme="dark"] .empty-icon{background:#273751;color:#b8c9df}
+html[data-theme="dark"] .quick-status.service{background:#463b28;color:#f2cb70}
+html[data-theme="dark"] .quick-status.off{background:#224239;color:#8fe3c4}
+html[data-theme="dark"] .quick-chevron{color:#9ab0ce}
+html[data-theme="dark"] .tag{background:#293247;color:#c9d5e8}
+html[data-theme="dark"] .tag.service{background:#463b28;color:#ffdf99}
+html[data-theme="dark"] .tag.off{background:#1b413b;color:#8ce2c3}
+html[data-theme="dark"] .btn-primary,html[data-theme="dark"] .fab{background:#f2cb70;color:#192334;box-shadow:0 6px 16px #d1a14c24}
+html[data-theme="dark"] .btn-primary:hover{background:#ffdf99}
+html[data-theme="dark"] .btn-quiet{background:#223149;color:#e1eafa;border-color:#344660}
+html[data-theme="dark"] .btn-danger{background:#402c37;color:#ffb7bf}
+html[data-theme="dark"] .meta-pill{background:#203048;color:#c8d5e8}
+html[data-theme="dark"] .note-preview{color:#d0daea}
+html[data-theme="dark"] .mini-stat{background:#162238;border-color:#2b3b55}
+html[data-theme="dark"] .history-row{background:#17243a;border-color:#2b3b55;color:var(--text)}
+html[data-theme="dark"] .history-icon{background:#3f3929;color:#f3ca75}
+html[data-theme="dark"] .history-icon.off{background:#1c453b;color:#8be1bc}
+html[data-theme="dark"] .history-row>.chevron{color:#9dafc8}
+html[data-theme="dark"] .search{background:#17243a;border-color:#33435e}
+html[data-theme="dark"] .search input{color:#f2f5fb}
+html[data-theme="dark"] .search input::placeholder{color:#a0aec4}
+html[data-theme="dark"] .search svg{color:#afbed4}
+html[data-theme="dark"] .switch-btn{background:#1b2a42;color:#c0cde0}
+html[data-theme="dark"] .switch-btn.selected{background:#463b28;color:#ffdf99}
+html[data-theme="dark"] .chart-bars{border-color:#42516a}
+html[data-theme="dark"] .chart-bar.empty{background:#273852}
+html[data-theme="dark"] .chart-labels span{color:#a0b4d0}
+html[data-theme="dark"] .security-info{background:#20334a;color:#d1dfef;border-color:#37516d}
+html[data-theme="dark"] .bottom-nav{background:#111b2ef2;border-color:#2b3b53;box-shadow:0 -15px 35px #08101e66}
+html[data-theme="dark"] .nav-btn{color:#a6b9d3}
+html[data-theme="dark"] .nav-btn.current{color:#f2cb70}
+html[data-theme="dark"] .overlay{background:#02060bc2}
+html[data-theme="dark"] .sheet{background:#131e31;border-color:#3a4b66;color:var(--text)}
+html[data-theme="dark"] .sheet-handle{background:#41536c}
+html[data-theme="dark"] .upload-area{background:#1d2d44;border-color:#657692}
+html[data-theme="dark"] .upload-area svg{color:#f2cb70}
+html[data-theme="dark"] .upload-area span,html[data-theme="dark"] .ocr-message,html[data-theme="dark"] .tiny-warning{color:#becde0}
+html[data-theme="dark"] .field label{color:#c0cee2}
+html[data-theme="dark"] .field input,html[data-theme="dark"] .field textarea{background:#0e192b;border-color:#344661;color:#f3f7ff;color-scheme:dark}
+html[data-theme="dark"] .field input::placeholder,html[data-theme="dark"] .field textarea::placeholder{color:#94a6bf}
+html[data-theme="dark"] .field-group-title{color:#e6ecf6}
+html[data-theme="dark"] .field-group-title svg{color:#f2cb70}
+html[data-theme="dark"] .separator{background:#34445b}
+html[data-theme="dark"] .date-jump input[type=date]{color-scheme:dark}
+html[data-theme="dark"] .backup-reminder{background:#453922;border-color:#82683c;color:#fce2a5}
+html[data-theme="dark"] .backup-reminder button{background:#f3d18a;color:#1b2332}
+html[data-theme="dark"] .storage-message{color:#a0e5d2!important}
+html[data-theme="dark"] .storage-message.danger,html[data-theme="dark"] .ocr-warning{color:#f6b3a8!important}
+html[data-theme="dark"] .toast{background:#223d34;color:#e4fff1;border-color:#4b654d}
+html[data-theme="dark"] .toast.error{background:#472b35;color:#ffe5eb;border-color:#78434e}
+html[data-theme="dark"] .date-cell .cell-hours,html[data-theme="dark"] .date-cell .cell-hours .end{color:#ffdf99}
+html[data-theme="dark"] .date-cell.service.no-times .cell-hours{color:#d5bd8e}
+html[data-theme="dark"] .detail-item{background:#1b2c45;border-color:#354a68}
+html[data-theme="dark"] .detail-item .detail-label{color:#b9c9dc}
+html[data-theme="dark"] .detail-item .detail-value{color:#f2f5fb}
+html[data-theme="dark"] .detail-item .detail-value.empty{color:#a0b1c8}
+html[data-theme="dark"] .detail-meta{background:#453821;color:#ffe0a4}
+html[data-theme="dark"] .note-title{color:#b9c9dc}
+html[data-theme="dark"] .advanced-search{background:#17243a;border-color:#33435e}
+html[data-theme="dark"] .advanced-search summary{color:#d8e5f4}
+html[data-theme="dark"] .advanced-search summary::after{color:#adbed4}
+html[data-theme="dark"] .filter-grid label{color:#c2d0e3}
+html[data-theme="dark"] .filter-grid input,html[data-theme="dark"] .filter-grid select{background:#0e192b;border-color:#344661;color:#f2f5fb;color-scheme:dark}
+html[data-theme="dark"] .filter-meta,html[data-theme="dark"] .history-results{color:#bac9dd}
+html[data-theme="dark"] .filter-meta button,html[data-theme="dark"] .load-more{background:#253752;color:#e4edfa;border-color:#344661}
+html[data-theme="dark"] .history-results strong{color:#e9effb}
+html[data-theme="dark"] .backup-verify-status{color:#c2d6ea}
+html[data-theme="dark"] .backup-verify-status.error{color:#ffa5b1}
+html[data-theme="dark"] .version-notice,html[data-theme="dark"] .stats-coverage{background:#20334a;border-color:#37516d;color:#d1dfef}
+html[data-theme="dark"] .stats-compare{background:#413624;border-color:#79613a;color:#ffe2af}
+html[data-theme="dark"] .holiday-mark{background:#59462c;color:#ffe2a5}
+html[data-theme="dark"] .holiday-summary{color:#f6cc81}
+html[data-theme="dark"] .fo-detail{background:#4a3826;border-color:#7a603b;color:#ffe0a4}
+html[data-theme="dark"] .holiday-stats{background:#152138;border-color:#2a3955}
+@media(max-width:430px){.holiday-stats-head label{flex:1 1 100%}.holiday-stats-head input{width:100%}}
+html[data-theme="dark"] .holiday-stats-head label{color:#c2d1e3}
+html[data-theme="dark"] .holiday-stats-head input{background:#0e192b;border-color:#344661;color:#f2f5fb;color-scheme:dark}
+html[data-theme="dark"] .monthly-summary-grid>div{background:#1b2c45;border-color:#354a68}
+html[data-theme="dark"] .monthly-summary-grid strong,html[data-theme="dark"] .period-summary strong{color:#f2f5fb}
+html[data-theme="dark"] .monthly-summary-grid span,html[data-theme="dark"] .period-summary span{color:#b8cae0}
+html[data-theme="dark"] .holiday-month-row{border-color:#354a68;color:#b8cae0}
+html[data-theme="dark"] .holiday-month-row strong{color:#ffdc97}
+html[data-theme="dark"] .period-mark{background:#294d7a;color:#d7e9ff}
+html[data-theme="dark"] .period-mark.afternoon{background:#604627;color:#ffe0a4}
+html[data-theme="dark"] .period-mark.night{background:#3d385e;color:#ded8ff}
+html[data-theme="dark"] .period-summary>div{background:#1b2c45;border-color:#354a68}
+html[data-theme="dark"] .month-inline,html[data-theme="dark"] .month-inline strong{color:#e6eef9}
+html[data-theme="dark"] .app{border-color:#293d5d}
+/* Aparência, reutiliza o estilo dos cartões de Dados. */
+#themeButton{display:flex;justify-content:space-between;align-items:center}
+#themeButton .theme-button-label{display:flex;align-items:center;gap:9px}
+#themeButton .theme-button-symbol{font-size:17px;line-height:1}
+
+
+/* Escala v1.5: notas adicionais, expansíveis e independentes das observações. */
+.extra-note-section{margin-top:18px}
+.extra-note-toggle{justify-content:flex-start;text-align:left;gap:9px;border:1px dashed #c8d5e5;background:#f5f8fd;color:#304a69}
+.extra-note-toggle #extraNotesButtonLabel{flex:1}
+.extra-note-toggle #extraNotesChevron{font-size:18px;font-weight:700;line-height:1}
+.extra-note-panel{margin:9px 0 0;padding:0 3px 3px}
+.extra-note-panel textarea{min-height:112px}
+.additional-note-card{margin-top:14px;background:#fff9ec;border:1px solid #eed9aa;border-radius:13px;padding:12px 14px}
+.additional-note-card h4{font-size:12px;letter-spacing:.2px;margin:0 0 6px;color:#79551b}
+.additional-note-card p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.6;color:#4e4435;margin:0}
+html[data-theme="dark"] .extra-note-toggle{border-color:#546886;background:#1b2c45;color:#e0eafa}
+html[data-theme="dark"] .additional-note-card{background:#2a2b2f;border-color:#62522f}
+html[data-theme="dark"] .additional-note-card h4{color:#f3ce7c}
+html[data-theme="dark"] .additional-note-card p{color:#e1d6bd}
+/* v1.5.4 — indicação de tempo de condução, com o mesmo aspeto em ambos os temas. */
+.toast{pointer-events:none}
+.driving-field{margin-top:14px}
+.quick-main .quick-driving{font-size:11px;color:#1b65a1;font-weight:750;white-space:normal;overflow:visible;text-overflow:clip}
+html[data-theme="dark"] .quick-main .quick-driving{color:#a8d5ff}
+.driving-inline{display:inline-flex;gap:4px;align-items:center;color:#2968a6!important;font-weight:650}
+.driving-inline strong{color:#1c5c97!important}
+.driving-coverage{font-size:11px;line-height:1.55;color:#52687e;margin:-4px 0 12px}
+.driving-stat{grid-column:1/-1;border-color:#c9dff6!important;background:#eff6ff!important;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.driving-stat strong{order:2;flex:none}
+.driving-stat span{order:1;font-size:12px;font-weight:650}
+.driving-stat strong{color:#165b97!important}
+html[data-theme="dark"] .driving-inline,html[data-theme="dark"] .driving-inline strong{color:#9ac9fa!important}
+html[data-theme="dark"] .driving-coverage{color:#b0c7de}
+html[data-theme="dark"] .driving-stat{background:#20334a!important;border-color:#47658b!important}
+html[data-theme="dark"] .driving-stat strong{color:#a8d5ff!important}
+
+/* v1.5.17 — o período noturno da Carris é 20h00–08h00. */
+.night-driving-stat{grid-column:1/-1;border-color:#e3ddf4!important;background:#f5f2fc!important;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.night-driving-stat strong{order:2;flex:none;color:#604b91!important}
+.night-driving-stat span{order:1;font-size:12px;font-weight:650}
+.night-driving-inline{display:inline-flex;align-items:center;gap:4px;color:#62488d!important;font-weight:650}
+.night-driving-inline strong{color:#62488d!important}
+html[data-theme="dark"] .night-driving-stat{background:#302c45!important;border-color:#625782!important}
+html[data-theme="dark"] .night-driving-stat strong,html[data-theme="dark"] .night-driving-inline,html[data-theme="dark"] .night-driving-inline strong{color:#d3c5fc!important}
+/* Escala v1.5.6 — férias por data, sem cálculo presumido de fins de semana. */
+.date-cell.vacation{background:#f0e9ff;border-color:#d8c6f9;color:#6647a1}
+.date-cell.vacation .indicator{background:#9d7ce0;width:7px;height:7px}
+.date-cell.vacation.is-selected{background:#e5d6ff;border-color:#9067cf}
+.legend i.purple{background:#9d7ce0}
+.quick-status.vacation,.tag.vacation,.history-icon.vacation{background:#eee5ff;color:#6a48a8}
+.empty-icon.vacation-icon{background:#efe7ff;color:#7b52b9}
+.btn-vacation{background:#f1eaff;color:#62439c;border:1px solid #d8c5f6;font-weight:750}
+.btn-vacation:hover{background:#e7dbff}
+.day-cta-three{flex-wrap:wrap}
+.day-cta-three .btn{flex:1 1 calc(50% - 6px);min-width:110px}
+.vacation-summary,.vacation-add-card,.vacation-dates-card{padding:17px;margin-bottom:14px}
+.vacation-year-head{display:flex;justify-content:space-between;align-items:end;gap:12px}
+.vacation-year-head label{display:grid;gap:5px;color:var(--muted);font-size:12px}
+.vacation-year-head select{min-width:128px;padding:10px 12px;border:1px solid var(--stroke);border-radius:11px;color:var(--text);background:var(--surface2);font:inherit;font-size:14px}
+.vacation-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}
+.vacation-metrics>div{background:var(--surface2);border:1px solid var(--stroke);border-radius:13px;padding:12px 8px;display:grid;gap:4px}
+.vacation-metrics strong{font-size:25px;line-height:1.2}
+.vacation-metrics span{font-size:10px;line-height:1.45;color:var(--muted)}
+.vacation-help,.vacation-add-card p{font-size:12px;color:var(--muted);line-height:1.6;margin-top:13px}
+.vacation-add-card h3,.vacation-dates-card h3{font-size:15px;margin:0 0 6px}
+.vacation-date-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.vacation-date-grid label{display:grid;gap:6px;color:var(--muted);font-size:12px;min-width:0}
+.vacation-date-grid input{width:100%;min-width:0;color:var(--text);background:var(--surface2);border:1px solid var(--stroke);border-radius:10px;padding:9px 7px;min-height:43px;font:inherit;font-size:12px}
+.vacation-date-list{display:grid;gap:7px;margin-top:13px}
+.vacation-month-heading{font-size:12px;text-transform:capitalize;letter-spacing:.4px;color:var(--muted);font-weight:750;margin:14px 0 3px}
+.vacation-date-row{border:1px solid var(--stroke);background:var(--surface2);border-radius:12px;padding:11px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.vacation-date-info{min-width:0;display:grid;gap:3px}
+.vacation-date-info strong{font-size:12px}
+.vacation-date-info span{font-size:11px;color:var(--muted)}
+.vacation-date-actions{display:flex;gap:7px;flex-shrink:0}
+.vacation-date-actions button{background:var(--surface);border:1px solid var(--stroke);border-radius:9px;padding:7px 9px;color:var(--text);font-size:11px;min-height:36px}
+.vacation-empty{color:var(--muted);padding:22px 8px;text-align:center;font-size:13px;line-height:1.6}
+html[data-theme="dark"] .date-cell.vacation{background:#302744;border-color:#604a82;color:#dacbff}
+html[data-theme="dark"] .date-cell.vacation.is-selected{background:#433457;border-color:#aa8ce2}
+html[data-theme="dark"] .quick-status.vacation,html[data-theme="dark"] .tag.vacation,html[data-theme="dark"] .history-icon.vacation{background:#3a2d53;color:#dfc7ff}
+html[data-theme="dark"] .empty-icon.vacation-icon{background:#382b51;color:#e1cbff}
+html[data-theme="dark"] .btn-vacation{background:#3b2d55;border-color:#68528c;color:#e5d5ff}
+html[data-theme="dark"] .btn-vacation:hover{background:#4b3a69}
+@media(max-width:355px){.vacation-metrics{gap:5px}.vacation-metrics>div{padding:10px 6px}.vacation-metrics strong{font-size:21px}.nav-btn{font-size:9px}}
+
+/* v1.5.15 — boas-vindas, leitura obrigatória e confirmação antes de entrar. */
+html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
+
+.escala-welcome,.escala-notice{position:fixed;inset:0;z-index:300;display:flex;justify-content:center;overflow:auto;overscroll-behavior:contain}
+.escala-welcome{align-items:center;background:#fff;padding:0;color:#263643}
+.escala-welcome-content{position:relative;width:min(100%,520px);min-height:100dvh;height:100dvh;margin:auto;display:flex;justify-content:center;align-items:center;overflow:hidden;background:#fff}
+.welcome-visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.welcome-artwork{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.escala-welcome:focus-visible,.notice-finish:focus-visible,.notice-check input:focus-visible{outline:3px solid #f0c85f;outline-offset:3px}
+.escala-notice{z-index:310;align-items:center;padding:calc(16px + env(safe-area-inset-top)) 15px calc(16px + env(safe-area-inset-bottom));background:#07101bb8;backdrop-filter:blur(7px)}
+.notice-card{width:min(100%,450px);max-height:calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom));overflow-y:auto;border-radius:24px;background:#fff;color:#18283e;box-shadow:0 22px 70px #0007;padding:clamp(20px,5vw,29px);text-align:center}
+.notice-symbol{width:43px;height:43px;display:grid;place-items:center;border-radius:50%;margin:0 auto 11px;background:#e7f1ff;color:#135aa2;font-size:22px;font-weight:850}
+.notice-card h2{color:#152844;font-size:clamp(20px,5vw,24px);margin:0 0 17px;letter-spacing:-.6px}
+.notice-card p{font-size:13px;line-height:1.6;margin:0 0 14px;color:#33465e}
+.notice-emphasis{display:flex;gap:12px;text-align:left;align-items:flex-start;margin:5px 0 15px;padding:14px;border:1px solid #f1d58b;border-radius:14px;background:#fff4d6;color:#423316;font-size:13px;line-height:1.45}
+.notice-emphasis>span{display:grid;place-items:center;flex-shrink:0;width:23px;height:23px;border-radius:8px;background:#e5a824;color:#172334;font-weight:900}
+.notice-card .notice-small{color:#6b7e91;font-size:11px;margin:5px 0 16px}
+.notice-check{display:flex;align-items:center;gap:12px;border-top:1px solid #e5ebf1;padding:16px 0;cursor:pointer;text-align:left;font-size:13px;font-weight:650;color:#263c57}
+.notice-check input{height:20px;width:20px;accent-color:#145da8;flex-shrink:0;margin:0}
+.notice-finish{width:100%;min-height:48px;border-radius:13px;background:#0d4c8f;color:#fff;font-size:15px;font-weight:750}
+.notice-finish:disabled{background:#d2dbe6;color:#64748b;opacity:1;cursor:not-allowed}
+@media(max-height:640px){.notice-card{max-height:calc(100dvh - 16px)}}
+@media(prefers-reduced-motion:reduce){.escala-welcome *,.escala-notice *{animation:none!important;transition:none!important}}
+
+
+/* Boas-vindas: a mensagem aparece suavemente e permanece visível até ao aviso. */
+.welcome-greeting{
+  position:absolute;left:0;right:0;top:54%;z-index:1;
+  margin:0;padding:0 16px;text-align:center;
+  font-family:Georgia,"Times New Roman",serif;font-weight:400;
+  font-size:clamp(18px,4.6vw,23px);line-height:1.4;
+  letter-spacing:.035em;color:#536371;pointer-events:none;
+  opacity:0;transform:translateY(6px);
+  animation:none!important;
+  transition:opacity .40s ease,transform .40s ease;
+}
+.welcome-greeting.is-visible{opacity:1;transform:translateY(0)}
+.welcome-greeting[hidden]{display:none!important}
+/* O aviso continua sobre a introdução, não sobre o calendário. */
+.escala-notice{background:rgba(238,242,247,.80);backdrop-filter:blur(7px)}
+.escala-notice .notice-card{box-shadow:0 18px 60px #25354d25;border:1px solid #e7edf4}
+@media(prefers-reduced-motion:reduce){
+  .welcome-greeting{transition:none!important;opacity:0}
+  .welcome-greeting.is-visible{opacity:1}
+}
+
+</style>
+</head>
+<body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V11M10 20V4M16 20v-8M22 20V8"/></symbol><symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="#101b2c"/><circle cx="16" cy="12" r="2" fill="#101b2c"/><circle cx="11" cy="18" r="2" fill="#101b2c"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M3 12h18m-6-6 6 6-6 6"/></symbol><symbol id="i-note" viewBox="0 0 24 24"><path d="M8 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-5-5H8z"/><path d="M16 4v5h5M7 13h10M7 17h8"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol><symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l5-.9L20 8a2.8 2.8 0 0 0-4-4L5 15z"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6m4-6v6"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 18v3h16v-3"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.5 1.5m11.2 11.2 1.5 1.5M2 12h2m16 0h2M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"/></symbol><symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 11v6m0-10h.01"/></symbol></svg>
+
+<!-- Escala v1.5.8: apresentação visual e aviso de utilização independente. -->
+<div id="welcomeSplash" class="escala-welcome" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle" tabindex="0">
+  <section class="escala-welcome-content">
+    <h2 class="welcome-visually-hidden" id="welcomeTitle">Escala</h2>
+    <p class="welcome-greeting" aria-live="off">Bem-vindo</p>
+    <img class="welcome-artwork" src="data:image/webp;base64,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" alt="Vista de Lisboa a desvanecer sobre fundo branco, com o nome Escala ao centro." width="941" height="1672" fetchpriority="high" decoding="sync">
+  </section>
+</div>
+<div id="escalaNotice" class="escala-notice hidden" role="presentation">
+  <section class="notice-card" role="dialog" aria-modal="true" aria-labelledby="noticeTitle" aria-describedby="noticeText" tabindex="-1">
+    <div class="notice-symbol" aria-hidden="true">i</div>
+    <h2 id="noticeTitle">Informação importante</h2>
+    <p id="noticeText">A <strong>Escala</strong> destina-se exclusivamente ao <strong>registo e à consulta pessoal de serviços</strong>.</p>
+    <div class="notice-emphasis"><span aria-hidden="true">!</span><strong>Não é uma aplicação oficial da Carris nem substitui os seus meios de escalamento e comunicação.</strong></div>
+    <p>Antes de cada serviço, o trabalhador deve <strong>confirmar sempre nos canais oficiais da empresa</strong> o serviço a que está efetivamente afeto, incluindo quaisquer alterações.</p>
+    <p class="notice-small">Os registos guardados nesta aplicação têm caráter pessoal e informativo.</p>
+    <label class="notice-check"><input type="checkbox" id="noticeRead"><span>Li e compreendi esta informação.</span></label>
+    <button class="notice-finish" type="button" id="noticeFinish" disabled>Concluir</button>
+  </section>
+</div>
+
+<div class="wrap"><main class="app">
+<header class="topbar"><div class="branding"><span class="logo"><svg><use href="#i-calendar"/></svg></span><div><h1>Escala</h1><p class="brand-caption">Versão 1.5.17 · claro/escuro</p></div></div><button class="square-button" id="settingsTop" aria-label="Definições"><svg><use href="#i-settings"/></svg></button></header>
+<section class="view active" id="view-calendar" aria-label="Calendário">
+  <div class="hero"><div><p class="eyebrow">O MEU CALENDÁRIO</p><h2 id="monthTitle"></h2></div><div class="hero-right"><label class="round-button date-jump" title="Ir para uma data"><svg><use href="#i-calendar"/></svg><input type="date" id="jumpDate" aria-label="Escolher uma data" /></label><button class="round-button" id="prevMonth" aria-label="Mês anterior"><svg><use href="#i-chevron-left"/></svg></button><button class="round-button" id="nextMonth" aria-label="Mês seguinte"><svg><use href="#i-chevron-right"/></svg></button></div></div>
+  <div class="surface calendar-panel"><div class="week-grid" aria-hidden="true"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span></div><div class="month-grid" id="monthGrid"></div><div class="cal-bottom"><div class="legend"><span><i></i>Serviço</span><span><i class="green"></i>Folga</span><span><i class="purple"></i>Férias</span></div><button class="link-button" id="goToday">Hoje <svg><use href="#i-arrow"/></svg></button></div></div>
+  <div id="backupReminder" class="backup-reminder hidden" role="status"><span>Os teus serviços ainda não têm uma cópia recente fora deste telemóvel.</span><button type="button" id="backupFromCalendar">Exportar</button></div>
+  <section class="surface day-quick" id="dayQuick" aria-label="Dia selecionado"><span class="quick-status" id="quickIcon"><svg><use href="#i-note"/></svg></span><div class="quick-main"><strong id="quickTitle">Dia selecionado</strong><span id="quickSubtitle">Toca para ver os detalhes</span><span id="quickDriving" class="quick-driving hidden"></span></div><button type="button" class="round-button" id="openDayDetails" aria-label="Abrir detalhes do dia"><svg><use href="#i-chevron-right"/></svg></button></section>
+  <div class="month-inline" aria-label="Resumo mensal"><span><strong id="monthServices">0</strong> serviços</span><span><strong id="monthOffs">0</strong> folgas</span><span><strong id="monthVacations">0</strong> férias</span><span><strong id="monthHours">0h</strong> entre entrada e saída</span><span class="holiday-summary"><strong id="monthHolidays">0</strong> feriados trabalhados (FO)</span><span class="driving-inline"><strong id="monthDriving">0h</strong> de condução no mês</span><span class="night-driving-inline"><strong id="monthNightDriving">0h</strong> noturnas (20h–08h)</span></div>
+</section>
+<section class="view" id="view-history" aria-label="Histórico"><p class="eyebrow">ARQUIVO</p><h2 class="section-title">Histórico</h2><p class="section-description">Encontra serviços por palavra, data, altura ou código de serviço.</p><label class="search"><svg><use href="#i-search"/></svg><input type="search" id="historySearch" placeholder="Pesquisar texto, local ou afetação…" aria-label="Pesquisar serviços" autocomplete="off" /></label>
+<div class="range-switch"><button class="switch-btn selected" data-filter="all">Todos</button><button class="switch-btn" data-filter="service">Serviços</button><button class="switch-btn" data-filter="off">Folgas</button><button class="switch-btn" data-filter="vacation">Férias</button></div>
+<details class="advanced-search" id="advancedSearch"><summary>Filtros avançados</summary><div class="advanced-body"><div class="filter-grid">
+<label>Desde <input type="date" id="historyFrom" aria-label="Pesquisar desde a data"></label>
+<label>Até <input type="date" id="historyTo" aria-label="Pesquisar até à data"></label>
+<label>Altura <input id="historyCode" type="search" autocomplete="off" placeholder="Ex.: E2601"></label>
+<label>Serviço <input id="historyVehicle" type="search" autocomplete="off" placeholder="Ex.: 28E/02"></label>
+<label>Afetação <input id="historyType" type="search" autocomplete="off" placeholder="Ex.: Normal"></label>
+<label>Ordenação <select id="historySort"><option value="desc">Mais recentes</option><option value="asc">Mais antigos</option></select></label>
+</div><div class="filter-meta"><span>Os filtros combinam-se entre si.</span><button type="button" id="clearHistoryFilters">Limpar filtros</button></div></div></details>
+<div class="history-results"><span id="historyCount" aria-live="polite">0 resultados</span><span>Registos locais</span></div>
+<div id="historyList" class="history-list"></div><button id="historyMore" type="button" class="load-more hidden">Mostrar mais resultados</button></section>
+<section class="view" id="view-stats" aria-label="Estatísticas"><p class="eyebrow">VISÃO GERAL</p><h2 class="section-title">Atividade</h2><p class="section-description">Acompanha os serviços registados ao longo do tempo.</p><div class="month-stats"><div class="mini-stat"><strong id="totalServices">0</strong><span>Serviços totais</span></div><div class="mini-stat"><strong id="totalOffs">0</strong><span>Folgas totais</span></div><div class="mini-stat"><strong id="totalHours">0h</strong><span>Horas previstas*</span></div></div><section class="surface holiday-stats" aria-label="Resumo mensal"><div class="holiday-stats-head"><label for="statsMonth">Mês</label><input id="statsMonth" type="month" aria-label="Selecionar o mês das estatísticas" /></div><div class="monthly-summary-grid"><div class="driving-stat"><strong id="statsMonthDriving">0h</strong><span>Horas de condução no mês (calculadas)</span></div><div class="night-driving-stat"><strong id="statsMonthNightDriving">0h</strong><span>Horas noturnas (20h00–08h00)</span></div><div><strong id="statsMonthHolidays">0</strong><span>Feriados trabalhados</span></div><div><strong id="statsMonthServices">0</strong><span>Serviços no mês</span></div><div><strong id="statsMonthOffs">0</strong><span>Folgas registadas</span></div></div>
+<p class="driving-coverage" id="drivingCoverage" role="status">As horas de condução são calculadas automaticamente a partir da entrada e saída de cada serviço. As horas noturnas contam apenas o período entre as 20h00 e as 08h00.</p>
+
+<div class="stats-compare" id="statsCompare" role="status"></div>
+<h3 class="holiday-list-title">Histórico mensal (últimos 6 meses)</h3><div id="holidayMonthList" class="holiday-month-list"></div></section><section class="surface" style="padding:19px;margin-top:16px"><h2>Últimos 6 meses</h2><p class="caption" style="margin-top:6px">Número de serviços guardados por mês</p><div class="chart-bars" id="chartBars" role="img" aria-label="Gráfico de serviços dos últimos seis meses"></div><div class="chart-labels" id="chartLabels"></div></section><p class="caption" style="margin-top:13px">*Na Escala, as horas de condução correspondem ao intervalo entre entrada e saída indicado no serviço. As horas noturnas são a parte desse intervalo entre as 20h00 e as 08h00 e são agrupadas pelo dia de início do serviço, mesmo quando a saída ocorre no dia seguinte.</p></section>
+<section class="view" id="view-vacations" aria-label="Férias">
+  <p class="eyebrow">REGISTO ANUAL</p><h2 class="section-title">Férias</h2>
+  <p class="section-description">Marca os dias de férias no calendário e consulta as datas dos anos anteriores.</p>
+  <section class="surface vacation-summary" aria-label="Resumo anual de férias">
+    <div class="vacation-year-head"><label for="vacationYear">Ano</label><select id="vacationYear" aria-label="Ano de férias"></select></div>
+    <div class="vacation-metrics">
+      <div><strong id="vacationTaken">0</strong><span>Dias gozados</span></div>
+      <div><strong id="vacationUpcoming">0</strong><span>Dias por gozar</span></div>
+      <div><strong id="vacationTotal">0</strong><span>Total assinalado</span></div>
+    </div>
+    <p class="vacation-help">Cada data assinalada conta um dia. Apenas datas até hoje entram em «Gozados». O contador é independente em cada ano, sem apagar o histórico.</p>
+  </section>
+  <section class="surface vacation-add-card" aria-label="Marcar um período de férias">
+    <h3>Marcar dias de férias</h3><p>Seleciona um dia ou um intervalo; também podes marcar férias diretamente no calendário.</p>
+    <div class="vacation-date-grid"><label for="vacationFrom">De<input id="vacationFrom" type="date" /></label><label for="vacationTo">Até<input id="vacationTo" type="date" /></label></div>
+    <button type="button" class="btn btn-primary btn-full" id="vacationAddRange"><svg><use href="#i-check"/></svg> Assinalar férias</button>
+  </section>
+  <section class="surface vacation-dates-card" aria-label="Datas de férias registadas">
+    <h3>Dias de férias em <span id="vacationListYear"></span></h3>
+    <div id="vacationDateList" class="vacation-date-list" aria-live="polite"></div>
+  </section>
+</section>
+<section class="view" id="view-settings" aria-label="Cópias de segurança"><p class="eyebrow">DADOS E PRIVACIDADE</p><h2 class="section-title">Os teus registos</h2><p class="section-description">Os serviços, folgas e férias permanecem neste navegador. Não guardamos as capturas dos serviços.</p><div class="setting-card surface"><h3>Aparência</h3><p>Escolhe o modo claro ou escuro. A preferência fica guardada neste dispositivo.</p><button type="button" class="btn btn-quiet btn-full" id="themeButton" aria-pressed="false"><span class="theme-button-label"><span class="theme-button-symbol" id="themeSymbol" aria-hidden="true">☾</span><span id="themeButtonLabel">Ativar modo escuro</span></span><span aria-hidden="true">⇄</span></button></div><div class="setting-card surface"><h3>Informação sobre a Escala</h3><p>Aplicação independente para registo pessoal. Consulta novamente o aviso sobre a confirmação do escalamento oficial.</p><button class="btn btn-quiet btn-full" id="reopenLegalNotice" type="button">Ler aviso de utilização</button></div>
+<div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Depois de abrir este endereço no Chrome, instala a Escala no ecrã inicial, com ícone próprio e sem a Play Store.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se a instalação não aparecer, usa o menu ⋮ do Chrome → Adicionar ao ecrã principal.</p></div><div class="version-notice" id="versionNotice">A versão 1.5.12 permite assinalar férias por dia ou período e consultar o histórico anual. Calcula automaticamente as horas de condução a partir da entrada e saída, com totais mensais e histórico. «Normal FO» no tipo de afetação ou nas observações conta como um feriado trabalhado. Antes de mudar de endereço, exporta um JSON e confirma o download.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><p class="caption" style="margin-top:10px">A segunda cópia local é apenas uma proteção adicional, não substitui a exportação JSON para fora do dispositivo.</p></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Descarrega um ficheiro JSON com todos os serviços, folgas e férias. O ficheiro inclui uma verificação de integridade (SHA-256 quando suportada). Guarda-o fora do telemóvel; a aplicação não sincroniza os dados.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Confirma primeiro se o JSON está íntegro, sem alterar os serviços. O restauro combina os novos registos e pede confirmação antes de substituir datas coincidentes.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
+<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro validado nesta sessão.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade local.</strong> Os dados ficam no navegador deste dispositivo e não são sincronizados com servidores. Isto não é um sistema de login: alguém com acesso ao teu telemóvel desbloqueado poderá ver os registos. A leitura OCR requer internet para descarregar o motor de reconhecimento, mas processa a imagem no dispositivo.</div><p class="caption" style="margin:15px 2px">Versão 1.5.17 · Férias anuais · Condução automática · Sem imagens guardadas.</p></section>
+</main></div>
+<nav class="bottom-nav" aria-label="Navegação"><button class="nav-btn current" data-view="calendar"><svg><use href="#i-calendar"/></svg><span>Calendário</span></button><button class="nav-btn" data-view="history"><svg><use href="#i-search"/></svg><span>Histórico</span></button><button class="nav-btn" data-view="stats"><svg><use href="#i-chart"/></svg><span>Resumo</span></button><button class="nav-btn" data-view="vacations"><svg><use href="#i-sun"/></svg><span>Férias</span></button><button class="nav-btn" data-view="settings"><svg><use href="#i-settings"/></svg><span>Dados</span></button></nav>
+<button class="fab" id="fabAdd" aria-label="Adicionar serviço"><svg><use href="#i-plus"/></svg></button>
+<div id="daySheet" class="overlay day-drawer hidden" role="presentation"><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="daySheetTitle" tabindex="-1"><div class="sheet-handle"></div><div class="sheet-header"><div><p class="eyebrow">REGISTO DIÁRIO</p><h2 id="daySheetTitle">Detalhes do dia</h2></div><button type="button" class="icon-button" id="closeDaySheet" aria-label="Fechar detalhes"><svg><use href="#i-close"/></svg></button></div><section class="surface day-panel" id="dayPanel" aria-live="polite"></section></section></div>
+<div id="modal" class="overlay hidden" role="presentation"><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1"><div class="sheet-handle"></div><div class="sheet-header"><div><p class="eyebrow">REGISTAR SERVIÇO</p><h2 id="modalTitle">Adicionar serviço</h2></div><button class="icon-button" id="closeModal" aria-label="Fechar"><svg><use href="#i-close"/></svg></button></div>
+<form id="serviceForm"><label class="upload-area"><svg><use href="#i-upload"/></svg><span><strong id="uploadLabel">Carregar captura da Tripulantes</strong><span>A imagem é lida, mas não é guardada.</span></span><input type="file" id="captureInput" accept="image/*" aria-label="Captura da Tripulantes" /></label><div class="ocr-row"><button type="button" class="btn btn-quiet" id="scanButton">Ler imagem</button><p class="ocr-message" id="ocrMessage" role="status">Requer internet na primeira leitura.</p></div>
+<div class="field"><label for="fDate">Data do serviço</label><input id="fDate" name="date" type="date" required /></div><p class="field-group-title"><svg><use href="#i-briefcase"/></svg> Identificação</p><div class="two-cols"><div class="field"><label for="fService">Altura</label><input id="fService" placeholder="E2601" autocomplete="off" /></div><div class="field"><label for="fVehicle">Serviço</label><input id="fVehicle" placeholder="28E/02" autocomplete="off" /></div></div>
+<p class="field-group-title"><svg><use href="#i-sun"/></svg> Horário e locais</p><div class="two-cols"><div class="field"><label for="fStart">Entrada</label><input id="fStart" type="text" inputmode="numeric" maxlength="5" placeholder="17:00" autocomplete="off" spellcheck="false" aria-describedby="carrisClockHelp" /></div><div class="field"><label for="fEnd">Saída</label><input id="fEnd" type="text" inputmode="numeric" maxlength="5" placeholder="26:00" autocomplete="off" spellcheck="false" aria-describedby="carrisClockHelp" /></div></div><p id="carrisClockHelp" class="caption" style="margin:6px 0 11px">Formato horário da Carris (HH:MM), incluindo horas superiores a 24:00.</p><div class="two-cols"><div class="field"><label for="fFrom">Local de entrada</label><input id="fFrom" placeholder="Estrela" autocomplete="off" /></div><div class="field"><label for="fTo">Local de saída</label><input id="fTo" placeholder="Santo Amaro (Est.)" autocomplete="off" /></div></div><div class="field"><label for="fType">Tipo de afetação</label><input id="fType" list="affectationOptions" placeholder="Normal ou Normal FO" autocomplete="off" /><datalist id="affectationOptions"><option value="Normal"></option><option value="Normal FO"></option></datalist><p class="caption" style="margin-top:5px">Normal FO = feriado obrigatório trabalhado. Também é reconhecido nas observações.</p></div><div class="field"><label for="fObservations">Observações do serviço</label><input id="fObservations" placeholder="Ex.: Normal FO" autocomplete="off" maxlength="240" /><p class="caption" style="margin-top:5px">Normal FO nas observações também conta como feriado obrigatório trabalhado (uma vez por dia).</p></div><div class="field driving-field"><label for="fDrivingDuration">Horas de condução do dia — cálculo automático</label><input id="fDrivingDuration" type="text" readonly placeholder="Preenche entrada e saída" aria-describedby="drivingHoursHelp"/><p class="caption" id="drivingHoursHelp" style="margin-top:5px">Calculado automaticamente pela diferença entre entrada e saída do serviço, incluindo horários 25:00 e 26:00. Não precisas de preencher este campo.</p></div><div class="field"><label for="fNightDuration">Horas noturnas (20h00–08h00) — automáticas</label><input id="fNightDuration" type="text" readonly placeholder="Preenche entrada e saída"/><p class="caption" style="margin-top:5px">Conta apenas o tempo de condução dentro do período noturno, mesmo quando o serviço começa antes das 20h00.</p></div>
+<div class="field"><label for="fBreakMinutes">Pausas (minutos) — opcional</label><input id="fBreakMinutes" type="number" min="0" max="1200" step="1" inputmode="numeric" placeholder="Preenche apenas se souberes" /><p class="caption" style="margin-top:5px">O intervalo após pausas só é calculado quando as introduzes. Não equivale automaticamente a horas remuneradas.</p></div><div class="separator"></div><div class="field"><label for="fNote">Nota por extenso (podes corrigir livremente)</label><textarea id="fNote" placeholder="A nota será gerada a partir dos campos acima…"></textarea></div><button type="button" class="link-button" id="regenerateNote" style="margin-top:9px">Gerar nota a partir dos campos <svg><use href="#i-arrow"/></svg></button>
+<div class="extra-note-section"><button type="button" class="btn btn-quiet btn-full extra-note-toggle" id="toggleExtraNotes" aria-expanded="false" aria-controls="extraNotesPanel"><svg><use href="#i-plus"/></svg><span id="extraNotesButtonLabel">Adicionar notas adicionais</span><span aria-hidden="true" id="extraNotesChevron">＋</span></button>
+<div id="extraNotesPanel" class="extra-note-panel hidden"><div class="field"><label for="fExtraNotes">Notas adicionais deste dia (opcional)</label><textarea id="fExtraNotes" rows="4" maxlength="8000" placeholder="Ex.: conduzi o elétrico n.º 5XX; avaria nas portas; atraso devido ao trânsito…"></textarea><p class="caption" style="margin-top:7px">Apontamentos pessoais sobre o serviço. Ficam separados da nota gerada e podem ser editados mais tarde.</p></div></div></div>
+<p id="serviceLockWarning" class="past-readonly hidden" role="status">Este serviço pertence a uma data anterior e está disponível apenas para consulta.</p><div class="sheet-actions"><button type="button" class="btn btn-quiet" id="cancelModal">Cancelar</button><button type="submit" class="btn btn-primary" id="saveServiceButton"><svg><use href="#i-check"/></svg> Guardar serviço</button></div><p class="tiny-warning">Confirma sempre os horários e os locais. A leitura pode trocar horários ou locais; confirma cada campo.</p></form></section></div>
+<div class="toast hidden" id="toast" role="status"></div>
+<script>
+(()=>{
+'use strict';
+const $=(id)=>document.getElementById(id),icon=(name)=>`<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
+// Chave mantida deliberadamente para compatibilidade: NÃO alterar em novas versões.
+const STORE='minha-escala-records-v06',LEGACY_NOTES='minha-escala-notas-v1',LEGACY_OFF='minha-escala-folgas-v1',LAST_BACKUP='minha-escala-last-backup';
+const THEME_KEY='minha-escala-theme';
+function applyTheme(mode,save=false){
+  const dark=mode==='dark';
+  document.documentElement.dataset.theme=dark?'dark':'light';
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',dark?'#0b1120':'#ffffff');
+  const btn=$('themeButton');
+  if(btn){
+    btn.setAttribute('aria-pressed',String(dark));
+    $('themeButtonLabel').textContent=dark?'Ativar modo claro':'Ativar modo escuro';
+    $('themeSymbol').textContent=dark?'☀':'☾';
+  }
+  if(save){try{localStorage.setItem(THEME_KEY,dark?'dark':'light')}catch(_){notify('A preferência não pôde ser guardada neste navegador.','error')}}
+}
+applyTheme(document.documentElement.dataset.theme);
+$('themeButton').addEventListener('click',()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark',true));
+const maxNote=20000;
+const pad=n=>String(n).padStart(2,'0');
+function keyOf(y,m,d){return `${y}-${pad(m+1)}-${pad(d)}`}
+function dateKey(d){return keyOf(d.getFullYear(),d.getMonth(),d.getDate())}
+function validDate(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(s))return false;let [y,m,d]=s.split('-').map(Number);let dt=new Date(y,m-1,d);return dt.getFullYear()===y&&dt.getMonth()===m-1&&dt.getDate()===d}
+function dateObj(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+// O dia fecha à meia-noite local do telemóvel. Usamos o relógio atual em cada ação.
+function isPastServiceDate(d){return validDate(d)&&d<dateKey(new Date())}
+function protectedService(d){return isPastServiceDate(d)&&records[d]?.kind==='service'}
+function warnPastService(){notify('Os serviços de dias anteriores são apenas para consulta.','error')}
+function syncServiceSaveAccess(){
+  if(!isModalOpen)return;
+  const locked=isPastServiceDate($('fDate').value)||Boolean(editingOriginalDate&&isPastServiceDate(editingOriginalDate));
+  $('saveServiceButton').disabled=locked;
+  $('serviceLockWarning').classList.toggle('hidden',!locked);
+}
+function syncCalendarAddAccess(){
+  $('fabAdd').classList.toggle('hidden',currentView!=='calendar'||isPastServiceDate(selected));
+}
+function prettyDate(s,opts={weekday:'long',day:'numeric',month:'long',year:'numeric'}){return dateObj(s).toLocaleDateString('pt-PT',opts)}
+function cap(s){return s.charAt(0).toLocaleUpperCase('pt-PT')+s.slice(1)}
+function safeStr(v,n=160){return typeof v==='string'?v.trim().slice(0,n):''}
+// Horário operacional Carris: 24:00...29:59 representam o dia seguinte.
+// Preservamos a notação original, em vez de converter 26:00 para 02:00 no armazenamento.
+function timeValid(t){return typeof t==='string' && /^(?:[01]\d|2\d):[0-5]\d$/.test(t)}
+function normalizeTimeInput(t){
+  const raw=String(t||'').trim().replace(/\s+/g,'').replace(/[hH.]/,':');
+  const m=raw.match(/^(\d{1,2})(?::(\d{2}))?$/);
+  if(!m)return raw;
+  const candidate=`${pad(Number(m[1]))}:${m[2]??'00'}`;
+  return timeValid(candidate)?candidate:raw;
+}
+function clockDayOffset(t){return timeValid(t)?Math.floor(Number(t.slice(0,2))/24):0}
+function displayClock(t){return t}
+function nextDayExit(start,end){
+  if(!timeValid(start)||!timeValid(end))return false;
+  return clockDayOffset(end)>0 || (Number(end.slice(0,2))*60+Number(end.slice(3)) < Number(start.slice(0,2))*60+Number(start.slice(3)));
+}
+function calcMinutes(start,end){if(!timeValid(start)||!timeValid(end))return null;const [a,b]=start.split(':').map(Number),[c,d]=end.split(':').map(Number);let mins=(c*60+d)-(a*60+b);if(mins<0)mins+=1440;return mins}
+function hm(minutes){if(minutes===null)return '—';return `${Math.floor(minutes/60)}h${minutes%60?pad(minutes%60):''}`}
+// Na Escala, por definição do utilizador, as horas de condução correspondem ao
+// intervalo indicado pela hora de entrada e saída do serviço da Carris.
+// Valores 24:00–29:59 são horários do dia seguinte. Sem ambas as horas: null.
+function drivingMinutesFor(record){
+  return record?.kind==='service'?calcMinutes(record.start,record.end):null;
+}
+// Um dia operacional pode terminar às 25:00, 26:00, etc.
+// O período noturno é 20:00–08:00 e atravessa a meia-noite.
+// Calcula a interseção com cada janela noturna, sem contar horas diurnas.
+function nightMinutes(start,end){
+  const duration=calcMinutes(start,end);
+  if(duration===null||duration<0)return null;
+  const [h,m]=start.split(':').map(Number);
+  const begin=h*60+m,finish=begin+duration;
+  let total=0;
+  for(let day=Math.floor(begin/1440)-1;day<=Math.ceil(finish/1440);day++){
+    const nightStart=day*1440+1200; // 20:00 desse dia
+    const nightEnd=day*1440+1920;   // 08:00 do dia seguinte
+    total+=Math.max(0,Math.min(finish,nightEnd)-Math.max(begin,nightStart));
+  }
+  return total;
+}
+function nightMinutesFor(record){
+  return record?.kind==='service'?nightMinutes(record.start,record.end):null;
+}
+function drivingValue(minutes){return Number.isInteger(minutes)&&minutes>=0?hm(minutes):'—'}
+function drivingClock(minutes){return `${pad(Math.floor(minutes/60))}:${pad(minutes%60)}`}
+function updateDrivingPreview(){
+  const start=normalizeTimeInput($('fStart').value);
+  const end=normalizeTimeInput($('fEnd').value);
+  const minutes=calcMinutes(start,end);
+  $('fDrivingDuration').value=minutes===null?'':drivingClock(minutes);
+  const night=nightMinutes(start,end);
+  $('fNightDuration').value=night===null?'':drivingClock(night);
+}
+
+function timeText(t){if(!timeValid(t))return '';let [h,m]=t.split(':');return `${Number(h)}h${m}`}
+
+// Classificação indicativa por hora de entrada. Não representa categorias laborais oficiais.
+function startPeriod(start){
+  if(!timeValid(start))return '';
+  const hour=Number(start.slice(0,2))%24;
+  if(hour>=5&&hour<12)return 'morning';
+  if(hour>=12&&hour<20)return 'afternoon';
+  return 'night';
+}
+function periodName(p){return ({morning:'Manhã',afternoon:'Tarde',night:'Noite'})[p]||'Não indicado'}
+function effectiveMinutes(record){
+  const gross=calcMinutes(record.start,record.end);
+  if(gross===null||!Number.isInteger(record.breakMinutes)||record.breakMinutes<0||record.breakMinutes>gross)return null;
+  return gross-record.breakMinutes;
+}
+
+// "Normal FO" é a designação de serviço em feriado obrigatório utilizada na Tripulantes.
+// Não inferimos FO apenas por a data coincidir com um feriado do calendário civil.
+function hasNormalFO(value){
+  const raw=String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  return /(?:^|[^a-z0-9])normal[\s:/\-]+fo(?=$|[^a-z0-9])/.test(raw);
+}
+function isHolidayWorked(record){
+  if(!record||record.kind!=='service')return false;
+  // Uma designação FO em qualquer um destes dois campos basta.
+  // Não duplicar o mesmo dia quando ambos contêm Normal FO.
+  if(hasNormalFO(record.type)||hasNormalFO(record.observations))return true;
+  // Compatibilidade com notas antigas que não tinham campos estruturados.
+  if(!(record.observations||'').trim())return hasNormalFO(record.note);
+  return false;
+}
+function normalizedRecord(r){if(!r||typeof r!=='object')return null;if(r.kind==='off')return {kind:'off'};if(r.kind==='vacation')return {kind:'vacation'};if(r.kind!=='service')return null;return {kind:'service',service:safeStr(r.service,32),vehicle:safeStr(r.vehicle,40),start:timeValid(r.start)?r.start:'',end:timeValid(r.end)?r.end:'',from:safeStr(r.from,180),to:safeStr(r.to,180),type:safeStr(r.type,80),observations:safeStr(r.observations,240),breakMinutes:(r.breakMinutes===null||r.breakMinutes===''||r.breakMinutes===undefined)?null:(Number.isInteger(Number(r.breakMinutes))&&Number(r.breakMinutes)>=0&&Number(r.breakMinutes)<=1200?Number(r.breakMinutes):null),drivingMinutes:calcMinutes(r.start,r.end),note:safeStr(r.note,maxNote),extraNotes:safeStr(r.extraNotes,8000)}}
+function getLegacy(){let converted={};let rawNotes=localStorage.getItem(LEGACY_NOTES),rawOff=localStorage.getItem(LEGACY_OFF);let oldNotes=rawNotes?JSON.parse(rawNotes):{},oldOff=rawOff?JSON.parse(rawOff):{};if(oldNotes&&typeof oldNotes==='object'&&!Array.isArray(oldNotes)){for(let [d,v] of Object.entries(oldNotes)){if(validDate(d)&&typeof v==='string'&&v.trim()!=='Folga.')converted[d]={kind:'service',service:'',vehicle:'',start:'',end:'',from:'',to:'',type:'',note:v.slice(0,maxNote)}}}if(oldOff&&typeof oldOff==='object'&&!Array.isArray(oldOff)){for(let [d,v] of Object.entries(oldOff)){if(validDate(d)&&v===true)converted[d]={kind:'off'}}}return converted}
+// Recuperação de uma revisão anterior e espelho IndexedDB, quando suportado.
+const PREVIOUS='minha-escala-previous-v07', DB_NAME='minha-escala-backup-local', DB_STORE='snapshots';
+let mirrorQueue=Promise.resolve(), idbAvailable=false, storageIssue='';
+function parseSavedState(raw){
+  const obj=JSON.parse(raw);
+  if(!obj||typeof obj!=='object'||Array.isArray(obj))throw Error('Registos locais inválidos');
+  const copy={};
+  if(Object.keys(obj).length>12000)throw Error('Existem demasiados registos locais');
+  for(const [d,r] of Object.entries(obj)){
+    if(!validDate(d))throw Error('Foi encontrada uma data inválida');
+    const normalized=normalizedRecord(r);
+    if(!normalized)throw Error('Foi encontrado um registo inválido');
+    copy[d]=normalized;
+  }
+  return copy;
+}
+function snapshotChecksum(value){
+  // Soma para detectar corrupção acidental, não é uma assinatura criptográfica.
+  let h=2166136261;for(let i=0;i<value.length;i++){h=Math.imul(h^value.charCodeAt(i),16777619)>>>0}
+  return h.toString(16).padStart(8,'0');
+}
+function openMirror(){
+  return new Promise((resolve,reject)=>{
+    if(!('indexedDB' in window)){reject(Error('IndexedDB indisponível'));return}
+    const req=indexedDB.open(DB_NAME,1);
+    req.onupgradeneeded=()=>{let db=req.result;if(!db.objectStoreNames.contains(DB_STORE))db.createObjectStore(DB_STORE)};
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error||Error('Não foi possível abrir IndexedDB'));
+    req.onblocked=()=>reject(Error('Base de dados bloqueada por outro separador'));
+  });
+}
+async function mirrorWrite(payload){
+  const db=await openMirror();
+  try{return await new Promise((resolve,reject)=>{
+    const tx=db.transaction(DB_STORE,'readwrite');
+    tx.objectStore(DB_STORE).put({payload,checksum:snapshotChecksum(payload),savedAt:Date.now()},'current');
+    tx.oncomplete=()=>resolve(true);
+    tx.onerror=()=>reject(tx.error||Error('Erro ao escrever espelho'));
+    tx.onabort=()=>reject(tx.error||Error('Transação abortada'));
+  })}finally{db.close()}
+}
+async function mirrorRead(){
+  const db=await openMirror();
+  try{return await new Promise((resolve,reject)=>{
+    const req=db.transaction(DB_STORE,'readonly').objectStore(DB_STORE).get('current');
+    req.onsuccess=()=>resolve(req.result||null);
+    req.onerror=()=>reject(req.error||Error('Erro na leitura do espelho'));
+  })}finally{db.close()}
+}
+function queueMirror(payload){
+  mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>mirrorWrite(payload)).then(()=>{idbAvailable=true;renderStorageStatus()}).catch(()=>{idbAvailable=false;renderStorageStatus()});
+}
+function renderStorageStatus(){
+  const elem=$('storageStatus');if(!elem)return;
+  elem.textContent=!storageOk?'Atenção: o armazenamento principal não está disponível. Faz uma cópia de segurança antes de fechar.':idbAvailable?'Registos guardados neste navegador, com uma segunda cópia local de recuperação.':'Registos guardados neste navegador. A segunda cópia local ainda não está disponível.';
+  elem.className='storage-message'+(!storageOk?' danger':'');
+  const btn=$('recoverPrevious');if(btn){let ok=false;try{ok=!!localStorage.getItem(PREVIOUS)}catch{}btn.disabled=!ok}
+}
+async function bootMirror(){
+  try{
+    const snap=await mirrorRead();idbAvailable=true;
+    if(snap?.payload){
+      if(snap.checksum!==snapshotChecksum(snap.payload))throw Error('Espelho corrompido');
+      const previousCopy=parseSavedState(snap.payload);
+      // Se o armazenamento principal está vazio/corrompido, recuperar a cópia já existente.
+      if(!primaryLoaded && Object.keys(previousCopy).length && !externalChangePending && localStorage.getItem(STORE)===lastKnownPayload){
+        const hasNewEdits=Object.keys(records).length>0 && !storageOk;
+        if(!hasNewEdits){
+          records=previousCopy;
+          try{localStorage.setItem(STORE,snap.payload);lastKnownPayload=snap.payload;storageOk=true;primaryLoaded=true}catch{}
+          renderCalendar();renderHistory();renderStats();renderVacations();
+          notify('Histórico recuperado da segunda cópia local. Faz uma exportação JSON.');
+        }
+      }
+    }else if(storageOk)queueMirror(JSON.stringify(records));
+  }catch(e){idbAvailable=false;}
+  renderStorageStatus();renderBackupReminder();
+}
+function recoverPrevious(){
+  try{
+    const raw=localStorage.getItem(PREVIOUS);
+    if(!raw)throw Error('Não existe uma revisão anterior');
+    const restored=parseSavedState(raw);
+    const count=Object.keys(restored).length;
+    if(!confirm(`Recuperar a revisão anterior (${count} datas)? A versão atual será substituída, mas guardada para eventual recuperação.`))return;
+    if(persist(restored,true)){renderCalendar();renderHistory();renderStats();renderVacations();renderBackupReminder();notify('Revisão anterior recuperada. Exporta uma cópia de segurança.')}
+  }catch(e){notify('Não foi possível recuperar: '+e.message,'error')}
+}
+function renderBackupReminder(){
+  const box=$('backupReminder');if(!box)return;
+  const entries=Object.keys(records).length;
+  const ago=lastBackup?Date.now()-new Date(lastBackup).getTime():Infinity;
+  const stale=!Number.isFinite(ago)||ago>7*86400000;
+  const changed=lastExportChecksum!==snapshotChecksum(JSON.stringify(records));
+  box.classList.toggle('hidden',!entries||(!stale&&!changed));
+}
+
+let records={},storageOk=true,lastBackup='',lastExportChecksum='',primaryLoaded=false,ocrDidRun=false;
+let lastKnownPayload=null,externalChangePending=false,scanEpoch=0;
+try{
+  const raw=localStorage.getItem(STORE);
+  lastKnownPayload=raw;
+  if(raw){records=parseSavedState(raw);primaryLoaded=true}
+  else {
+    const prev=localStorage.getItem(PREVIOUS);
+    if(prev){records=parseSavedState(prev);primaryLoaded=false}
+    else records=getLegacy();
+    // Inicialização sem apagar dados de possíveis cópias IndexedDB.
+    localStorage.setItem(STORE,JSON.stringify(records));
+    lastKnownPayload=localStorage.getItem(STORE);
+  }
+  lastBackup=localStorage.getItem(LAST_BACKUP)||'';lastExportChecksum=localStorage.getItem('minha-escala-last-export-checksum')||'';
+}catch(e){
+  storageOk=false;storageIssue=e.message||'Falha na abertura';
+  try{lastKnownPayload=localStorage.getItem(STORE);const previous=localStorage.getItem(PREVIOUS);if(previous)records=parseSavedState(previous)}catch{}
+  try{lastBackup=localStorage.getItem(LAST_BACKUP)||''}catch{}
+}
+let today=new Date();let calendarYear=today.getFullYear(),calendarMonth=today.getMonth(),selected=dateKey(today),currentView='calendar',historyFilter='all',isModalOpen=false,formDirty=false,noteEdited=false,editingOriginalDate=null,toastTimer=null;
+function refreshExternalState(){
+  if(isModalOpen)return;
+  let raw;
+  try{raw=localStorage.getItem(STORE)}catch{return}
+  if(raw===lastKnownPayload){externalChangePending=false;return}
+  try{
+    const incoming=raw?parseSavedState(raw):{};
+    records=incoming;lastKnownPayload=raw;primaryLoaded=Boolean(raw);storageOk=true;externalChangePending=false;
+    renderCalendar();renderHistory();renderStats();renderVacations();renderBackupReminder();renderStorageStatus();
+    notify('Registos atualizados a partir de outra janela.');
+  }catch{externalChangePending=true;notify('Os registos foram alterados, mas não foi possível lê-los. Não feches a outra janela sem exportar uma cópia.','error')}
+}
+function refreshCalendarDay(){
+  const current=new Date();
+  if(dateKey(current)!==dateKey(today)){
+    today=current;
+    renderCalendar();
+    if(isModalOpen)syncServiceSaveAccess();
+    if(currentView==='stats')renderStats();if(currentView==='vacations')renderVacations();
+  }
+}
+// Atualiza os botões no início de cada dia, mesmo se a aplicação ficar aberta.
+// Em segundo plano o Android pode suspender temporizadores: focus/visibility já fazem a recuperação.
+function scheduleNextMidnightRefresh(){
+  const now=new Date();
+  const next=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,1);
+  window.setTimeout(()=>{refreshCalendarDay();scheduleNextMidnightRefresh()},Math.max(1000,next.getTime()-now.getTime()));
+}
+window.addEventListener('storage',e=>{if(e.key===STORE){externalChangePending=true;if(isModalOpen)notify('O histórico mudou noutra janela. Fecha a edição para o atualizar.','error');else refreshExternalState()}});
+window.addEventListener('focus',()=>{refreshCalendarDay();refreshExternalState()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){refreshCalendarDay();refreshExternalState()}});
+function persist(next,allowBackupRestore=false){
+  if(!allowBackupRestore){
+    // Proteção em todas as vias normais de gravação, incluindo a troca de férias/folga.
+    const oldLocked=Object.entries(records).some(([d,r])=>r.kind==='service'&&isPastServiceDate(d)&&JSON.stringify(next[d])!==JSON.stringify(r));
+    const incomingLocked=Object.entries(next).some(([d,r])=>r.kind==='service'&&isPastServiceDate(d)&&records[d]?.kind!=='service');
+    if(oldLocked||incomingLocked){warnPastService();return false}
+  }
+  try{
+    const payload=JSON.stringify(next),validated=parseSavedState(payload);
+    const old=localStorage.getItem(STORE);
+    // Impedir que outro separador substitua silenciosamente uma gravação recente.
+    if(old!==lastKnownPayload){
+      externalChangePending=true;
+      throw Error('O histórico foi alterado noutra janela. Fecha a edição e volta a abrir o serviço antes de guardar.');
+    }
+    if(old&&old!==payload){
+      try{parseSavedState(old);localStorage.setItem(PREVIOUS,old)}catch{}
+    }
+    localStorage.setItem(STORE,payload);
+    if(localStorage.getItem(STORE)!==payload)throw Error('A gravação não foi confirmada');
+    records=validated;storageOk=true;primaryLoaded=true;lastKnownPayload=payload;externalChangePending=false;
+    queueMirror(payload);renderStorageStatus();renderBackupReminder();
+    return true;
+  }catch(e){
+    storageOk=false;renderStorageStatus();
+    notify(externalChangePending?'Existem alterações noutra janela. Fecha esta edição para atualizar o calendário; não foi gravado nada.':'Não foi possível guardar. Verifica o espaço disponível e exporta um backup.','error');
+    return false;
+  }
+}
+function storeRecord(d,record){if(protectedService(d)||(record.kind==='service'&&isPastServiceDate(d))){warnPastService();return false}let copy={...records};copy[d]=record;return persist(copy)}
+function deleteRecord(d){if(protectedService(d)){warnPastService();return false}let copy={...records};delete copy[d];return persist(copy)}
+function notify(msg,kind='success'){const n=$('toast');n.textContent=msg;n.className='toast'+(kind==='error'?' error':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>n.classList.add('hidden'),4600)}
+function goView(view){closeDaySheet();currentView=view;document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active',el.id==='view-'+view));document.querySelectorAll('[data-view]').forEach(btn=>{let active=btn.dataset.view===view;btn.classList.toggle('current',active);if(active)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current')});syncCalendarAddAccess();if(view==='history')renderHistory();if(view==='stats')renderStats();if(view==='vacations')renderVacations();if(view==='settings')renderBackupDate();window.scrollTo({top:0,behavior:'instant'})}
+function monthData(y,m){
+  let service=0,offs=0,vacations=0,mins=0,holidays=0,withTimes=0,estimatedMinutes=0,withBreaks=0,overnight=0,drivingMinutes=0,nightDrivingMinutes=0,withDriving=0;
+  const periods={morning:0,afternoon:0,night:0,unknown:0};
+  for(const [d,r] of Object.entries(records)){
+    if(d.slice(0,7)!==`${y}-${pad(m+1)}`)continue;
+    if(r.kind==='off'){offs++;continue}
+    if(r.kind==='vacation'){vacations++;continue}
+    service++;if(isHolidayWorked(r))holidays++;
+    const derivedDriving=drivingMinutesFor(r);if(derivedDriving!==null){drivingMinutes+=derivedDriving;withDriving++;nightDrivingMinutes+=nightMinutesFor(r)??0}
+    const p=startPeriod(r.start);periods[p||'unknown']++;
+    const val=calcMinutes(r.start,r.end);
+    if(val!==null){mins+=val;withTimes++;if(nextDayExit(r.start,r.end))overnight++}
+    const net=effectiveMinutes(r);
+    if(net!==null){estimatedMinutes+=net;withBreaks++}
+  }
+  return {service,offs,vacations,mins,holidays,withTimes,estimatedMinutes,withBreaks,overnight,drivingMinutes,nightDrivingMinutes,withDriving,periods,averageMinutes:withTimes?Math.round(mins/withTimes):null};
+}
+function renderCalendar(){
+  let heading=new Date(calendarYear,calendarMonth,1).toLocaleDateString('pt-PT',{month:'long',year:'numeric'}).replace(/ de /g,' ');
+  $('monthTitle').textContent=cap(heading);
+  const days=$('monthGrid');days.replaceChildren();
+  const offset=(new Date(calendarYear,calendarMonth,1).getDay()+6)%7;
+  const n=new Date(calendarYear,calendarMonth+1,0).getDate();
+  for(let i=0;i<offset;i++){const holder=document.createElement('span');holder.className='date-cell outside';days.append(holder)}
+  for(let d=1;d<=n;d++){
+    const k=keyOf(calendarYear,calendarMonth,d),rec=records[k],b=document.createElement('button');
+    b.type='button';b.className='date-cell'+(selected===k?' is-selected':'')+(k===dateKey(today)?' is-today':'')+(rec?' '+rec.kind:'')+(rec?.kind==='service'&&!rec.start&&!rec.end?' no-times':'');
+    const num=document.createElement('span');num.className='day-number';num.textContent=String(d);
+    const indicator=document.createElement('i');indicator.className='indicator';b.append(num,indicator);
+    if(rec?.kind==='service'){
+      const times=document.createElement('span');times.className='cell-hours';
+      const start=document.createElement('span');start.textContent=rec.start||'—';
+      const end=document.createElement('span');end.className='end';end.textContent=rec.end||'—';
+      times.append(start,end);b.append(times);
+      if(isHolidayWorked(rec)){const fo=document.createElement('span');fo.className='holiday-mark';fo.textContent='FO';fo.title='Feriado obrigatório trabalhado';b.append(fo)}
+
+    }
+    const description=!rec?'sem registo':rec.kind==='off'?'folga':rec.kind==='vacation'?'férias':`serviço ${rec.service||'sem número'}, ${rec.start||'hora não indicada'} a ${rec.end||'hora não indicada'}`;
+    b.setAttribute('aria-label',`${prettyDate(k)}, ${description}`);
+    b.onclick=()=>{selected=k;renderCalendar();openDaySheet()};days.append(b);
+  }
+  const stats=monthData(calendarYear,calendarMonth);
+  $('monthServices').textContent=stats.service;$('monthOffs').textContent=stats.offs;$('monthVacations').textContent=stats.vacations;$('monthHours').textContent=hm(stats.mins);$('monthHolidays').textContent=stats.holidays;$('monthDriving').textContent=hm(stats.drivingMinutes);$('monthNightDriving').textContent=hm(stats.nightDrivingMinutes);renderSelected();
+}
+function showDate(d,details=true){selected=d;let dt=dateObj(d);calendarYear=dt.getFullYear();calendarMonth=dt.getMonth();goView('calendar');renderCalendar();if(details)openDaySheet()}
+function moveMonth(v){let d=new Date(calendarYear,calendarMonth+v,1);calendarYear=d.getFullYear();calendarMonth=d.getMonth();selected=keyOf(calendarYear,calendarMonth,Math.min(dateObj(selected).getDate(),new Date(calendarYear,calendarMonth+1,0).getDate()));renderCalendar()}
+function renderQuick(){
+  const r=records[selected],iconEl=$('quickIcon');
+  iconEl.className='quick-status'+(r?' '+r.kind:'');
+  iconEl.innerHTML=icon(r?.kind==='off'?'sun':r?.kind==='vacation'?'calendar':r?.kind==='service'?'briefcase':'note');
+  $('quickTitle').textContent=cap(prettyDate(selected,{weekday:'short',day:'numeric',month:'long',year:'numeric'}));
+  $('quickSubtitle').textContent=!r?'Sem registo · toca para adicionar':r.kind==='off'?'Folga · sem nota':r.kind==='vacation'?'Férias · dia assinalado':([r.service?'Altura '+r.service:'',r.vehicle?'Serviço '+r.vehicle:''].filter(Boolean).join(' · ')||'Serviço registado')+(r.start?' · '+r.start:'')+(r.end?'–'+r.end:'');
+  const drivingQuick=$('quickDriving'),derivedDriving=drivingMinutesFor(r);drivingQuick.classList.toggle('hidden',derivedDriving===null);drivingQuick.textContent=derivedDriving!==null?'Condução do dia: '+hm(derivedDriving)+(nightMinutesFor(r)>0?' · Noturnas: '+hm(nightMinutesFor(r)):'') : '';
+}
+function openDaySheet(){
+  if(isModalOpen)return;
+  const sheet=$('daySheet');sheet.classList.remove('hidden');document.body.style.overflow='hidden';sheet.querySelector('.sheet').focus();
+}
+function closeDaySheet(){const sheet=$('daySheet');if(!sheet||sheet.classList.contains('hidden'))return;sheet.classList.add('hidden');if(!isModalOpen)document.body.style.overflow=''}
+function renderSelected(){let p=$('dayPanel'),r=records[selected];renderQuick();syncCalendarAddAccess();p.replaceChildren();let header=document.createElement('div');header.className='day-panel-top';let date=document.createElement('div');date.className='date-display';date.textContent=cap(prettyDate(selected));let tag=document.createElement('span');tag.className='tag'+(r?' '+r.kind:'');tag.textContent=!r?'Sem registo':r.kind==='off'?'Folga':r.kind==='vacation'?'Férias':'Serviço';header.append(date,tag);p.append(header);
+if(protectedService(selected)){
+  const info=document.createElement('div');info.className='past-readonly';
+  const heading=document.createElement('strong');heading.textContent='Serviço encerrado · apenas consulta';
+  info.append(heading,document.createTextNode('Os serviços anteriores ao dia de hoje não podem ser editados, apagados nem substituídos.'));
+  p.append(info);
+}
+if(!r){let empty=document.createElement('div');empty.className='empty-day';empty.innerHTML=`<div class="empty-icon">${icon('note')}</div><p>Este dia ainda não tem nenhum serviço registado.</p>`;p.append(empty);let row=document.createElement('div');row.className='cta-row';let a=makeButton('Adicionar serviço','btn btn-primary','plus',()=>openModal(selected));let b=makeButton('Marcar folga','btn btn-quiet','sun',()=>markOff(selected));let c=makeButton('Marcar férias','btn btn-vacation','calendar',()=>markVacationDay(selected));row.classList.add('day-cta-three');if(!isPastServiceDate(selected))row.append(a);
+row.append(b,c);p.append(row);return}
+if(r.kind==='off'){let empty=document.createElement('div');empty.className='empty-day';empty.innerHTML=`<div class="empty-icon">${icon('sun')}</div><p>Dia de folga. Não é necessário escrever uma nota.</p>`;p.append(empty);let row=document.createElement('div');row.className='cta-row';row.append(makeButton('Retirar folga','btn btn-quiet','close',()=>removeDay(selected)),makeButton('Marcar férias','btn btn-vacation','calendar',()=>markVacationDay(selected)));
+if(!isPastServiceDate(selected))row.append(makeButton('Registar serviço','btn btn-primary','plus',()=>{if(confirm('Substituir esta folga por um serviço?'))openModal(selected)}));row.classList.add('day-cta-three');p.append(row);return}
+if(r.kind==='vacation'){const box=document.createElement('div');box.className='empty-day';box.innerHTML=`<div class="empty-icon vacation-icon">${icon('calendar')}</div><p>Dia assinalado como férias. Conta para o ano correspondente.</p>`;p.append(box);const row=document.createElement('div');row.className='cta-row';row.append(makeButton('Retirar férias','btn btn-quiet','close',()=>removeDay(selected)));
+if(!isPastServiceDate(selected))row.append(makeButton('Registar serviço','btn btn-primary','plus',()=>{if(confirm('Substituir estas férias por um serviço?'))openModal(selected)}));p.append(row);return}
+let div=document.createElement('div');div.className='day-service';
+const title=document.createElement('div');title.className='service-main';
+const service=document.createElement('div');service.className='service-code';service.textContent=[r.service?`Altura ${r.service}`:'',r.vehicle?`Serviço ${r.vehicle}`:''].filter(Boolean).join(' · ')||'Serviço registado';
+title.append(service);div.append(title);
+const grid=document.createElement('div');grid.className='detail-grid';
+const detail=(name,value)=>{
+  const item=document.createElement('div');item.className='detail-item';
+  const label=document.createElement('span');label.className='detail-label';label.textContent=name;
+  const text=document.createElement('div');text.className='detail-value'+(!value?' empty':'');text.textContent=value||'Não indicado';
+  item.append(label,text);grid.append(item)
+};
+detail('Altura',r.service);detail('Serviço',r.vehicle);
+detail('Hora de entrada',displayClock(r.start));detail('Local de entrada',r.from);
+detail('Hora de saída',displayClock(r.end));detail('Local de saída',r.to);
+detail('Tipo de afetação',r.type);detail('Observações',r.observations);
+if(r.breakMinutes!==null&&Number.isInteger(r.breakMinutes))detail('Pausas registadas',r.breakMinutes+' minutos');
+detail('Horas de condução',drivingValue(drivingMinutesFor(r)));
+ detail('Horas noturnas (20h00–08h00)',drivingValue(nightMinutesFor(r)));
+if(isHolidayWorked(r)){const flag=document.createElement('div');flag.className='detail-meta fo-detail';flag.textContent='FO · Feriado obrigatório trabalhado';div.append(flag)}
+const mins=calcMinutes(r.start,r.end);
+detail('Intervalo entrada–saída',mins===null?'':hm(mins));
+const effective=effectiveMinutes(r);if(effective!==null)detail('Intervalo após pausas indicadas',hm(effective));
+div.append(grid);
+if(nextDayExit(r.start,r.end)){
+  const overnight=document.createElement('div');overnight.className='detail-meta';overnight.textContent='A saída é no dia seguinte.';div.append(overnight)
+}
+const noteTitle=document.createElement('h3');noteTitle.className='note-title';noteTitle.textContent='NOTA COMPLETA';div.append(noteTitle);
+const note=document.createElement('p');note.className='note-preview detail-note';note.textContent=r.note||makeNote(r,selected);div.append(note);if(r.extraNotes){const extra=document.createElement('section');extra.className='additional-note-card';const heading=document.createElement('h4');heading.textContent='NOTAS ADICIONAIS';const content=document.createElement('p');content.textContent=r.extraNotes;extra.append(heading,content);div.append(extra)}p.append(div);
+const row=document.createElement('div');row.className='cta-row';
+if(!protectedService(selected)){
+  const edit=makeButton('Editar serviço','btn btn-quiet','edit',()=>openModal(selected));edit.style.flex=1;row.append(edit);
+}
+row.append(makeButton('Copiar nota','btn btn-quiet','note',()=>copyNote(r.note||makeNote(r,selected))));p.append(row);
+if(!protectedService(selected)){
+  const delRow=document.createElement('div');delRow.className='cta-row';
+  const remove=makeButton('Apagar registo','btn btn-danger','trash',()=>removeDay(selected));remove.style.width='100%';delRow.append(remove);p.append(delRow);
+  const vacationRow=document.createElement('div');vacationRow.className='cta-row';
+  const mark=makeButton('Marcar férias neste dia','btn btn-vacation','calendar',()=>markVacationDay(selected));mark.style.width='100%';vacationRow.append(mark);p.append(vacationRow);
+}
+}
+async function copyNote(value){
+ try{
+   if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(value)}
+   else {const t=document.createElement('textarea');t.value=value;t.style.position='fixed';t.style.opacity='0';document.body.append(t);t.select();if(!document.execCommand('copy'))throw Error('Cópia indisponível');t.remove()}
+   notify('Nota copiada.');
+ }catch{notify('Não foi possível copiar automaticamente. Seleciona o texto da nota.','error')}
+}
+function makeButton(label,cls,ico,fn){let b=document.createElement('button');b.type='button';b.className=cls;b.innerHTML=icon(ico);b.append(document.createTextNode(label));b.onclick=fn;return b}
+function markOff(d){if(protectedService(d)){warnPastService();return}if(records[d]&&records[d].kind!=='off'&&!confirm('Substituir o registo existente por uma folga?'))return;if(storeRecord(d,{kind:'off'})){refreshAllViews();notify('Folga assinalada.')}}
+function removeDay(d){if(!records[d])return;if(protectedService(d)){warnPastService();return}if(!confirm(`Apagar o registo de ${prettyDate(d)}? Esta ação não pode ser anulada sem uma cópia de segurança.`))return;if(deleteRecord(d)){refreshAllViews();notify('Registo removido.')}}
+function locationText(value){let place=safeStr(value,180).replace(/\bSto\.\s*Amaro\b/i,'Santo Amaro').replace(/\(Est\.\)/gi,'(Estação)');let prep=/^(Estrela|Pontinha|Ajuda|Graça|Mouraria|Alameda)\b/i.test(place)?'na ': /^(Cais|Campo|Rossio|Martim|Santo|São|Alto)\b/i.test(place)?'em ': 'em ';return prep+place}
+function makeNote(r,d=$('fDate').value){
+let parts=[];let introduction=validDate(d)?`No dia ${prettyDate(d,{day:'numeric',month:'long',year:'numeric'})}, `:'';
+let introVerb=r.vehicle?`realizei o serviço ${r.vehicle}${r.service?' (altura '+r.service+')':''}`:(r.service?`realizei a altura ${r.service}`:'registei um serviço');
+let details=[];
+if(r.start)details.push(`entrada às ${timeText(r.start)}${r.from?' '+locationText(r.from):''}`);
+else if(r.from)details.push('entrada '+locationText(r.from));
+if(r.end)details.push(`saída às ${timeText(r.end)}${r.to?' '+locationText(r.to):''}`);
+else if(r.to)details.push('saída '+locationText(r.to));
+parts.push(introduction+introVerb+(details.length?', com '+details.join(' e '):'')+'.');
+if(r.type)parts.push(`Tipo de afetação: ${r.type}.`);
+if(r.observations)parts.push(`Observações: ${r.observations.replace(/[.\s]+$/,'')}.`);
+if(isHolidayWorked(r))parts.push('Feriado obrigatório trabalhado (FO).');
+ if(r.breakMinutes!==null&&Number.isInteger(r.breakMinutes))parts.push(`Pausas registadas: ${r.breakMinutes} minutos.`);
+const derivedDriving=drivingMinutesFor(r);if(derivedDriving!==null)parts.push(`Tempo de condução: ${hm(derivedDriving)}.`);
+ const night=nightMinutesFor(r);if(night>0)parts.push(`Condução noturna: ${hm(night)}.`);
+return parts.join(' ')
+}
+function formObject(){return {kind:'service',service:safeStr($('fService').value,32),vehicle:safeStr($('fVehicle').value,40),start:normalizeTimeInput($('fStart').value),end:normalizeTimeInput($('fEnd').value),from:safeStr($('fFrom').value,180),to:safeStr($('fTo').value,180),type:safeStr($('fType').value,80),observations:safeStr($('fObservations').value,240),breakMinutes:$('fBreakMinutes').value===''?null:Number($('fBreakMinutes').value),drivingMinutes:calcMinutes(normalizeTimeInput($('fStart').value),normalizeTimeInput($('fEnd').value)),note:$('fNote').value.trim().slice(0,maxNote),extraNotes:$('fExtraNotes').value.trim().slice(0,8000)}}
+const inputs=['fService','fVehicle','fStart','fEnd','fFrom','fTo','fType','fObservations','fBreakMinutes'];
+function fillForm(r){for(let name of inputs){let field={'fService':'service','fVehicle':'vehicle','fStart':'start','fEnd':'end','fFrom':'from','fTo':'to','fType':'type','fObservations':'observations','fBreakMinutes':'breakMinutes'}[name];$(name).value=r[field]??''}updateDrivingPreview();$('fNote').value=r.note||'';$('fExtraNotes').value=r.extraNotes||'';setExtraNotesExpanded(Boolean(r.extraNotes))}
+
+function setExtraNotesExpanded(open){
+ const panel=$('extraNotesPanel'),toggle=$('toggleExtraNotes');
+ panel.classList.toggle('hidden',!open);
+ toggle.setAttribute('aria-expanded',String(open));
+ const hasText=Boolean($('fExtraNotes').value.trim());
+ $('extraNotesButtonLabel').textContent=open?'Ocultar notas adicionais':hasText?'Editar notas adicionais':'Adicionar notas adicionais';
+ $('extraNotesChevron').textContent=open?'−':'＋';
+}
+$('toggleExtraNotes').addEventListener('click',()=>{
+ const open=$('extraNotesPanel').classList.contains('hidden');
+ setExtraNotesExpanded(open);
+ if(open)$('fExtraNotes').focus();
+});
+$('fExtraNotes').addEventListener('input',()=>{formDirty=true;if($('extraNotesPanel').classList.contains('hidden'))setExtraNotesExpanded(false)});
+function hasData(r){return !!(r.service||r.vehicle||r.start||r.end||r.from||r.to||r.type||r.observations||r.breakMinutes!==null||drivingMinutesFor(r)!==null||r.extraNotes)}
+function openModal(date){if(isPastServiceDate(date)){warnPastService();return}scanEpoch++;closeDaySheet();ocrDidRun=false;$('ocrMessage').classList.remove('ocr-warning');let r=records[date],existing=r?.kind==='service'?r:null;isModalOpen=true;formDirty=false;noteEdited=!!existing;editingOriginalDate=existing?date:null;$('fDate').min=dateKey(new Date());$('fDate').value=date;fillForm(existing||{});$('modalTitle').textContent=existing?'Editar serviço':'Adicionar serviço';$('captureInput').value='';$('scanButton').disabled=false;$('uploadLabel').textContent='Carregar captura da Tripulantes';$('ocrMessage').textContent='Requer internet na primeira leitura.';$('modal').classList.remove('hidden');document.body.style.overflow='hidden';$('modal').querySelector('.sheet').focus();syncServiceSaveAccess()}
+function closeModal(force=false){if(!isModalOpen)return;if(!force&&formDirty&&!confirm('Descartar alterações deste serviço?'))return;scanEpoch++;isModalOpen=false;formDirty=false;noteEdited=false;editingOriginalDate=null;$('modal').classList.add('hidden');document.body.style.overflow='';if(externalChangePending)refreshExternalState()}
+function regen(force=false){updateDrivingPreview();if(noteEdited&&!force)return;let r=formObject();$('fNote').value=makeNote(r);updateDrivingPreview();formDirty=true;if(force)noteEdited=false}
+inputs.forEach(id=>$(id).addEventListener('input',()=>{formDirty=true;regen()}));
+['fStart','fEnd'].forEach(id=>$(id).addEventListener('blur',()=>{
+  const corrected=normalizeTimeInput($(id).value);
+  if(timeValid(corrected)&&$(id).value!==corrected){$(id).value=corrected;formDirty=true;regen()}
+}));$('fDate').addEventListener('change',()=>{formDirty=true;regen();syncServiceSaveAccess()});$('fNote').addEventListener('input',()=>{formDirty=true;noteEdited=true});$('regenerateNote').onclick=()=>regen(true);
+$('serviceForm').onsubmit=e=>{
+ e.preventDefault();const d=$('fDate').value;
+ if(isPastServiceDate(d)||Boolean(editingOriginalDate&&isPastServiceDate(editingOriginalDate))){warnPastService();syncServiceSaveAccess();return}
+ if(!validDate(d)){notify('Seleciona uma data válida.','error');return}
+ const r=formObject();
+ if(r.start&&!timeValid(r.start)){notify('Hora de entrada inválida. Usa HH:MM (00:00 a 29:59).','error');$('fStart').focus();return}
+ if(r.end&&!timeValid(r.end)){notify('Hora de saída inválida. Usa HH:MM (00:00 a 29:59).','error');$('fEnd').focus();return}
+ if(timeValid(r.start))$('fStart').value=r.start;
+ if(timeValid(r.end))$('fEnd').value=r.end;
+ updateDrivingPreview();
+ if(!r.note&&hasData(r))r.note=makeNote(r,d);
+ if(!r.note){notify('Preenche os dados do serviço ou escreve uma nota.','error');return}
+ if(r.note.length>maxNote){notify('Nota demasiado longa.','error');return}
+ if(Boolean(r.start)!==Boolean(r.end)&&!confirm('Só foi preenchida uma das horas de entrada/saída. Guardar assim?'))return;
+ if(r.breakMinutes!==null&&(!Number.isInteger(r.breakMinutes)||r.breakMinutes<0||r.breakMinutes>1200)){notify('Indica um número válido de minutos de pausa (0 a 1200).','error');return}
+ if(r.breakMinutes!==null&&(!r.start||!r.end)){notify('Para registar pausas, preenche a hora de entrada e saída.','error');return}
+ if(r.breakMinutes!==null&&r.breakMinutes>=calcMinutes(r.start,r.end)){notify('As pausas devem ser inferiores ao intervalo entre entrada e saída.','error');return}
+ if(r.start&&r.end){
+   const duration=calcMinutes(r.start,r.end);
+   if(duration===0&&!confirm('A entrada e a saída são iguais. Confirma que esta informação está correta.'))return;
+   if(duration>16*60&&!confirm('Este horário corresponde a mais de 16 horas seguidas (pode atravessar a meia-noite). Confirma que está correto.'))return;
+ }
+ if(ocrDidRun){
+   const missing=[['service','altura'],['start','entrada'],['end','saída'],['from','local de entrada'],['to','local de saída']].filter(([key])=>!r[key]).map(([,name])=>name);
+   if(missing.length&&!confirm('A leitura ainda tem campos em falta: '+missing.join(', ')+'.\n\nGuardar mesmo assim?'))return;
+ }
+ const previous=records[d];
+ if(previous&&d!==editingOriginalDate){
+   const existingLabel=previous.kind==='off'?'Folga':previous.kind==='vacation'?'Férias':('Altura '+(previous.service||'não indicada'));
+   const incomingLabel='Altura '+(r.service||'não indicada');
+   const same=previous.kind==='service'&&Object.keys(r).every(k=>r[k]===previous[k]);
+   if(same){notify('Este serviço já está guardado nesta data.');return}
+   if(!confirm('Já existe um registo a '+prettyDate(d)+': '+existingLabel+'.\n\nO novo é '+incomingLabel+'.\n\nQueres SUBSTITUIR o registo anterior?'))return;
+ }
+ if(editingOriginalDate&&editingOriginalDate!==d){
+   if(!confirm('A data mudou de '+prettyDate(editingOriginalDate)+' para '+prettyDate(d)+'.\n\nMover o serviço? A data antiga deixará de ter esse registo.'))return;
+ }
+ const next={...records};
+ if(editingOriginalDate&&editingOriginalDate!==d)delete next[editingOriginalDate];
+ next[d]=r;
+ if(persist(next)){closeModal(true);showDate(d);notify('Serviço guardado com sucesso.')}
+};
+let historyShown=60;
+function renderHistory(){
+  const query=$('historySearch').value.trim().toLocaleLowerCase('pt-PT');
+  const from=$('historyFrom').value,to=$('historyTo').value;
+  const code=$('historyCode').value.trim().toLocaleLowerCase('pt-PT');
+  const vehicle=$('historyVehicle').value.trim().toLocaleLowerCase('pt-PT');
+  const type=$('historyType').value.trim().toLocaleLowerCase('pt-PT');
+  const sort=$('historySort').value;
+  const parent=$('historyList');parent.replaceChildren();
+  const matches=Object.entries(records).filter(([d,r])=>{
+    if(historyFilter!=='all'&&r.kind!==historyFilter)return false;
+    if(validDate(from)&&d<from)return false;
+    if(validDate(to)&&d>to)return false;
+    if(code&&!(r.service||'').toLocaleLowerCase('pt-PT').includes(code))return false;
+    if(vehicle&&!(r.vehicle||'').toLocaleLowerCase('pt-PT').includes(vehicle))return false;
+    if(type&&!(r.type||'').toLocaleLowerCase('pt-PT').includes(type))return false;
+    const hay=`${d} ${prettyDate(d)} ${r.note||''} ${r.extraNotes||''} ${r.service||''} ${r.vehicle||''} ${r.from||''} ${r.to||''} ${r.type||''} ${r.observations||''} ${r.start||''} ${r.end||''}`.toLocaleLowerCase('pt-PT');
+    return !query||query.split(/\s+/).every(t=>hay.includes(t));
+  }).sort((a,b)=>sort==='asc'?a[0].localeCompare(b[0]):b[0].localeCompare(a[0]));
+  $('historyCount').textContent=`${matches.length} ${matches.length===1?'resultado':'resultados'}`;
+  if(!matches.length){const msg=document.createElement('div');msg.className='empty-list';msg.textContent='Não existem registos correspondentes aos filtros.';parent.append(msg)}
+  for(const [date,r] of matches.slice(0,historyShown)){
+    const row=document.createElement('button');row.type='button';row.className='history-row';
+    const ico=document.createElement('span');ico.className='history-icon'+(r.kind==='off'?' off':r.kind==='vacation'?' vacation':'');ico.innerHTML=icon(r.kind==='off'?'sun':r.kind==='vacation'?'calendar':'briefcase');
+    const desc=document.createElement('span');desc.className='history-text';
+    const strong=document.createElement('strong');strong.textContent=cap(prettyDate(date));
+    const small=document.createElement('small');small.textContent=r.kind==='off'?'Folga':r.kind==='vacation'?'Férias':[r.service?'Altura '+r.service:'',r.vehicle?'Serviço '+r.vehicle:'',[r.start,r.end].filter(Boolean).join('–'),r.from,isHolidayWorked(r)?'FO':''].filter(Boolean).join(' · ')||'Serviço registado';
+    desc.append(strong,small);
+    const arrow=document.createElement('span');arrow.className='chevron';arrow.innerHTML=icon('chevron-right');row.append(ico,desc,arrow);
+    row.onclick=()=>showDate(date);parent.append(row);
+  }
+  const more=$('historyMore');more.classList.toggle('hidden',historyShown>=matches.length);
+  more.textContent=`Mostrar mais (${Math.min(60,matches.length-historyShown)})`;
+}
+function renderStats(){
+  let totalService=0,totalOffs=0,mins=0;
+  for(const r of Object.values(records)){
+    if(r.kind==='off')totalOffs++;
+    else if(r.kind==='service'){ totalService++;const n=calcMinutes(r.start,r.end);if(n!==null)mins+=n}
+  }
+  $('totalServices').textContent=totalService;$('totalOffs').textContent=totalOffs;$('totalHours').textContent=hm(mins);
+  const picker=$('statsMonth');
+  const monthString=/^\d{4}-(?:0[1-9]|1[0-2])$/.test(picker.value)?picker.value:dateKey(today).slice(0,7);
+  picker.value=monthString;
+  const [yy,mm]=monthString.split('-').map(Number);
+  const current=monthData(yy,mm-1);
+  $('statsMonthHolidays').textContent=current.holidays;
+  $('statsMonthServices').textContent=current.service;
+  $('statsMonthOffs').textContent=current.offs;
+  $('statsMonthDriving').textContent=hm(current.drivingMinutes);
+   $('statsMonthNightDriving').textContent=hm(current.nightDrivingMinutes);
+  $('drivingCoverage').textContent=`Horas de condução calculadas automaticamente a partir da entrada e saída: ${current.withDriving} de ${current.service} serviços têm ambos os horários. Os restantes não entram no total.`;
+  const previousDate=new Date(yy,mm-2,1),previous=monthData(previousDate.getFullYear(),previousDate.getMonth());
+  const diff=current.service-previous.service,change=diff===0?'igual':(diff>0?'mais '+diff:'menos '+Math.abs(diff));
+  $('statsCompare').textContent=`Comparação com ${cap(previousDate.toLocaleDateString('pt-PT',{month:'long',year:'numeric'}))}: ${change} serviço${Math.abs(diff)===1?'':'s'} (${current.service} vs. ${previous.service}).`;
+  const months=[];
+  for(let i=5;i>=0;i--){
+    const dt=new Date(yy,mm-1-i,1),stats=monthData(dt.getFullYear(),dt.getMonth());
+    months.push({label:cap(dt.toLocaleDateString('pt-PT',{month:'short'}).replace('.','')),full:cap(dt.toLocaleDateString('pt-PT',{month:'long',year:'numeric'})),...stats});
+  }
+  const max=Math.max(...months.map(x=>x.service),1);
+  $('chartBars').replaceChildren();$('chartLabels').replaceChildren();$('holidayMonthList').replaceChildren();
+  for(const v of months){
+    const b=document.createElement('div');b.className='chart-bar'+(v.service===0?' empty':'');
+    b.style.height=`${Math.max(2,v.service/max*100)}%`;
+    b.title=`${v.full}: ${v.service} serviços, ${v.holidays} feriados trabalhados`;
+    b.setAttribute('aria-label',b.title);$('chartBars').append(b);
+    const lab=document.createElement('span');lab.textContent=v.label;$('chartLabels').append(lab);
+    const row=document.createElement('div');row.className='holiday-month-row';
+    const label=document.createElement('span');label.textContent=v.full;
+    const values=document.createElement('strong');values.textContent=`${v.holidays} FO · ${v.service} serviços · ${hm(v.drivingMinutes)} condução · ${hm(v.nightDrivingMinutes)} noturnas (${v.withDriving}/${v.service})`;
+    row.append(label,values);$('holidayMonthList').append(row);
+  }
+}
+
+function downloadBlob(blob,filename){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;a.style.display='none';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000)}
+async function backupIntegrity(serialized){
+  if(globalThis.crypto?.subtle){
+    const bytes=new TextEncoder().encode(serialized);
+    const hash=await globalThis.crypto.subtle.digest('SHA-256',bytes);
+    return {algorithm:'sha256',value:Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('')};
+  }
+  // Fallback para HTML aberto como ficheiro em contextos sem WebCrypto.
+  return {algorithm:'fnv1a32',value:snapshotChecksum(serialized)};
+}
+async function exportBackup(){
+  try{
+    const serialized=JSON.stringify(records),count=Object.keys(records).length;
+    const payload={format:'escala-v1.5.6',version:16,createdAt:new Date().toISOString(),recordCount:count,integrity:await backupIntegrity(serialized),records};
+    const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json;charset=utf-8'});
+    downloadBlob(blob,`Escala-backup-${dateKey(new Date())}.json`);
+    try{lastBackup=new Date().toISOString();lastExportChecksum=snapshotChecksum(serialized);localStorage.setItem(LAST_BACKUP,lastBackup);localStorage.setItem('minha-escala-last-export-checksum',lastExportChecksum)}catch{}
+    renderBackupDate();renderBackupReminder();
+    notify('Download iniciado. Confirma que o ficheiro JSON ficou guardado fora da aplicação.');
+  }catch(e){notify('Falha ao preparar a cópia: '+e.message,'error')}
+}
+function renderBackupDate(){
+ $('lastBackup').textContent=lastBackup?'Última tentativa de exportação: '+new Date(lastBackup).toLocaleString('pt-PT')+' (confirma o ficheiro descarregado).':'Ainda não foi exportada nenhuma cópia neste navegador.';
+ renderStorageStatus();renderBackupReminder();
+}
+async function parseBackup(obj){
+  if(!obj||typeof obj!=='object'||Array.isArray(obj))throw Error('Formato inválido');
+  let out={};
+  if(obj.records&&typeof obj.records==='object'&&!Array.isArray(obj.records)){
+    const serialized=JSON.stringify(obj.records);
+    if(obj.integrity){
+      if(obj.integrity.algorithm==='sha256'){
+        if(!globalThis.crypto?.subtle)throw Error('SHA-256 indisponível neste navegador. Abre o ficheiro no Chrome através do endereço HTTPS da aplicação.');
+        const actual=await backupIntegrity(serialized);
+        if(actual.value!==obj.integrity.value)throw Error('A cópia de segurança não passou a verificação SHA-256');
+      }else if(obj.integrity.algorithm==='fnv1a32'){
+        if(obj.integrity.value!==snapshotChecksum(serialized))throw Error('A cópia de segurança está alterada ou corrompida');
+      }else throw Error('Algoritmo de integridade desconhecido');
+    }
+    if(obj.recordCount!=null&&obj.recordCount!==Object.keys(obj.records).length)throw Error('Número de registos inconsistente');
+    out=parseSavedState(serialized);
+  }else if(obj.notes&&typeof obj.notes==='object'&&!Array.isArray(obj.notes)){
+    for(const [d,n] of Object.entries(obj.notes)){
+      if(!validDate(d)||typeof n!=='string'||n.length>maxNote)throw Error('Nota antiga inválida');
+      if(n.trim()==='Folga.')out[d]={kind:'off'};
+      else out[d]=normalizedRecord({kind:'service',note:n});
+    }
+    if(obj.offDays){
+      if(typeof obj.offDays!=='object'||Array.isArray(obj.offDays))throw Error('Folgas inválidas');
+      for(const [d,v]of Object.entries(obj.offDays))if(validDate(d)&&v===true)out[d]={kind:'off'};
+    }
+  }else throw Error('Ficheiro sem registos compatíveis da Escala');
+  if(Object.keys(out).length>12000)throw Error('Demasiados registos para um único ficheiro');
+  return out;
+}
+async function verifyBackupFile(file){
+  if(!file)return;
+  const status=$('verifyStatus');status.className='backup-verify-status';
+  try{
+    if(file.size>5*1024*1024)throw Error('Ficheiro demasiado grande (máximo 5 MB)');
+    const incoming=await parseBackup(JSON.parse(await file.text()));
+    const total=Object.keys(incoming).length;
+    status.textContent=`Ficheiro válido: ${total} ${total===1?'registo':'registos'}. Nenhum dado foi alterado.`;
+    notify('Backup validado. Os serviços não foram alterados.');
+  }catch(e){status.className='backup-verify-status error';status.textContent='Ficheiro inválido: '+e.message;notify('Falha na validação do backup.','error')}
+  finally{$('verifyFile').value=''}
+}
+async function importBackup(file){
+  if(!file)return;
+  try{
+    if(file.size>5*1024*1024)throw Error('O ficheiro é demasiado grande (máximo 5 MB)');
+    const obj=JSON.parse(await file.text()),incoming=await parseBackup(obj),count=Object.keys(incoming).length;
+    if(!count){notify('A cópia não contém registos.','error');return}
+    const overlap=Object.keys(incoming).filter(d=>records[d]);
+    if(!confirm(`Cópia validada: ${count} registos, ${overlap.length} datas já existentes.\n\nQueres importar os registos novos? Os atuais serão mantidos, exceto se autorizares a substituição de datas coincidentes.`))return;
+    let replace=false;
+    if(overlap.length)replace=confirm(`Há ${overlap.length} datas que já têm registo.\n\nOK: substituir os registos nessas datas pelos do ficheiro.\nCancelar: manter os atuais e adicionar apenas as datas em falta.`);
+    const merged={...records};let added=0,updated=0;
+    for(const [d,r] of Object.entries(incoming)){
+      if(!merged[d]){merged[d]=r;added++}
+      else if(replace&&JSON.stringify(merged[d])!==JSON.stringify(r)){merged[d]=r;updated++}
+    }
+    if(!added&&!updated){notify('Não há registos novos para importar.');return}
+    if(!persist(merged,true))return;
+    renderCalendar();renderHistory();renderStats();renderVacations();
+    $('verifyStatus').textContent=`Restauro concluído: ${added} novos e ${updated} atualizados.`;
+    notify(`Restauro concluído: ${added} novos, ${updated} atualizados.`);
+  }catch(e){$('verifyStatus').className='backup-verify-status error';$('verifyStatus').textContent='Falha no restauro: '+e.message;notify('Não foi possível importar: '+e.message,'error')}
+  finally{$('backupFile').value=''}
+}
+// Parser específico dos ecrãs «Consultar Serviço» da aplicação Tripulantes.
+// Nunca inventa campos em falta; permite rever antes de guardar.
+function parseServiceCapture(raw, blocks=[]) {
+  const original = String(raw || '').replace(/\r/g, '').replace(/[‐‑–—]/g, '-');
+  const lines = original.split('\n').map(s=>s.trim()).filter(Boolean);
+  const normalized = s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  const isMeta = s=>/^(?:consultar\s+servi|servi[cç]o\s*:?|servi[cç]o\s+de\s+viatura|tipo\s+de\s+afeta[cç][aã]o|tipo\s+de\s+afecta[cç][aã]o|normal(?:\s+fo)?$|observa[cç][oõ]es|ver\s+detalhes|\d{1,3}[A-Z]\s*\/\s*\d+|\d{1,2}[\/.-]\d{1,2}[\/.-]20\d{2})/i.test(s);
+  const fixPlace = s=>String(s||'').replace(/^[^\p{L}\p{N}]+/u,'').replace(/[|:]+$/,'').trim().slice(0,180);
+  const dateMatch = original.match(/(?:Consultar\s+Servi[cç]o\s*:?\s*)(\d{1,2})[\/.\-](\d{1,2})[\/.\-](20\d{2})/i)
+    || original.match(/\b(\d{1,2})[\/.\-](\d{1,2})[\/.\-](20\d{2})\b/);
+  let date = dateMatch ? `${dateMatch[3]}-${pad(+dateMatch[2])}-${pad(+dateMatch[1])}` : '';
+  if(!validDate(date)) date='';
+  // Na Tripulantes, o valor junto de «Serviço:» corresponde à Altura.
+  // O OCR pode confundir a letra inicial S com o algarismo 5 (S2401 → 52401).
+  const sr = original.match(/\bServi[cç]o\s*:\s*([A-Z]{0,2}\s*\d{3,6})\b/i);
+  const scannedHeight = sr ? sr[1].replace(/\s+/g,'').toUpperCase():'';
+  // Aplicar a correção apenas ao padrão ambíguo 5 + quatro algarismos.
+  // É uma heurística: pedir confirmação visual do código, não criar certeza falsa.
+  const heightNeedsConfirmation = /^5\d{4}$/.test(scannedHeight);
+  const service = heightNeedsConfirmation ? 'S' + scannedHeight.slice(1) : scannedHeight;
+  const vm = original.match(/\b\d{1,3}\s*[A-Z]\s*\/\s*\d{1,3}\b/i);
+  const vehicle = vm ? vm[0].replace(/\s/g,'').toUpperCase():'';
+  let type='';
+  let observations='';
+  const obsIndex=lines.findIndex(line=>/^Observa[cç][oõ]es\s*:?/i.test(line));
+  if(obsIndex>=0){observations=safeStr(lines[obsIndex].replace(/^Observa[cç][oõ]es\s*:?\s*/i,'')||lines[obsIndex+1]||'',240)}
+  const typeMatch=original.match(/(?:Tipo\s+de\s+Afeta[cç][aã]o|Tipo\s+de\s+Afecta[cç][aã]o)\s*:?\s*(Normal(?:\s+FO)?|Extraordin[aá]ri[ao]|Especial)\b/i);
+  if(typeMatch)type=typeMatch[1].replace(/\s+/g,' ').trim();
+  else if(/\bNormal\b/i.test(original))type='Normal';
+  // Quando a expressão FO é identificável mas a origem não é inequívoca,
+  // preservá-la nas observações; nunca atribuir FO a uma data por inferência.
+  if(!observations&&hasNormalFO(original)&&!hasNormalFO(type))observations='Normal FO';
+  // Ignorar a barra superior Android (ex.: 19:19), lendo apenas depois de «Serviço: E2601».
+  let body=sr ? original.slice(sr.index+sr[0].length) : dateMatch ? original.slice(dateMatch.index+dateMatch[0].length) : '';
+  const stop=body.search(/Servi[cç]o\s+de\s+Viatura\s*:|Tipo\s+de\s+Afeta[cç][aã]o\s*:/i);
+  if(stop>=0)body=body.slice(0,stop);
+  let timePairs=[...body.matchAll(/\b([01]?\d|2\d)\s*[:h.]\s*([0-5]\d)\b/g)].map(x=>`${pad(+x[1])}:${x[2]}`);
+  if(timePairs.length<2&&sr){const afterHeader=original.slice(sr.index+sr[0].length);const found=[...afterHeader.matchAll(/\b([01]?\d|2\d)\s*[:h.]\s*([0-5]\d)\b/g)].map(x=>`${pad(+x[1])}:${x[2]}`);if(found.length>=2)timePairs=found.slice(0,2)}
+  let start=timePairs[0]||'',end=timePairs[1]||'';
+  let from='',to='';
+  // Texto OCR pode surgir como «Estrela 17:00» ou em colunas independentes.
+  const entries=[];
+  const pushEntry=(txt,x,y,h=15)=>{txt=String(txt||'').trim();if(txt)entries.push({text:txt,x,y,h})};
+  try{
+    // Tesseract.js v6: blocks[].paragraphs[].lines[] com bbox.
+    for(const block of Array.isArray(blocks)?blocks:[]){
+      for(const par of block.paragraphs||[]){for(const line of par.lines||[]){
+        let t=(line.text||line.words?.map(w=>w.text).join(' ')||'').trim();
+        const box=line.bbox||{};
+        if(t)pushEntry(t,(box.x0||0),((box.y0||0)+(box.y1||0))/2,Math.max(10,(box.y1||0)-(box.y0||0)));
+      }}
+    }
+  }catch(e){ /* Fallback baseado apenas em texto. */ }
+  // Associar os locais às horas por proximidade vertical, respeitando a geometria do ecrã.
+  if(entries.length){
+    const hours=[];
+    for(const e of entries){for(const mt of e.text.matchAll(/\b([01]?\d|2\d)\s*[:h.]\s*([0-5]\d)\b/g))hours.push({...e,t:`${pad(+mt[1])}:${mt[2]}`})}
+    const nonMeta=entries.filter(e=>!isMeta(e.text)&&/[a-záàãâçéêíóôõú]/i.test(e.text)&&!e.text.match(/\b\d{1,2}[:h.]\d{2}\b/));
+    // As horas do serviço estão normalmente à direita; o nome do local, à esquerda.
+    const plausible=hours.filter(h=>!dateMatch||h.y>0);
+    for(const [idx,hr] of plausible.slice(0,2).entries()){
+      const options=nonMeta.filter(e=>e.x<hr.x && Math.abs(e.y-hr.y)<Math.max(22,e.h*1.65,hr.h*1.65));
+      options.sort((a,b)=>Math.abs(a.y-hr.y)-Math.abs(b.y-hr.y));
+      const place=fixPlace(options[0]?.text);
+      if(place){if(idx===0)from=place;else to=place;}
+    }
+  }
+  // OCR de uma linha corrida: «Estrela 17:00».
+  const sameLine=[];
+  for(const line of lines){
+    const m=line.match(/^(.+?)\s+\b(?:[01]?\d|2\d)\s*[:h.]\s*[0-5]\d\b/);
+    if(m&&!isMeta(m[1])&&/[a-záàãâçéêíóôõú]/i.test(m[1]))sameLine.push(fixPlace(m[1]));
+  }
+  if(!from&&sameLine[0])from=sameLine[0];
+  if(!to&&sameLine[1])to=sameLine[1];
+  // OCR processou a coluna esquerda por inteiro, seguida da direita.
+  const serviceLine=lines.findIndex(s=>/\bServi[cç]o\s*:\s*[A-Z]{0,2}\d{3,6}/i.test(s));
+  const dateLine=lines.findIndex(s=>/Consultar\s+Servi[cç]o\s*:/.test(s));
+  const bodyLines=lines.slice(Math.max(0,serviceLine>=0?serviceLine+1:dateLine>=0?dateLine+1:lines.length));
+  const candidates=[];
+  for(const ln of bodyLines){
+    if(/Servi[cç]o\s+de\s+Viatura|Tipo\s+de\s+Afeta[cç][aã]o|Tipo\s+de\s+Afecta[cç][aã]o|Ver\s+Detalhes/i.test(ln))break;
+    if(isMeta(ln)||/^\d{1,2}[:h.]\d{2}$/.test(ln))continue;
+    const clean=fixPlace(ln.replace(/\b([01]?\d|2\d)\s*[:h.]\s*[0-5]\d\b/g,''));
+    if(clean&&/[a-záàãâçéêíóôõú]/i.test(clean)&&!clean.includes('Serviço'))candidates.push(clean);
+  }
+  if(!from&&candidates[0])from=candidates[0];
+  if(!to&&candidates[1])to=candidates[1];
+  // Na eventualidade de Tesseract ler primeiro os horários da direita, não inventar locais.
+  const result={date,service,vehicle,start,end,from,to,type,observations};
+  const missing=Object.entries(result).filter(([k,v])=>k!=='observations'&&!v).map(([k])=>k);
+  return {...result,missing,complete:missing.length===0,matchedFields:8-missing.length,heightNeedsConfirmation};
+}
+// Não cortar as observações no fundo de uma captura: leitura inclui quase toda a área útil.
+function prepareCapture(img){return new Promise((resolve,reject)=>{const url=URL.createObjectURL(img),photo=new Image();photo.onload=()=>{try{let ratio=photo.height/photo.width,top=ratio>1.2?0.055:0,cropH=ratio>1.2?0.89:1;let x=0,y=Math.round(photo.height*top),w=photo.width,h=Math.min(photo.height-y,Math.round(photo.height*cropH));const maxW=1500,maxH=2700,scale=Math.min(2,maxW/w,maxH/h),canvas=document.createElement('canvas');canvas.width=Math.round(w*scale);canvas.height=Math.round(h*scale);let ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(photo,x,y,w,h,0,0,canvas.width,canvas.height);let data=ctx.getImageData(0,0,canvas.width,canvas.height);for(let i=0;i<data.data.length;i+=4){let gray=.299*data.data[i]+.587*data.data[i+1]+.114*data.data[i+2];let val=gray<175?0:255;data.data[i]=data.data[i+1]=data.data[i+2]=val}ctx.putImageData(data,0,0);resolve(canvas)}catch(e){reject(e)}finally{URL.revokeObjectURL(url)}};photo.onerror=()=>{URL.revokeObjectURL(url);reject(Error('Imagem inválida'))};photo.src=url})}
+async function loadTesseract(){
+  if(window.Tesseract)return;
+  await new Promise((resolve,reject)=>{
+    const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@6.0.0/dist/tesseract.min.js';
+    sc.onload=resolve;sc.onerror=()=>reject(Error('Não foi possível descarregar o motor OCR. Verifica a ligação à internet.'));
+    document.head.append(sc);
+  });
+}
+const friendlyField={date:'data',service:'altura',vehicle:'serviço',start:'entrada',end:'saída',from:'local de entrada',to:'local de saída',type:'afetação',observations:'observações'};
+async function scan(){
+  const file=$('captureInput').files?.[0];
+  if(!file){notify('Escolhe uma captura da Tripulantes.','error');return}
+  if(!file.type.startsWith('image/')){notify('O ficheiro selecionado não é uma imagem.','error');return}
+  if(file.size>12*1024*1024){notify('Imagem demasiado grande.','error');return}
+  const btn=$('scanButton');if(btn.disabled)return;
+  const myScan=++scanEpoch;
+  const active=()=>myScan===scanEpoch && isModalOpen;
+  const snapshot=Object.fromEntries(['fDate','fService','fVehicle','fStart','fEnd','fFrom','fTo','fType','fObservations','fNote'].map(id=>[id,$(id).value]));
+  btn.disabled=true;$('ocrMessage').textContent='A preparar a leitura…';
+  let worker=null;
+  try{
+    await loadTesseract();
+    if(!active())return;
+    const canvas=await prepareCapture(file);
+    if(!active())return;
+    worker=await Tesseract.createWorker(['por','eng'],1,{logger:info=>{
+      if(active()&&info.status==='recognizing text')$('ocrMessage').textContent=`A reconhecer: ${Math.round(info.progress*100)}%`;
+    }});
+    if(!active())return;
+    const result=await worker.recognize(canvas,{}, {text:true,blocks:true});
+    if(!active())return;
+    const touched=Object.entries(snapshot).some(([id,value])=>$(id).value!==value);
+    if(touched&&!confirm('Alteraste dados durante a leitura. Queres aplicar o resultado do print por cima desses campos?'))return;
+    const extracted=parseServiceCapture(result?.data?.text||'',result?.data?.blocks||[]);
+    if(extracted.matchedFields<2)throw Error('Texto insuficiente na captura. Podes preencher os campos manualmente.');
+    // A captura pode ser de outro dia; jamais mudar silenciosamente a data.
+    if(extracted.date&&extracted.date!==$('fDate').value){
+      const useImageDate=confirm(`A imagem mostra ${prettyDate(extracted.date)}, mas selecionaste ${prettyDate($('fDate').value)}.\n\nOK: utilizar a data da imagem.\nCancelar: manter a data selecionada.`);
+      if(useImageDate){
+        $('fDate').value=extracted.date;
+        syncServiceSaveAccess();
+        if(isPastServiceDate(extracted.date))warnPastService();
+      }
+    }
+    for(const [field,value] of Object.entries({fService:extracted.service,fVehicle:extracted.vehicle,fStart:extracted.start,fEnd:extracted.end,fFrom:extracted.from,fTo:extracted.to,fType:extracted.type,fObservations:extracted.observations})){
+      if(value)$(field).value=value;
+    }
+    updateDrivingPreview();regen(true);formDirty=true;ocrDidRun=true;
+    const missing=extracted.missing.map(k=>friendlyField[k]);
+    const ocrSummary=missing.length?'Leitura parcial. Confirma os dados; por verificar: '+missing.join(', ')+'.':'8 campos identificados. Confirma os dados antes de guardar.';
+    $('ocrMessage').textContent=extracted.heightNeedsConfirmation
+      ? 'Atenção: o reconhecimento pode ter lido S como 5 na Altura. Foi proposta '+extracted.service+'. Confirma a Altura no print antes de guardar. '+ocrSummary
+      : ocrSummary;
+    $('ocrMessage').classList.toggle('ocr-warning',missing.length>0||extracted.heightNeedsConfirmation);
+    notify('Leitura terminada. Confirma a nota antes de guardar.');
+  }catch(e){if(active()){$('ocrMessage').textContent=(e.message||'Falha no reconhecimento')+' Preenche manualmente.';notify('Não foi possível ler a captura.','error')}}
+  finally{
+    try{await worker?.terminate()}catch{}
+    if(active()){btn.disabled=false;$('captureInput').value='';$('uploadLabel').textContent='Carregar outra captura'}
+    else if(!isModalOpen){btn.disabled=false}
+  }
+}
+
+// Férias independentes por ano. Uma data é contada uma só vez;
+// os dias futuros são "por gozar", não são assumidos como gozados.
+function vacationDates(year){
+  return Object.keys(records).filter(d=>d.startsWith(String(year)+'-')&&records[d]?.kind==='vacation').sort();
+}
+function yearOptions(){
+  const chosen=Number($('vacationYear').value),current=today.getFullYear();
+  const years=new Set([current,current-1,current+1]);
+  for(const [date,r] of Object.entries(records))if(r.kind==='vacation')years.add(Number(date.slice(0,4)));
+  if(chosen>=1900&&chosen<=2100)years.add(chosen);
+  const picker=$('vacationYear');picker.replaceChildren();
+  for(const year of [...years].sort((a,b)=>b-a)){
+    const opt=document.createElement('option');opt.value=String(year);opt.textContent=String(year);picker.append(opt);
+  }
+  picker.value=String(years.has(chosen)?chosen:current);
+}
+function renderVacations(){
+  yearOptions();
+  const year=Number($('vacationYear').value),dates=vacationDates(year),todayKey=dateKey(today);
+  const taken=dates.filter(d=>d<=todayKey).length;
+  $('vacationTaken').textContent=String(taken);
+  $('vacationUpcoming').textContent=String(dates.length-taken);
+  $('vacationTotal').textContent=String(dates.length);
+  $('vacationListYear').textContent=String(year);
+  const list=$('vacationDateList');list.replaceChildren();
+  if(!dates.length){const el=document.createElement('p');el.className='vacation-empty';el.textContent='Ainda não existem dias de férias assinalados neste ano.';list.append(el);return}
+  let month=-1;
+  for(const d of dates){
+    const dt=dateObj(d);
+    if(dt.getMonth()!==month){month=dt.getMonth();const head=document.createElement('div');head.className='vacation-month-heading';head.textContent=cap(dt.toLocaleDateString('pt-PT',{month:'long'}));list.append(head)}
+    const row=document.createElement('div');row.className='vacation-date-row';
+    const details=document.createElement('div');details.className='vacation-date-info';
+    const title=document.createElement('strong');title.textContent=cap(prettyDate(d,{weekday:'long',day:'numeric',month:'long'}));
+    const state=document.createElement('span');state.textContent=d<=todayKey?'Gozado':'Marcado · por gozar';details.append(title,state);
+    const actions=document.createElement('div');actions.className='vacation-date-actions';
+    const see=document.createElement('button');see.type='button';see.textContent='Ver';see.setAttribute('aria-label','Abrir '+prettyDate(d));see.onclick=()=>showDate(d);
+    const remove=document.createElement('button');remove.type='button';remove.textContent='Retirar';remove.setAttribute('aria-label','Retirar férias de '+prettyDate(d));remove.onclick=()=>removeDay(d);
+    actions.append(see,remove);row.append(details,actions);list.append(row);
+  }
+}
+function refreshAllViews(){renderCalendar();renderHistory();renderStats();renderVacations();renderBackupReminder()}
+function markVacationDay(date){
+  if(!validDate(date))return;
+  const prev=records[date];
+  if(protectedService(date)){warnPastService();return}
+  if(prev?.kind==='vacation'){notify('Este dia já está assinalado como férias.');return}
+  if(prev&&!confirm('Já existe '+(prev.kind==='off'?'uma folga':'um serviço')+' em '+prettyDate(date)+'.\n\nSubstituir por férias?'))return;
+  if(storeRecord(date,{kind:'vacation'})){refreshAllViews();notify('Dia de férias assinalado.')}
+}
+function addVacationRange(){
+  const first=$('vacationFrom').value,last=$('vacationTo').value;
+  if(!validDate(first)||!validDate(last)){notify('Escolhe datas válidas de início e fim.','error');return}
+  if(last<first){notify('A data final deve ser igual ou posterior à data inicial.','error');return}
+  const start=dateObj(first),end=dateObj(last),count=Math.round((Date.UTC(end.getFullYear(),end.getMonth(),end.getDate())-Date.UTC(start.getFullYear(),start.getMonth(),start.getDate()))/86400000)+1;
+  if(count>366){notify('Marca períodos até 366 dias de cada vez.','error');return}
+  const dates=[];
+  for(let i=0;i<count;i++){const d=new Date(start.getFullYear(),start.getMonth(),start.getDate()+i);dates.push(dateKey(d))}
+  const locked=dates.filter(protectedService);
+  if(locked.length){notify(`O período inclui ${locked.length} serviço(s) passado(s) bloqueado(s). Marca apenas datas sem esses serviços.`, 'error');return}
+  const conflicts=dates.filter(d=>records[d]&&records[d].kind!=='vacation');
+  const newDays=dates.filter(d=>records[d]?.kind!=='vacation');
+  if(!newDays.length){notify('Todos os dias deste período já estão marcados como férias.');return}
+  if(conflicts.length){
+    const examples=conflicts.slice(0,3).map(d=>prettyDate(d,{day:'numeric',month:'short',year:'numeric'})).join(', ');
+    if(!confirm(`Este período tem ${conflicts.length} dia(s) com serviços ou folgas já registados (${examples}${conflicts.length>3?'…':''}).\n\nSubstituir esses registos por férias?`))return;
+  }
+  const next={...records};for(const date of newDays)next[date]={kind:'vacation'};
+  if(!persist(next))return;
+  const pick=$('vacationYear'),targetYear=first.slice(0,4);
+  if(![...pick.options].some(o=>o.value===targetYear)){const opt=document.createElement('option');opt.value=targetYear;opt.textContent=targetYear;pick.append(opt)}
+  pick.value=targetYear;
+  refreshAllViews();
+  notify(`${newDays.length} dia(s) de férias assinalado(s).`);
+}
+
+// Event handlers.
+$('vacationYear').addEventListener('change',renderVacations);$('vacationAddRange').addEventListener('click',addVacationRange);$('jumpDate').onchange=e=>{if(validDate(e.target.value))showDate(e.target.value,false);e.target.value=''};$('openDayDetails').onclick=openDaySheet;$('closeDaySheet').onclick=closeDaySheet;$('daySheet').addEventListener('click',e=>{if(e.target===$('daySheet'))closeDaySheet()});$('prevMonth').onclick=()=>moveMonth(-1);$('nextMonth').onclick=()=>moveMonth(1);$('goToday').onclick=()=>showDate(dateKey(today));$('statsMonth').addEventListener('change',renderStats);$('fabAdd').onclick=()=>openModal(selected);$('settingsTop').onclick=()=>goView('settings');document.querySelectorAll('[data-view]').forEach(el=>el.onclick=()=>goView(el.dataset.view));document.querySelectorAll('[data-filter]').forEach(el=>el.onclick=()=>{historyShown=60;historyFilter=el.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('selected',x===el));renderHistory()});let historySearchTimer=null;$('historySearch').oninput=()=>{historyShown=60;clearTimeout(historySearchTimer);historySearchTimer=setTimeout(renderHistory,130)};['historyFrom','historyTo','historyCode','historyVehicle','historyType','historySort'].forEach(id=>$(id).addEventListener('input',()=>{historyShown=60;renderHistory()}));$('clearHistoryFilters').onclick=()=>{['historyFrom','historyTo','historyCode','historyVehicle','historyType'].forEach(id=>$(id).value='');$('historySort').value='desc';$('historySearch').value='';historyShown=60;renderHistory()};$('historyMore').onclick=()=>{historyShown+=60;renderHistory()};$('closeModal').onclick=()=>closeModal();$('cancelModal').onclick=()=>closeModal();$('scanButton').onclick=scan;$('captureInput').onchange=e=>{const file=e.target.files?.[0];$('uploadLabel').textContent=file?.name||'Carregar captura da Tripulantes';if(file)scan()};$('backupFromCalendar').onclick=exportBackup;$('exportBackup').onclick=exportBackup;$('recoverPrevious').onclick=recoverPrevious;$('importBackup').onclick=()=>$('backupFile').click();$('verifyBackup').onclick=()=>$('verifyFile').click();$('verifyFile').onchange=e=>verifyBackupFile(e.target.files?.[0]);$('backupFile').onchange=e=>importBackup(e.target.files?.[0]);document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(isModalOpen)closeModal();else closeDaySheet()}});window.addEventListener('beforeunload',e=>{if(isModalOpen&&formDirty){e.preventDefault();e.returnValue=''}});
+let touchStart=null;const panel=document.querySelector('.calendar-panel');panel.addEventListener('touchstart',e=>{if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});panel.addEventListener('touchend',e=>{if(!touchStart||!e.changedTouches.length)return;let dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>85&&Math.abs(dy)<60)moveMonth(dx<0?1:-1)},{passive:true});
+// Instalação PWA: requer alojamento HTTPS e o navegador Chrome/Android.
+let deferredInstallPrompt=null;
+const installButton=$('installApp');
+window.addEventListener('beforeinstallprompt',event=>{
+  event.preventDefault();deferredInstallPrompt=event;
+  if(installButton)installButton.textContent='Instalar Escala';
+});
+if(installButton)installButton.onclick=async()=>{
+  if(window.matchMedia('(display-mode: standalone)').matches){notify('A aplicação já está instalada.');return}
+  if(deferredInstallPrompt){const prompt=deferredInstallPrompt;deferredInstallPrompt=null;await prompt.prompt();return}
+  notify('No Chrome, abre o menu ⋮ e escolhe Adicionar ao ecrã principal.');
+};
+window.addEventListener('appinstalled',()=>notify('Escala instalada no telemóvel.'));
+if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{}));
+}
+$('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);renderCalendar();renderVacations();renderBackupDate();bootMirror();scheduleNextMidnightRefresh();if(!storageOk)notify('O navegador não permitiu guardar dados. Experimenta abrir no Chrome e exportar cópias.','error');
+})();
+</script>
+
+<script>
+(()=>{
+  'use strict';
+  // Preserva a aceitação anterior para não voltar a exigir o aviso em cada abertura.
+  const ackKey='escala-aviso-responsabilidade-v1';
+  const splash=document.getElementById('welcomeSplash');
+  const greeting=document.querySelector('.welcome-greeting');
+  const notice=document.getElementById('escalaNotice');
+  const read=document.getElementById('noticeRead');
+  const finish=document.getElementById('noticeFinish');
+  const card=notice.querySelector('.notice-card');
+  const mainNodes=[document.querySelector('.wrap'),document.querySelector('.bottom-nav'),document.getElementById('fabAdd'),document.getElementById('modal'),document.getElementById('daySheet')].filter(Boolean);
+  const setBlocked=blocked=>{
+    document.documentElement.classList.toggle('escala-onboarding',blocked);
+    mainNodes.forEach(el=>{el.inert=blocked});
+  };
+  let noticePending=false;
+  function hasAcknowledged(){try{return localStorage.getItem(ackKey)==='1'}catch(_){return false}}
+  function showMain(){
+    if(greeting)greeting.hidden=true;
+    notice.classList.add('hidden');
+    splash.classList.add('hidden');
+    splash.setAttribute('aria-hidden','true');
+    setBlocked(false);
+  }
+  function openNotice(){
+    if(greeting)greeting.hidden=true;
+    read.checked=false;
+    finish.disabled=true;
+    noticePending=true;
+    setBlocked(true);
+    notice.classList.remove('hidden');
+    card.focus({preventScroll:true});
+  }
+  // «Bem-vindo» surge suavemente e mantém-se visível durante os dois segundos.
+  // Só desaparece quando o aviso abre ou quando entramos no calendário.
+  setBlocked(true);
+  if(greeting){
+    window.setTimeout(()=>greeting.classList.add('is-visible'),80);
+  }
+  window.setTimeout(()=>{
+    if(hasAcknowledged())showMain();
+    else openNotice(); // O aviso é apresentado POR CIMA da introdução.
+  },2000);
+  read.addEventListener('change',()=>{finish.disabled=!read.checked});
+  finish.addEventListener('click',()=>{
+    if(!read.checked)return;
+    try{localStorage.setItem(ackKey,'1')}catch(_){/* Não apaga registos existentes. */}
+    if(noticePending){
+      noticePending=false;
+      showMain(); // Só agora permite interagir com o calendário.
+    }else{
+      notice.classList.add('hidden');
+      setBlocked(false);
+    }
+  });
+  document.getElementById('reopenLegalNotice')?.addEventListener('click',openNotice);
+})();
+</script>
+
+</body>
+</html>
