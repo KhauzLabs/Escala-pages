@@ -461,7 +461,7 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 .escala-update-now{background:#e7bd6b;color:#152238;flex:1}
 .escala-update-later{background:#293850;color:#f2f6ff}
 
-/* Escala 1.5.34 — Folga trabalhada (FT). */
+/* Escala 1.5.36 — Resumo mensal em grelha. */
 .date-cell.service.worked-off{background:#ffe1b9;border-color:#e7a34f;color:#88450c}
 .date-cell.service.worked-off.is-selected{background:#ffd29b;border-color:#be7218}
 .date-cell.service.worked-off .indicator{background:#db7c1b}
@@ -486,6 +486,30 @@ html[data-theme="dark"] .ft-month-stat{background:#4a3324!important;border-color
 html[data-theme="dark"] .ft-month-stat strong,html[data-theme="dark"] .ft-month-inline,html[data-theme="dark"] .ft-month-inline strong,html[data-theme="dark"] .ft-day-indicator{color:#ffc580!important}
 html[data-theme="dark"] .ft-form-banner{background:#46301f;border-color:#8f5e2c;color:#ffd39c}
 html[data-theme="dark"] .btn-worked-off{background:#e6a04c;color:#281706}
+
+/* Resumo mensal compacto em duas colunas — 1.5.36 */
+.calendar-month-summary{margin-top:14px;padding:18px 15px 13px;border-radius:20px}
+.calendar-month-summary-title{display:flex;align-items:center;gap:10px;margin:0 0 13px;font-size:17px;line-height:1.3;font-weight:850;color:var(--text)}
+.summary-title-symbol{display:grid;place-items:center;flex:none;background:#fff0ce;color:#996217;width:30px;height:30px;border-radius:10px;font-size:20px;line-height:1}
+.calendar-month-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+.calendar-summary-item{display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;min-height:69px;padding:10px 12px;border-bottom:1px solid var(--stroke)}
+.calendar-summary-item:nth-child(odd){border-right:1px solid var(--stroke);padding-left:4px}
+.calendar-summary-item:nth-child(even){padding-right:4px}
+.calendar-summary-item:nth-last-child(-n+2){border-bottom:0}
+.calendar-summary-label{font-size:11px;line-height:1.35;font-weight:650;color:var(--muted)}
+.calendar-summary-item>strong,.calendar-ft-values strong{font-size:19px;line-height:1.2;font-weight:850;color:var(--text);overflow-wrap:anywhere}
+.calendar-summary-item #monthDriving{color:#21689b}
+.calendar-summary-item #monthNightDriving{color:#7b4cab}
+.calendar-summary-item #monthHolidays{color:#9a661e}
+.calendar-summary-ft .calendar-ft-values{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.calendar-summary-ft .calendar-ft-values strong{color:#a3530c}
+.calendar-summary-ft .calendar-ft-values span{color:var(--muted)}
+html[data-theme="dark"] .summary-title-symbol{background:#463724;color:#ffdc97}
+html[data-theme="dark"] .calendar-summary-item #monthDriving{color:#82c6fb}
+html[data-theme="dark"] .calendar-summary-item #monthNightDriving{color:#c5a1ff}
+html[data-theme="dark"] .calendar-summary-item #monthHolidays{color:#ffda97}
+html[data-theme="dark"] .calendar-summary-ft .calendar-ft-values strong{color:#ffc580}
+@media(max-width:360px){.calendar-month-summary{padding:14px 11px 9px}.calendar-summary-item{padding:8px 9px;min-height:67px}.calendar-summary-label{font-size:10px}.calendar-summary-item>strong,.calendar-ft-values strong{font-size:17px}}
 </style>
 </head>
 <body>
@@ -519,7 +543,19 @@ html[data-theme="dark"] .btn-worked-off{background:#e6a04c;color:#281706}
   <div class="surface calendar-panel"><div class="week-grid" aria-hidden="true"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span></div><div class="month-grid" id="monthGrid"></div><div class="cal-bottom"><div class="legend"><span><i></i>Serviço</span><span><i class="green"></i>Folga</span><span><i class="purple"></i>Férias</span><span><i class="orange"></i>FT</span></div><button class="link-button" id="goToday">Hoje <svg><use href="#i-arrow"/></svg></button></div></div>
   <div id="backupReminder" class="backup-reminder hidden" role="status"><span>Os teus serviços ainda não têm uma cópia recente fora deste telemóvel.</span><button type="button" id="backupFromCalendar">Exportar</button></div>
   <section class="surface day-quick" id="dayQuick" aria-label="Dia selecionado"><span class="quick-status" id="quickIcon"><svg><use href="#i-note"/></svg></span><div class="quick-main"><strong id="quickTitle">Dia selecionado</strong><span id="quickSubtitle">Toca para ver os detalhes</span><span id="quickDriving" class="quick-driving hidden"></span><span id="quickOvertime" class="quick-driving hidden"></span><span id="quickFt" class="ft-day-indicator hidden"></span></div><button type="button" class="round-button" id="openDayDetails" aria-label="Abrir detalhes do dia"><svg><use href="#i-chevron-right"/></svg></button></section>
-  <div class="month-inline" aria-label="Resumo mensal"><span><strong id="monthServices">0</strong> serviços</span><span><strong id="monthOffs">0</strong> folgas</span><span><strong id="monthVacations">0</strong> férias</span><span><strong id="monthHours">0h</strong> entre entrada e saída</span><span class="holiday-summary"><strong id="monthHolidays">0</strong> feriados trabalhados (FO)</span><span class="driving-inline"><strong id="monthDriving">0h</strong> de condução no mês</span><span class="night-driving-inline"><strong id="monthNightDriving">0h</strong> noturnas (20h–08h)</span><span><strong id="monthOvertime">0h</strong> horas extra no mês</span><span class="ft-month-inline"><strong id="monthWorkedOff">0</strong> FT · <strong id="monthWorkedOffHours">0h</strong></span></div>
+  <section class="surface calendar-month-summary" aria-label="Resumo mensal">
+    <h3 class="calendar-month-summary-title"><span class="summary-title-symbol" aria-hidden="true">▥</span> Resumo mensal</h3>
+    <div class="calendar-month-summary-grid">
+      <div class="calendar-summary-item"><span class="calendar-summary-label">Serviços</span><strong id="monthServices">0</strong></div>
+      <div class="calendar-summary-item"><span class="calendar-summary-label">Folgas</span><strong id="monthOffs">0</strong></div>
+      <div class="calendar-summary-item"><span class="calendar-summary-label">Férias</span><strong id="monthVacations">0</strong></div>
+      <div class="calendar-summary-item"><span class="calendar-summary-label">Feriados trabalhados (FO)</span><strong id="monthHolidays">0</strong></div>
+      <div class="calendar-summary-item"><span class="calendar-summary-label">Condução no mês</span><strong id="monthDriving">0h</strong></div>
+      <div class="calendar-summary-item"><span class="calendar-summary-label">Horas noturnas (20h–08h)</span><strong id="monthNightDriving">0h</strong></div>
+      <div class="calendar-summary-item"><span class="calendar-summary-label">Horas extra</span><strong id="monthOvertime">0h</strong></div>
+      <div class="calendar-summary-item calendar-summary-ft"><span class="calendar-summary-label">Folgas trabalhadas (FT)</span><div class="calendar-ft-values"><strong id="monthWorkedOff">0</strong><span aria-hidden="true">·</span><strong id="monthWorkedOffHours">0h</strong></div></div>
+    </div>
+  </section>
 </section>
 <section class="view" id="view-history" aria-label="Histórico"><p class="eyebrow">ARQUIVO</p><h2 class="section-title">Histórico</h2><p class="section-description">Encontra serviços por palavra, data, altura ou código de serviço.</p><label class="search"><svg><use href="#i-search"/></svg><input type="search" id="historySearch" aria-label="Pesquisar serviços" autocomplete="off" /></label>
 <div class="range-switch"><button class="switch-btn selected" data-filter="all">Todos</button><button class="switch-btn" data-filter="service">Serviços</button><button class="switch-btn" data-filter="off">Folgas</button><button class="switch-btn" data-filter="vacation">Férias</button></div>
@@ -1037,7 +1073,7 @@ function renderCalendar(){
     b.onclick=()=>{selected=k;renderCalendar();openDaySheet()};days.append(b);
   }
   const stats=monthData(calendarYear,calendarMonth);
-  $('monthServices').textContent=stats.service;$('monthOffs').textContent=stats.offs;$('monthVacations').textContent=stats.vacations;$('monthHours').textContent=hm(stats.mins);$('monthHolidays').textContent=stats.holidays;$('monthDriving').textContent=hm(stats.drivingMinutes);$('monthNightDriving').textContent=hm(stats.nightDrivingMinutes);$('monthOvertime').textContent=hm(stats.overtimeMinutes);$('monthWorkedOff').textContent=stats.workedOff;$('monthWorkedOffHours').textContent=hm(stats.workedOffMinutesTotal);renderSelected();
+  $('monthServices').textContent=stats.service;$('monthOffs').textContent=stats.offs;$('monthVacations').textContent=stats.vacations;$('monthHolidays').textContent=stats.holidays;$('monthDriving').textContent=hm(stats.drivingMinutes);$('monthNightDriving').textContent=hm(stats.nightDrivingMinutes);$('monthOvertime').textContent=hm(stats.overtimeMinutes);$('monthWorkedOff').textContent=stats.workedOff;$('monthWorkedOffHours').textContent=hm(stats.workedOffMinutesTotal);renderSelected();
 }
 function showDate(d,details=true){selected=d;let dt=dateObj(d);calendarYear=dt.getFullYear();calendarMonth=dt.getMonth();goView('calendar');renderCalendar();if(details)openDaySheet()}
 function moveMonth(v){let d=new Date(calendarYear,calendarMonth+v,1);calendarYear=d.getFullYear();calendarMonth=d.getMonth();selected=keyOf(calendarYear,calendarMonth,Math.min(dateObj(selected).getDate(),new Date(calendarYear,calendarMonth+1,0).getDate()));renderCalendar()}
@@ -1693,7 +1729,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
 <script>
 (()=>{
   'use strict';
-  const APP_VERSION='1.5.34';
+  const APP_VERSION='1.5.36';
   const SEEN_KEY='escala:last-announced-version';
   const banner=document.getElementById('escalaUpdate');
   const title=document.getElementById('escalaUpdateTitle');

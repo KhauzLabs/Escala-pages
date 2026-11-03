@@ -1,9 +1,8 @@
 {
-  "version": "1.5.34",
+  "version": "1.5.36",
   "date": "2026-11-03",
   "changes": [
-    "Folga trabalhada (FT) com cor laranja no calendário e registo a partir de uma folga.",
-    "Estatísticas diárias e mensais de FT e horas trabalhadas em folga, com histórico.",
-    "Mantidos serviços, backups e regras de edição existentes."
+    "Resumo mensal organizado numa caixa com duas colunas.",
+    "Removida a estatística «entre entrada e saída»."
   ]
 }
