@@ -1,9 +1,9 @@
 {
-  "version": "1.5.32",
+  "version": "1.5.33",
   "date": "2026-11-03",
   "changes": [
-    "Campos do formulário de serviço e filtros sem textos de exemplo.",
-    "Procura manual de registos antigos neste navegador, com recuperação apenas de datas em falta e preservação dos serviços atuais.",
-    "Explicação sobre a impossibilidade de acesso direto aos dados do antigo domínio Netlify."
+    "Mensagens mais simples e claras em toda a aplicação.",
+    "A pesquisa de serviços antigos indica apenas se foram encontrados registos.",
+    "Mantidos os serviços, as cópias de segurança e as restantes funcionalidades."
   ]
 }
