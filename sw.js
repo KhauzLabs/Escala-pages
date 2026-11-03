@@ -1,5 +1,5 @@
-/* Escala v1.5.28 — cache offline controlada; pedidos JSON nunca recebem HTML. */
-const CACHE = 'escala-pages-v1528-stable';
+/* Escala v1.5.29 — cache offline controlada; pedidos JSON nunca recebem HTML. */
+const CACHE = 'escala-pages-v1529-stable';
 const CORE = './index.html';
 const OPTIONAL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 

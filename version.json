@@ -1,9 +1,9 @@
 {
-  "version": "1.5.28",
-  "date": "2026-11-02",
+  "version": "1.5.29",
+  "date": "2026-11-03",
   "changes": [
-    "Corrigida a publicação: uma única fonte de código na branch main.",
-    "Corrigido o cache da aplicação para não apresentar o calendário em pedidos JSON ou páginas inexistentes.",
-    "Mantido o cabeçalho simplificado e o crédito Powered by KhauzLabs na aba Dados."
+    "Campo de horas extra em cada serviço, com total diário, mensal e histórico por mês.",
+    "Edição de serviços existentes até às 23h59 do dia seguinte.",
+    "Férias: apenas dias gozados e total assinalado."
   ]
 }
