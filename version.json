@@ -2,8 +2,8 @@
   "version": "1.5.32",
   "date": "2026-11-03",
   "changes": [
-    "Novos visitantes recebem uma indicação de como instalar a Escala a partir do separador Dados.",
-    "A mensagem aparece apenas após o aviso inicial e não é repetida depois de ser apresentada.",
-    "Sem alterações aos serviços, estatísticas ou formato das cópias de segurança."
+    "Campos do formulário de serviço e filtros sem textos de exemplo.",
+    "Procura manual de registos antigos neste navegador, com recuperação apenas de datas em falta e preservação dos serviços atuais.",
+    "Explicação sobre a impossibilidade de acesso direto aos dados do antigo domínio Netlify."
   ]
 }

@@ -460,16 +460,6 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 .escala-update-actions button{min-height:38px;padding:9px 13px;border-radius:10px;font-weight:750;font-size:12px}
 .escala-update-now{background:#e7bd6b;color:#152238;flex:1}
 .escala-update-later{background:#293850;color:#f2f6ff}
-
-
-/* Convite de instalação mostrado uma única vez a novos visitantes. */
-.escala-install-intro{position:fixed;inset:0;z-index:320;background:#07101bc9;backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px}
-.escala-install-card{width:100%;max-width:405px;background:var(--surface,#17233a);color:var(--text,#f2f6ff);border:1px solid var(--stroke,#344661);border-radius:23px;padding:24px 22px;box-shadow:0 20px 65px #050b1c75;text-align:center}
-.escala-install-symbol{width:60px;height:60px;margin:0 auto 16px;background:linear-gradient(145deg,#f9dc93,#e5af52);color:#162238;border-radius:19px;display:grid;place-items:center}
-.escala-install-symbol svg{height:30px;width:30px}
-.escala-install-card h2{font-size:21px;margin-bottom:10px}
-.escala-install-card p{font-size:14px;line-height:1.65;color:var(--muted,#b8c6d8);margin-bottom:18px}
-.escala-install-card .btn{width:100%;margin-top:8px}
 </style>
 </head>
 <body>
@@ -481,16 +471,6 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 </section>
 
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol><symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V11M10 20V4M16 20v-8M22 20V8"/></symbol><symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="#101b2c"/><circle cx="16" cy="12" r="2" fill="#101b2c"/><circle cx="11" cy="18" r="2" fill="#101b2c"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M3 12h18m-6-6 6 6-6 6"/></symbol><symbol id="i-note" viewBox="0 0 24 24"><path d="M8 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-5-5H8z"/><path d="M16 4v5h5M7 13h10M7 17h8"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol><symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l5-.9L20 8a2.8 2.8 0 0 0-4-4L5 15z"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v6m4-6v6"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 18v3h16v-3"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.5 1.5m11.2 11.2 1.5 1.5M2 12h2m16 0h2M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"/></symbol><symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 11v6m0-10h.01"/></symbol></svg>
-
-<div id="escalaInstallIntro" class="escala-install-intro hidden" role="presentation">
-  <section class="escala-install-card" role="dialog" aria-modal="true" aria-labelledby="escalaInstallTitle" aria-describedby="escalaInstallDesc" tabindex="-1">
-    <div class="escala-install-symbol" aria-hidden="true"><svg><use href="#i-download"/></svg></div>
-    <h2 id="escalaInstallTitle">Leva a Escala contigo</h2>
-    <p id="escalaInstallDesc">Sabias que podes instalar a <strong>Escala</strong> no teu telemóvel e abri-la diretamente pelo ecrã inicial, como qualquer aplicação? Para instalar, entra no separador <strong>Dados</strong> e escolhe <strong>Instalar aplicação</strong>.</p>
-    <button type="button" class="btn btn-primary" id="escalaInstallGo">Ir para Dados</button>
-    <button type="button" class="btn btn-quiet" id="escalaInstallDismiss">Agora não</button>
-  </section>
-</div>
 
 <!-- Escala v1.5.8: apresentação visual e aviso de utilização independente. -->
 <div id="escalaNotice" class="escala-notice hidden" role="presentation">
@@ -515,14 +495,14 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
   <section class="surface day-quick" id="dayQuick" aria-label="Dia selecionado"><span class="quick-status" id="quickIcon"><svg><use href="#i-note"/></svg></span><div class="quick-main"><strong id="quickTitle">Dia selecionado</strong><span id="quickSubtitle">Toca para ver os detalhes</span><span id="quickDriving" class="quick-driving hidden"></span><span id="quickOvertime" class="quick-driving hidden"></span></div><button type="button" class="round-button" id="openDayDetails" aria-label="Abrir detalhes do dia"><svg><use href="#i-chevron-right"/></svg></button></section>
   <div class="month-inline" aria-label="Resumo mensal"><span><strong id="monthServices">0</strong> serviços</span><span><strong id="monthOffs">0</strong> folgas</span><span><strong id="monthVacations">0</strong> férias</span><span><strong id="monthHours">0h</strong> entre entrada e saída</span><span class="holiday-summary"><strong id="monthHolidays">0</strong> feriados trabalhados (FO)</span><span class="driving-inline"><strong id="monthDriving">0h</strong> de condução no mês</span><span class="night-driving-inline"><strong id="monthNightDriving">0h</strong> noturnas (20h–08h)</span><span><strong id="monthOvertime">0h</strong> horas extra no mês</span></div>
 </section>
-<section class="view" id="view-history" aria-label="Histórico"><p class="eyebrow">ARQUIVO</p><h2 class="section-title">Histórico</h2><p class="section-description">Encontra serviços por palavra, data, altura ou código de serviço.</p><label class="search"><svg><use href="#i-search"/></svg><input type="search" id="historySearch" placeholder="Pesquisar texto, local ou afetação…" aria-label="Pesquisar serviços" autocomplete="off" /></label>
+<section class="view" id="view-history" aria-label="Histórico"><p class="eyebrow">ARQUIVO</p><h2 class="section-title">Histórico</h2><p class="section-description">Encontra serviços por palavra, data, altura ou código de serviço.</p><label class="search"><svg><use href="#i-search"/></svg><input type="search" id="historySearch" aria-label="Pesquisar serviços" autocomplete="off" /></label>
 <div class="range-switch"><button class="switch-btn selected" data-filter="all">Todos</button><button class="switch-btn" data-filter="service">Serviços</button><button class="switch-btn" data-filter="off">Folgas</button><button class="switch-btn" data-filter="vacation">Férias</button></div>
 <details class="advanced-search" id="advancedSearch"><summary>Filtros avançados</summary><div class="advanced-body"><div class="filter-grid">
 <label>Desde <input type="date" id="historyFrom" aria-label="Pesquisar desde a data"></label>
 <label>Até <input type="date" id="historyTo" aria-label="Pesquisar até à data"></label>
-<label>Altura <input id="historyCode" type="search" autocomplete="off" placeholder="Ex.: E2601"></label>
-<label>Serviço <input id="historyVehicle" type="search" autocomplete="off" placeholder="Ex.: 28E/02"></label>
-<label>Afetação <input id="historyType" type="search" autocomplete="off" placeholder="Ex.: Normal"></label>
+<label>Altura <input id="historyCode" type="search" autocomplete="off"></label>
+<label>Serviço <input id="historyVehicle" type="search" autocomplete="off"></label>
+<label>Afetação <input id="historyType" type="search" autocomplete="off"></label>
 <label>Ordenação <select id="historySort"><option value="desc">Mais recentes</option><option value="asc">Mais antigos</option></select></label>
 </div><div class="filter-meta"><span>Os filtros combinam-se entre si.</span><button type="button" id="clearHistoryFilters">Limpar filtros</button></div></div></details>
 <div class="history-results"><span id="historyCount" aria-live="polite">0 resultados</span><span>Registos locais</span></div>
@@ -555,7 +535,7 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
   </section>
 </section>
 <section class="view" id="view-settings" aria-label="Cópias de segurança"><p class="eyebrow">DADOS E PRIVACIDADE</p><h2 class="section-title">Os teus registos</h2><p class="section-description">Os serviços, folgas e férias permanecem neste navegador. Não guardamos as capturas dos serviços.</p><div class="setting-card surface"><h3>Aparência</h3><p>Escolhe o modo claro ou escuro. A preferência fica guardada neste dispositivo.</p><button type="button" class="btn btn-quiet btn-full" id="themeButton" aria-pressed="false"><span class="theme-button-label"><span class="theme-button-symbol" id="themeSymbol" aria-hidden="true">☾</span><span id="themeButtonLabel">Ativar modo escuro</span></span><span aria-hidden="true">⇄</span></button></div><div class="setting-card surface"><h3>Informação sobre a Escala</h3><p>Aplicação independente para registo pessoal. Consulta novamente o aviso sobre a confirmação do escalamento oficial.</p><button class="btn btn-quiet btn-full" id="reopenLegalNotice" type="button">Ler aviso de utilização</button></div>
-<div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Depois de abrir este endereço no Chrome, instala a Escala no ecrã inicial, com ícone próprio e sem a Play Store.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se a instalação não aparecer, usa o menu ⋮ do Chrome → Adicionar ao ecrã principal.</p></div><div class="version-notice" id="versionNotice">Antes de mudares de telemóvel ou reinstalares a Escala, exporta um backup JSON e confirma que ficou descarregado. As atualizações normais não exigem remover a aplicação.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><button class="btn btn-quiet btn-full" type="button" id="recoverMirror" disabled>Consultar segunda cópia local</button><p class="caption" style="margin-top:10px">A segunda cópia local é apenas uma proteção adicional, não substitui a exportação JSON para fora do dispositivo.</p></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Descarrega um ficheiro JSON com todos os serviços, folgas e férias. O ficheiro inclui uma verificação de integridade (SHA-256 quando suportada). Guarda-o fora do telemóvel; a aplicação não sincroniza os dados.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Confirma primeiro se o JSON está íntegro, sem alterar os serviços. O restauro combina os novos registos e pede confirmação antes de substituir datas coincidentes.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
+<div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Depois de abrir este endereço no Chrome, instala a Escala no ecrã inicial, com ícone próprio e sem a Play Store.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se a instalação não aparecer, usa o menu ⋮ do Chrome → Adicionar ao ecrã principal.</p></div><div class="version-notice" id="versionNotice">Antes de mudares de telemóvel ou reinstalares a Escala, exporta um backup JSON e confirma que ficou descarregado. As atualizações normais não exigem remover a aplicação.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><button class="btn btn-quiet btn-full" type="button" id="recoverMirror" disabled>Consultar segunda cópia local</button><p class="caption" style="margin-top:10px">A segunda cópia local é apenas uma proteção adicional, não substitui a exportação JSON para fora do dispositivo.</p></div><div class="setting-card surface"><h3>Procurar serviços antigos</h3><p>Procura registos de versões anteriores guardados neste mesmo endereço e navegador. Os serviços atuais não são apagados; as datas que já têm registo ficam intactas.</p><button type="button" class="btn btn-quiet btn-full" id="scanOldRecords">Procurar registos antigos</button><p id="oldRecordsStatus" class="caption" role="status" style="margin-top:10px">A procura não altera os teus dados.</p><div id="oldRecordsFound" class="hidden" style="margin-top:10px"><button type="button" class="btn btn-primary btn-full" id="mergeOldRecords">Recuperar apenas datas em falta</button></div><p class="caption" style="margin-top:10px">Importante: registos do antigo endereço Netlify não podem ser lidos diretamente no GitHub Pages. Se ainda existirem na app antiga, exporta aí o JSON e utiliza «Restaurar cópia de segurança».</p></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Descarrega um ficheiro JSON com todos os serviços, folgas e férias. O ficheiro inclui uma verificação de integridade (SHA-256 quando suportada). Guarda-o fora do telemóvel; a aplicação não sincroniza os dados.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Confirma primeiro se o JSON está íntegro, sem alterar os serviços. O restauro combina os novos registos e pede confirmação antes de substituir datas coincidentes.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
 <button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro validado nesta sessão.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade local.</strong> Os dados ficam no navegador deste dispositivo e não são sincronizados com servidores. Isto não é um sistema de login: alguém com acesso ao teu telemóvel desbloqueado poderá ver os registos. A leitura OCR requer internet para descarregar o motor de reconhecimento, mas processa a imagem no dispositivo.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.32</p></footer></section>
 </main></div>
 <nav class="bottom-nav" aria-label="Navegação"><button class="nav-btn current" data-view="calendar"><svg><use href="#i-calendar"/></svg><span>Calendário</span></button><button class="nav-btn" data-view="history"><svg><use href="#i-search"/></svg><span>Histórico</span></button><button class="nav-btn" data-view="stats"><svg><use href="#i-chart"/></svg><span>Resumo</span></button><button class="nav-btn" data-view="vacations"><svg><use href="#i-sun"/></svg><span>Férias</span></button><button class="nav-btn" data-view="settings"><svg><use href="#i-settings"/></svg><span>Dados</span></button></nav>
@@ -563,11 +543,11 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 <div id="daySheet" class="overlay day-drawer hidden" role="presentation"><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="daySheetTitle" tabindex="-1"><div class="sheet-handle"></div><div class="sheet-header"><div><p class="eyebrow">REGISTO DIÁRIO</p><h2 id="daySheetTitle">Detalhes do dia</h2></div><button type="button" class="icon-button" id="closeDaySheet" aria-label="Fechar detalhes"><svg><use href="#i-close"/></svg></button></div><section class="surface day-panel" id="dayPanel" aria-live="polite"></section></section></div>
 <div id="modal" class="overlay hidden" role="presentation"><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1"><div class="sheet-handle"></div><div class="sheet-header"><div><p class="eyebrow">REGISTAR SERVIÇO</p><h2 id="modalTitle">Adicionar serviço</h2></div><button class="icon-button" id="closeModal" aria-label="Fechar"><svg><use href="#i-close"/></svg></button></div>
 <form id="serviceForm"><label class="upload-area"><svg><use href="#i-upload"/></svg><span><strong id="uploadLabel">Carregar captura da Tripulantes</strong><span>A imagem é lida, mas não é guardada.</span></span><input type="file" id="captureInput" accept="image/*" aria-label="Captura da Tripulantes" /></label><div class="ocr-row"><button type="button" class="btn btn-quiet" id="scanButton">Ler imagem</button><p class="ocr-message" id="ocrMessage" role="status">Requer internet na primeira leitura.</p></div>
-<div class="field"><label for="fDate">Data do serviço</label><input id="fDate" name="date" type="date" required /></div><p class="field-group-title"><svg><use href="#i-briefcase"/></svg> Identificação</p><div class="two-cols"><div class="field"><label for="fService">Altura</label><input id="fService" placeholder="E2601" autocomplete="off" /></div><div class="field"><label for="fVehicle">Serviço</label><input id="fVehicle" placeholder="28E/02" autocomplete="off" /></div></div>
-<p class="field-group-title"><svg><use href="#i-sun"/></svg> Horário e locais</p><div class="two-cols"><div class="field"><label for="fStart">Entrada</label><input id="fStart" type="text" inputmode="numeric" maxlength="5" placeholder="17:00" autocomplete="off" spellcheck="false" aria-describedby="carrisClockHelp" /></div><div class="field"><label for="fEnd">Saída</label><input id="fEnd" type="text" inputmode="numeric" maxlength="5" placeholder="26:00" autocomplete="off" spellcheck="false" aria-describedby="carrisClockHelp" /></div></div><p id="carrisClockHelp" class="caption" style="margin:6px 0 11px">Formato horário da Carris (HH:MM), incluindo horas superiores a 24:00.</p><div class="two-cols"><div class="field"><label for="fFrom">Local de entrada</label><input id="fFrom" placeholder="Estrela" autocomplete="off" /></div><div class="field"><label for="fTo">Local de saída</label><input id="fTo" placeholder="Santo Amaro (Est.)" autocomplete="off" /></div></div><div class="field"><label for="fType">Tipo de afetação</label><input id="fType" list="affectationOptions" placeholder="Normal ou Normal FO" autocomplete="off" /><datalist id="affectationOptions"><option value="Normal"></option><option value="Normal FO"></option></datalist><p class="caption" style="margin-top:5px">Normal FO = feriado obrigatório trabalhado. Também é reconhecido nas observações.</p></div><div class="field"><label for="fObservations">Observações do serviço</label><input id="fObservations" placeholder="Ex.: Normal FO" autocomplete="off" maxlength="240" /><p class="caption" style="margin-top:5px">Normal FO nas observações também conta como feriado obrigatório trabalhado (uma vez por dia).</p></div><div class="field driving-field"><label for="fDrivingDuration">Horas de condução do dia — cálculo automático</label><input id="fDrivingDuration" type="text" readonly placeholder="Preenche entrada e saída" aria-describedby="drivingHoursHelp"/><p class="caption" id="drivingHoursHelp" style="margin-top:5px">Calculado automaticamente pela diferença entre entrada e saída do serviço, incluindo horários 25:00 e 26:00. Não precisas de preencher este campo.</p></div><div class="field"><label for="fNightDuration">Horas noturnas (20h00–08h00) — automáticas</label><input id="fNightDuration" type="text" readonly placeholder="Preenche entrada e saída"/><p class="caption" style="margin-top:5px">Conta apenas o tempo de condução dentro do período noturno, mesmo quando o serviço começa antes das 20h00.</p></div>
-<div class="field"><label for="fOvertime">Horas extra (HH:MM) — opcional</label><input id="fOvertime" type="text" inputmode="text" maxlength="5" placeholder="Ex.: 02:00" autocomplete="off" spellcheck="false" /><p class="caption" style="margin-top:5px">Tempo extra deste serviço. Ex.: 02:00 = 2 horas. Conta separadamente das horas de condução e das horas noturnas, no mês da data do serviço.</p></div><div class="field"><label for="fBreakMinutes">Pausas (minutos) — opcional</label><input id="fBreakMinutes" type="number" min="0" max="1200" step="1" inputmode="numeric" placeholder="Preenche apenas se souberes" /><p class="caption" style="margin-top:5px">O intervalo após pausas só é calculado quando as introduzes. Não equivale automaticamente a horas remuneradas.</p></div><div class="separator"></div><div class="field"><label for="fNote">Nota por extenso (podes corrigir livremente)</label><textarea id="fNote" placeholder="A nota será gerada a partir dos campos acima…"></textarea></div><button type="button" class="link-button" id="regenerateNote" style="margin-top:9px">Gerar nota a partir dos campos <svg><use href="#i-arrow"/></svg></button>
+<div class="field"><label for="fDate">Data do serviço</label><input id="fDate" name="date" type="date" required /></div><p class="field-group-title"><svg><use href="#i-briefcase"/></svg> Identificação</p><div class="two-cols"><div class="field"><label for="fService">Altura</label><input id="fService" autocomplete="off" /></div><div class="field"><label for="fVehicle">Serviço</label><input id="fVehicle" autocomplete="off" /></div></div>
+<p class="field-group-title"><svg><use href="#i-sun"/></svg> Horário e locais</p><div class="two-cols"><div class="field"><label for="fStart">Entrada</label><input id="fStart" type="text" inputmode="numeric" maxlength="5" autocomplete="off" spellcheck="false" aria-describedby="carrisClockHelp" /></div><div class="field"><label for="fEnd">Saída</label><input id="fEnd" type="text" inputmode="numeric" maxlength="5" autocomplete="off" spellcheck="false" aria-describedby="carrisClockHelp" /></div></div><p id="carrisClockHelp" class="caption" style="margin:6px 0 11px">Formato horário da Carris (HH:MM), incluindo horas superiores a 24:00.</p><div class="two-cols"><div class="field"><label for="fFrom">Local de entrada</label><input id="fFrom" autocomplete="off" /></div><div class="field"><label for="fTo">Local de saída</label><input id="fTo" autocomplete="off" /></div></div><div class="field"><label for="fType">Tipo de afetação</label><input id="fType" list="affectationOptions" autocomplete="off" /><datalist id="affectationOptions"><option value="Normal"></option><option value="Normal FO"></option></datalist><p class="caption" style="margin-top:5px">Normal FO = feriado obrigatório trabalhado. Também é reconhecido nas observações.</p></div><div class="field"><label for="fObservations">Observações do serviço</label><input id="fObservations" autocomplete="off" maxlength="240" /><p class="caption" style="margin-top:5px">Normal FO nas observações também conta como feriado obrigatório trabalhado (uma vez por dia).</p></div><div class="field driving-field"><label for="fDrivingDuration">Horas de condução do dia — cálculo automático</label><input id="fDrivingDuration" type="text" readonly aria-describedby="drivingHoursHelp"/><p class="caption" id="drivingHoursHelp" style="margin-top:5px">Calculado automaticamente pela diferença entre entrada e saída do serviço, incluindo horários 25:00 e 26:00. Não precisas de preencher este campo.</p></div><div class="field"><label for="fNightDuration">Horas noturnas (20h00–08h00) — automáticas</label><input id="fNightDuration" type="text" readonly/><p class="caption" style="margin-top:5px">Conta apenas o tempo de condução dentro do período noturno, mesmo quando o serviço começa antes das 20h00.</p></div>
+<div class="field"><label for="fOvertime">Horas extra (HH:MM) — opcional</label><input id="fOvertime" type="text" inputmode="text" maxlength="5" autocomplete="off" spellcheck="false" /><p class="caption" style="margin-top:5px">Tempo extra deste serviço. Ex.: 02:00 = 2 horas. Conta separadamente das horas de condução e das horas noturnas, no mês da data do serviço.</p></div><div class="field"><label for="fBreakMinutes">Pausas (minutos) — opcional</label><input id="fBreakMinutes" type="number" min="0" max="1200" step="1" inputmode="numeric" /><p class="caption" style="margin-top:5px">O intervalo após pausas só é calculado quando as introduzes. Não equivale automaticamente a horas remuneradas.</p></div><div class="separator"></div><div class="field"><label for="fNote">Nota por extenso (podes corrigir livremente)</label><textarea id="fNote"></textarea></div><button type="button" class="link-button" id="regenerateNote" style="margin-top:9px">Gerar nota a partir dos campos <svg><use href="#i-arrow"/></svg></button>
 <div class="extra-note-section"><button type="button" class="btn btn-quiet btn-full extra-note-toggle" id="toggleExtraNotes" aria-expanded="false" aria-controls="extraNotesPanel"><svg><use href="#i-plus"/></svg><span id="extraNotesButtonLabel">Adicionar notas adicionais</span><span aria-hidden="true" id="extraNotesChevron">＋</span></button>
-<div id="extraNotesPanel" class="extra-note-panel hidden"><div class="field"><label for="fExtraNotes">Notas adicionais deste dia (opcional)</label><textarea id="fExtraNotes" rows="4" maxlength="8000" placeholder="Ex.: conduzi o elétrico n.º 5XX; avaria nas portas; atraso devido ao trânsito…"></textarea><p class="caption" style="margin-top:7px">Apontamentos pessoais sobre o serviço. Ficam separados da nota gerada e podem ser editados mais tarde.</p></div></div></div>
+<div id="extraNotesPanel" class="extra-note-panel hidden"><div class="field"><label for="fExtraNotes">Notas adicionais deste dia (opcional)</label><textarea id="fExtraNotes" rows="4" maxlength="8000"></textarea><p class="caption" style="margin-top:7px">Apontamentos pessoais sobre o serviço. Ficam separados da nota gerada e podem ser editados mais tarde.</p></div></div></div>
 <p id="serviceLockWarning" class="past-readonly hidden" role="status">O prazo de edição terminou às 23h59 do dia seguinte à data do serviço.</p><div class="sheet-actions"><button type="button" class="btn btn-quiet" id="cancelModal">Cancelar</button><button type="submit" class="btn btn-primary" id="saveServiceButton"><svg><use href="#i-check"/></svg> Guardar serviço</button></div><p class="tiny-warning">Confirma sempre os horários e os locais. A leitura pode trocar horários ou locais; confirma cada campo.</p></form></section></div>
 <div class="toast hidden" id="toast" role="status"></div>
 <script>
@@ -733,6 +713,62 @@ function parseSavedState(raw){
     copy[d]=normalized;
   }
   return copy;
+}
+// Recuperação conservadora: só considera chaves de versões anteriores da própria Escala.
+// Nunca lê nem altera o armazenamento de outro domínio ou aplicação.
+let oldRecordsCandidates=[];
+function findOldLocalCandidates(){
+  const out=[];
+  const supported=[PREVIOUS,'minha-escala-records-v05','minha-escala-records-v04','minha-escala-records-v03','minha-escala-records-v02','minha-escala-records-v01'];
+  // Também admite variações antigas da chave records dentro da família da Escala.
+  try{for(let i=0;i<localStorage.length;i++){
+    const key=localStorage.key(i);
+    if(/^minha-escala-records-v\d{1,2}$/i.test(key)&&key!==STORE&&!supported.includes(key))supported.push(key);
+  }}catch(_){return out}
+  for(const key of supported){
+    try{const raw=localStorage.getItem(key);if(!raw)continue;
+      const found=parseSavedState(raw);
+      const missing=Object.keys(found).filter(d=>!Object.prototype.hasOwnProperty.call(records,d));
+      if(missing.length)out.push({label:key,records:found,missing});
+    }catch(_){/* Ignora cópias danificadas, sem alterar as originais. */}
+  }
+  // Formatos muito antigos: notas/folgas guardadas em chaves separadas.
+  try{const legacy=getLegacy();const missing=Object.keys(legacy).filter(d=>!Object.prototype.hasOwnProperty.call(records,d));
+    if(missing.length)out.push({label:'notas e folgas antigas',records:legacy,missing});
+  }catch(_){/* Não interrompe a leitura dos registos atuais. */}
+  return out;
+}
+function scanOldRecords(){
+  const status=$('oldRecordsStatus'), area=$('oldRecordsFound');
+  area.classList.add('hidden');oldRecordsCandidates=[];
+  if(isModalOpen){status.textContent='Fecha primeiro a edição do serviço.';return}
+  try{
+    oldRecordsCandidates=findOldLocalCandidates();
+    // Uma mesma data pode existir em várias cópias: nunca contar duas vezes.
+    const unique=new Set();oldRecordsCandidates.forEach(c=>c.missing.forEach(d=>unique.add(d)));
+    if(!unique.size){status.textContent='Não encontrei datas antigas em falta neste endereço. Se utilizavas o Netlify, consulta a app antiga e exporta um backup JSON.';return}
+    status.textContent=`Foram encontradas ${unique.size} datas em falta, em ${oldRecordsCandidates.length} cópia(s) local(is). Nenhum dado foi alterado.`;
+    area.classList.remove('hidden');
+  }catch(_){status.textContent='Não foi possível consultar o armazenamento local. Verifica as permissões do navegador.'}
+}
+function mergeOldRecords(){
+  if(!oldRecordsCandidates.length){scanOldRecords();return}
+  if(isModalOpen){notify('Fecha primeiro a edição do serviço.','error');return}
+  // Revalidar fontes no momento de gravar para não confiar em resultados desatualizados.
+  const candidates=findOldLocalCandidates();
+  const merged={...records};let added=0;
+  for(const candidate of candidates){for(const [date,record] of Object.entries(candidate.records)){
+    if(!Object.prototype.hasOwnProperty.call(merged,date)){merged[date]=record;added++}
+  }}
+  if(!added){scanOldRecords();return}
+  if(!confirm(`Recuperar ${added} datas antigas em falta?\n\nOs registos atuais e as datas já preenchidas serão mantidos. Recomenda-se exportar um backup JSON antes de continuar.`))return;
+  // Uma recuperação validada é permitida mesmo para datas anteriores já bloqueadas.
+  if(persist(merged,true)){
+    oldRecordsCandidates=[];$('oldRecordsFound').classList.add('hidden');
+    $('oldRecordsStatus').textContent=`${added} datas recuperadas. Exporta agora uma cópia de segurança JSON.`;
+    renderCalendar();renderHistory();renderStats();renderVacations();renderBackupReminder();
+    notify(`${added} datas antigas recuperadas. Os registos existentes foram preservados.`);
+  }
 }
 function snapshotChecksum(value){
   // Soma para detectar corrupção acidental, não é uma assinatura criptográfica.
@@ -1551,7 +1587,7 @@ function addVacationRange(){
 }
 
 // Event handlers.
-$('vacationYear').addEventListener('change',renderVacations);$('vacationAddRange').addEventListener('click',addVacationRange);$('jumpDate').onchange=e=>{if(validDate(e.target.value))showDate(e.target.value,false);e.target.value=''};$('openDayDetails').onclick=openDaySheet;$('closeDaySheet').onclick=closeDaySheet;$('daySheet').addEventListener('click',e=>{if(e.target===$('daySheet'))closeDaySheet()});$('prevMonth').onclick=()=>moveMonth(-1);$('nextMonth').onclick=()=>moveMonth(1);$('goToday').onclick=()=>showDate(dateKey(today));$('statsMonth').addEventListener('change',renderStats);$('fabAdd').onclick=()=>openModal(selected);$('settingsTop').onclick=()=>goView('settings');document.querySelectorAll('[data-view]').forEach(el=>el.onclick=()=>goView(el.dataset.view));document.querySelectorAll('[data-filter]').forEach(el=>el.onclick=()=>{historyShown=60;historyFilter=el.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('selected',x===el));renderHistory()});let historySearchTimer=null;$('historySearch').oninput=()=>{historyShown=60;clearTimeout(historySearchTimer);historySearchTimer=setTimeout(renderHistory,130)};['historyFrom','historyTo','historyCode','historyVehicle','historyType','historySort'].forEach(id=>$(id).addEventListener('input',()=>{historyShown=60;renderHistory()}));$('clearHistoryFilters').onclick=()=>{['historyFrom','historyTo','historyCode','historyVehicle','historyType'].forEach(id=>$(id).value='');$('historySort').value='desc';$('historySearch').value='';historyShown=60;renderHistory()};$('historyMore').onclick=()=>{historyShown+=60;renderHistory()};$('closeModal').onclick=()=>closeModal();$('cancelModal').onclick=()=>closeModal();$('scanButton').onclick=scan;$('captureInput').onchange=e=>{const file=e.target.files?.[0];$('uploadLabel').textContent=file?.name||'Carregar captura da Tripulantes';if(file)scan()};$('backupFromCalendar').onclick=exportBackup;$('exportBackup').onclick=exportBackup;$('recoverPrevious').onclick=recoverPrevious;$('recoverMirror').onclick=recoverMirror;$('importBackup').onclick=()=>$('backupFile').click();$('verifyBackup').onclick=()=>$('verifyFile').click();$('verifyFile').onchange=e=>verifyBackupFile(e.target.files?.[0]);$('backupFile').onchange=e=>importBackup(e.target.files?.[0]);document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(isModalOpen)closeModal();else closeDaySheet()}});window.addEventListener('beforeunload',e=>{if(isModalOpen&&formDirty){e.preventDefault();e.returnValue=''}});
+$('vacationYear').addEventListener('change',renderVacations);$('vacationAddRange').addEventListener('click',addVacationRange);$('jumpDate').onchange=e=>{if(validDate(e.target.value))showDate(e.target.value,false);e.target.value=''};$('openDayDetails').onclick=openDaySheet;$('closeDaySheet').onclick=closeDaySheet;$('daySheet').addEventListener('click',e=>{if(e.target===$('daySheet'))closeDaySheet()});$('prevMonth').onclick=()=>moveMonth(-1);$('nextMonth').onclick=()=>moveMonth(1);$('goToday').onclick=()=>showDate(dateKey(today));$('statsMonth').addEventListener('change',renderStats);$('fabAdd').onclick=()=>openModal(selected);$('settingsTop').onclick=()=>goView('settings');document.querySelectorAll('[data-view]').forEach(el=>el.onclick=()=>goView(el.dataset.view));document.querySelectorAll('[data-filter]').forEach(el=>el.onclick=()=>{historyShown=60;historyFilter=el.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('selected',x===el));renderHistory()});let historySearchTimer=null;$('historySearch').oninput=()=>{historyShown=60;clearTimeout(historySearchTimer);historySearchTimer=setTimeout(renderHistory,130)};['historyFrom','historyTo','historyCode','historyVehicle','historyType','historySort'].forEach(id=>$(id).addEventListener('input',()=>{historyShown=60;renderHistory()}));$('clearHistoryFilters').onclick=()=>{['historyFrom','historyTo','historyCode','historyVehicle','historyType'].forEach(id=>$(id).value='');$('historySort').value='desc';$('historySearch').value='';historyShown=60;renderHistory()};$('historyMore').onclick=()=>{historyShown+=60;renderHistory()};$('closeModal').onclick=()=>closeModal();$('cancelModal').onclick=()=>closeModal();$('scanButton').onclick=scan;$('captureInput').onchange=e=>{const file=e.target.files?.[0];$('uploadLabel').textContent=file?.name||'Carregar captura da Tripulantes';if(file)scan()};$('backupFromCalendar').onclick=exportBackup;$('exportBackup').onclick=exportBackup;$('recoverPrevious').onclick=recoverPrevious;$('recoverMirror').onclick=recoverMirror;$('scanOldRecords').onclick=scanOldRecords;$('mergeOldRecords').onclick=mergeOldRecords;$('importBackup').onclick=()=>$('backupFile').click();$('verifyBackup').onclick=()=>$('verifyFile').click();$('verifyFile').onchange=e=>verifyBackupFile(e.target.files?.[0]);$('backupFile').onchange=e=>importBackup(e.target.files?.[0]);document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(isModalOpen)closeModal();else closeDaySheet()}});window.addEventListener('beforeunload',e=>{if(isModalOpen&&formDirty){e.preventDefault();e.returnValue=''}});
 let touchStart=null;const panel=document.querySelector('.calendar-panel');panel.addEventListener('touchstart',e=>{if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});panel.addEventListener('touchend',e=>{if(!touchStart||!e.changedTouches.length)return;let dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>85&&Math.abs(dy)<60)moveMonth(dx<0?1:-1)},{passive:true});
 // Instalação PWA: requer alojamento HTTPS e o navegador Chrome/Android.
 let deferredInstallPrompt=null;
@@ -1602,8 +1638,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
     card.focus({preventScroll:true});
   }
   // Entrada direta no calendário; o aviso mantém-se obrigatório na primeira utilização.
-  const firstVisit=!hasAcknowledged();
-  if(!firstVisit)showMain();
+  if(hasAcknowledged())showMain();
   else openNotice();
   read.addEventListener('change',()=>{finish.disabled=!read.checked});
   finish.addEventListener('click',()=>{
@@ -1612,7 +1647,6 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
     if(noticePending){
       noticePending=false;
       showMain(); // Só agora permite interagir com o calendário.
-      if(firstVisit)window.dispatchEvent(new Event('escala:first-visit-ready'));
     }else{
       notice.classList.add('hidden');
       setBlocked(false);
@@ -1646,7 +1680,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
     if(!notes.childElementCount){const li=document.createElement('li');li.textContent='Melhorias e correções na Escala.';notes.appendChild(li)}
   }
   function screenBusy(){
-    return ['modal','daySheet','escalaNotice','escalaInstallIntro'].some(id=>{
+    return ['modal','daySheet','escalaNotice'].some(id=>{
       const el=document.getElementById(id);return el&&!el.classList.contains('hidden');
     });
   }
@@ -1718,34 +1752,6 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
   },3000);
   setInterval(()=>{if(!document.hidden)checkVersion()},5*60*1000);
   setTimeout(()=>checkVersion(true),2500);
-})();
-</script>
-
-
-<script>
-(()=>{
-  'use strict';
-  const KEY='escala:install-intro-shown-v1';
-  const root=document.getElementById('escalaInstallIntro');
-  const card=root.querySelector('.escala-install-card');
-  const alreadyShown=()=>{try{return localStorage.getItem(KEY)==='1'}catch(_){return false}};
-  const remember=()=>{try{localStorage.setItem(KEY,'1')}catch(_){/* Sem armazenamento, evita repetir nesta sessão. */}};
-  let seenThisSession=false;
-  function close(){root.classList.add('hidden')}
-  function open(){
-    if(seenThisSession||alreadyShown()||window.matchMedia('(display-mode: standalone)').matches)return;
-    seenThisSession=true;
-    remember();
-    root.classList.remove('hidden');
-    card.focus({preventScroll:true});
-  }
-  window.addEventListener('escala:first-visit-ready',()=>setTimeout(open,400));
-  document.getElementById('escalaInstallDismiss').addEventListener('click',close);
-  document.getElementById('escalaInstallGo').addEventListener('click',()=>{
-    close();
-    document.querySelector('.nav-btn[data-view="settings"]')?.click();
-  });
-  root.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();close()}});
 })();
 </script>
 
