@@ -1,8 +1,7 @@
 {
-  "version": "1.5.36",
+  "version": "1.5.37",
   "date": "2026-11-03",
   "changes": [
-    "Resumo mensal organizado numa caixa com duas colunas.",
-    "Removida a estatística «entre entrada e saída»."
+    "Adicionado botão «Ajuda e sugestões» na aba Dados para abrir o email com destinatário preenchido."
   ]
 }
