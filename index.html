@@ -460,6 +460,32 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 .escala-update-actions button{min-height:38px;padding:9px 13px;border-radius:10px;font-weight:750;font-size:12px}
 .escala-update-now{background:#e7bd6b;color:#152238;flex:1}
 .escala-update-later{background:#293850;color:#f2f6ff}
+
+/* Escala 1.5.34 — Folga trabalhada (FT). */
+.date-cell.service.worked-off{background:#ffe1b9;border-color:#e7a34f;color:#88450c}
+.date-cell.service.worked-off.is-selected{background:#ffd29b;border-color:#be7218}
+.date-cell.service.worked-off .indicator{background:#db7c1b}
+.date-cell.service.worked-off .cell-hours,.date-cell.service.worked-off .cell-hours .end{color:#88450c}
+.date-cell.worked-off .holiday-mark{top:auto;bottom:2px}
+.ft-mark{position:absolute;top:2px;right:2px;font-size:9px;font-weight:900;color:#854008;background:#fff3dd;border-radius:4px;padding:1px 3px;line-height:12px}
+.quick-status.worked-off,.tag.worked-off,.history-icon.worked-off{background:#ffdfb5;color:#91470d}
+.legend i.orange{background:#e99533}
+.ft-day-indicator{margin-top:8px;font-size:12px;color:#ab5c12;font-weight:800}
+.ft-month-inline,.ft-month-inline strong{color:#a5530b}
+.ft-month-stat{border-color:#f0c38b!important;background:#fff2e0!important}
+.ft-month-stat strong{color:#9a4a0a!important}
+.ft-form-banner{margin:0 0 12px;padding:10px 12px;border:1px solid #e4a75f;background:#fff0dc;border-radius:11px;font-size:12px;font-weight:800;color:#94460a}
+.btn-worked-off{background:#f3a54a;color:#3b240e;border:1px solid #d78523;font-weight:850}
+html[data-theme="dark"] .date-cell.service.worked-off{background:#5c3a20;border-color:#995a25;color:#ffdfa7}
+html[data-theme="dark"] .date-cell.service.worked-off.is-selected{background:#744726;border-color:#f6b45a}
+html[data-theme="dark"] .date-cell.service.worked-off .indicator{background:#ffbb64}
+html[data-theme="dark"] .date-cell.service.worked-off .cell-hours,html[data-theme="dark"] .date-cell.service.worked-off .cell-hours .end{color:#ffd7a2}
+html[data-theme="dark"] .ft-mark{background:#7c471d;color:#ffe0b3}
+html[data-theme="dark"] .quick-status.worked-off,html[data-theme="dark"] .tag.worked-off,html[data-theme="dark"] .history-icon.worked-off{background:#714421;color:#ffca83}
+html[data-theme="dark"] .ft-month-stat{background:#4a3324!important;border-color:#87592f!important}
+html[data-theme="dark"] .ft-month-stat strong,html[data-theme="dark"] .ft-month-inline,html[data-theme="dark"] .ft-month-inline strong,html[data-theme="dark"] .ft-day-indicator{color:#ffc580!important}
+html[data-theme="dark"] .ft-form-banner{background:#46301f;border-color:#8f5e2c;color:#ffd39c}
+html[data-theme="dark"] .btn-worked-off{background:#e6a04c;color:#281706}
 </style>
 </head>
 <body>
@@ -490,10 +516,10 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 <header class="topbar"><div class="branding"><span class="logo"><svg><use href="#i-calendar"/></svg></span><div><h1>Escala</h1></div></div><button class="square-button" id="settingsTop" aria-label="Definições"><svg><use href="#i-settings"/></svg></button></header>
 <section class="view active" id="view-calendar" aria-label="Calendário">
   <div class="hero"><div><p class="eyebrow">O MEU CALENDÁRIO</p><h2 id="monthTitle"></h2></div><div class="hero-right"><label class="round-button date-jump" title="Ir para uma data"><svg><use href="#i-calendar"/></svg><input type="date" id="jumpDate" aria-label="Escolher uma data" /></label><button class="round-button" id="prevMonth" aria-label="Mês anterior"><svg><use href="#i-chevron-left"/></svg></button><button class="round-button" id="nextMonth" aria-label="Mês seguinte"><svg><use href="#i-chevron-right"/></svg></button></div></div>
-  <div class="surface calendar-panel"><div class="week-grid" aria-hidden="true"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span></div><div class="month-grid" id="monthGrid"></div><div class="cal-bottom"><div class="legend"><span><i></i>Serviço</span><span><i class="green"></i>Folga</span><span><i class="purple"></i>Férias</span></div><button class="link-button" id="goToday">Hoje <svg><use href="#i-arrow"/></svg></button></div></div>
+  <div class="surface calendar-panel"><div class="week-grid" aria-hidden="true"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span></div><div class="month-grid" id="monthGrid"></div><div class="cal-bottom"><div class="legend"><span><i></i>Serviço</span><span><i class="green"></i>Folga</span><span><i class="purple"></i>Férias</span><span><i class="orange"></i>FT</span></div><button class="link-button" id="goToday">Hoje <svg><use href="#i-arrow"/></svg></button></div></div>
   <div id="backupReminder" class="backup-reminder hidden" role="status"><span>Os teus serviços ainda não têm uma cópia recente fora deste telemóvel.</span><button type="button" id="backupFromCalendar">Exportar</button></div>
-  <section class="surface day-quick" id="dayQuick" aria-label="Dia selecionado"><span class="quick-status" id="quickIcon"><svg><use href="#i-note"/></svg></span><div class="quick-main"><strong id="quickTitle">Dia selecionado</strong><span id="quickSubtitle">Toca para ver os detalhes</span><span id="quickDriving" class="quick-driving hidden"></span><span id="quickOvertime" class="quick-driving hidden"></span></div><button type="button" class="round-button" id="openDayDetails" aria-label="Abrir detalhes do dia"><svg><use href="#i-chevron-right"/></svg></button></section>
-  <div class="month-inline" aria-label="Resumo mensal"><span><strong id="monthServices">0</strong> serviços</span><span><strong id="monthOffs">0</strong> folgas</span><span><strong id="monthVacations">0</strong> férias</span><span><strong id="monthHours">0h</strong> entre entrada e saída</span><span class="holiday-summary"><strong id="monthHolidays">0</strong> feriados trabalhados (FO)</span><span class="driving-inline"><strong id="monthDriving">0h</strong> de condução no mês</span><span class="night-driving-inline"><strong id="monthNightDriving">0h</strong> noturnas (20h–08h)</span><span><strong id="monthOvertime">0h</strong> horas extra no mês</span></div>
+  <section class="surface day-quick" id="dayQuick" aria-label="Dia selecionado"><span class="quick-status" id="quickIcon"><svg><use href="#i-note"/></svg></span><div class="quick-main"><strong id="quickTitle">Dia selecionado</strong><span id="quickSubtitle">Toca para ver os detalhes</span><span id="quickDriving" class="quick-driving hidden"></span><span id="quickOvertime" class="quick-driving hidden"></span><span id="quickFt" class="ft-day-indicator hidden"></span></div><button type="button" class="round-button" id="openDayDetails" aria-label="Abrir detalhes do dia"><svg><use href="#i-chevron-right"/></svg></button></section>
+  <div class="month-inline" aria-label="Resumo mensal"><span><strong id="monthServices">0</strong> serviços</span><span><strong id="monthOffs">0</strong> folgas</span><span><strong id="monthVacations">0</strong> férias</span><span><strong id="monthHours">0h</strong> entre entrada e saída</span><span class="holiday-summary"><strong id="monthHolidays">0</strong> feriados trabalhados (FO)</span><span class="driving-inline"><strong id="monthDriving">0h</strong> de condução no mês</span><span class="night-driving-inline"><strong id="monthNightDriving">0h</strong> noturnas (20h–08h)</span><span><strong id="monthOvertime">0h</strong> horas extra no mês</span><span class="ft-month-inline"><strong id="monthWorkedOff">0</strong> FT · <strong id="monthWorkedOffHours">0h</strong></span></div>
 </section>
 <section class="view" id="view-history" aria-label="Histórico"><p class="eyebrow">ARQUIVO</p><h2 class="section-title">Histórico</h2><p class="section-description">Encontra serviços por palavra, data, altura ou código de serviço.</p><label class="search"><svg><use href="#i-search"/></svg><input type="search" id="historySearch" aria-label="Pesquisar serviços" autocomplete="off" /></label>
 <div class="range-switch"><button class="switch-btn selected" data-filter="all">Todos</button><button class="switch-btn" data-filter="service">Serviços</button><button class="switch-btn" data-filter="off">Folgas</button><button class="switch-btn" data-filter="vacation">Férias</button></div>
@@ -507,7 +533,7 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 </div><div class="filter-meta"><span>Os filtros combinam-se entre si.</span><button type="button" id="clearHistoryFilters">Limpar filtros</button></div></div></details>
 <div class="history-results"><span id="historyCount" aria-live="polite">0 resultados</span><span>Registos locais</span></div>
 <div id="historyList" class="history-list"></div><button id="historyMore" type="button" class="load-more hidden">Mostrar mais resultados</button></section>
-<section class="view" id="view-stats" aria-label="Estatísticas"><p class="eyebrow">VISÃO GERAL</p><h2 class="section-title">Atividade</h2><p class="section-description">Acompanha os serviços registados ao longo do tempo.</p><div class="month-stats"><div class="mini-stat"><strong id="totalServices">0</strong><span>Serviços totais</span></div><div class="mini-stat"><strong id="totalOffs">0</strong><span>Folgas totais</span></div><div class="mini-stat"><strong id="totalHours">0h</strong><span>Horas previstas*</span></div></div><section class="surface holiday-stats" aria-label="Resumo mensal"><div class="holiday-stats-head"><label for="statsMonth">Mês</label><input id="statsMonth" type="month" aria-label="Selecionar o mês das estatísticas" /></div><div class="monthly-summary-grid"><div class="driving-stat"><strong id="statsMonthDriving">0h</strong><span>Horas de condução no mês (calculadas)</span></div><div class="night-driving-stat"><strong id="statsMonthNightDriving">0h</strong><span>Horas noturnas (20h00–08h00)</span></div><div><strong id="statsMonthOvertime">0h</strong><span>Horas extra do mês</span></div><div><strong id="statsMonthHolidays">0</strong><span>Feriados trabalhados</span></div><div><strong id="statsMonthServices">0</strong><span>Serviços no mês</span></div><div><strong id="statsMonthOffs">0</strong><span>Folgas registadas</span></div></div>
+<section class="view" id="view-stats" aria-label="Estatísticas"><p class="eyebrow">VISÃO GERAL</p><h2 class="section-title">Atividade</h2><p class="section-description">Acompanha os serviços registados ao longo do tempo.</p><div class="month-stats"><div class="mini-stat"><strong id="totalServices">0</strong><span>Serviços totais</span></div><div class="mini-stat"><strong id="totalOffs">0</strong><span>Folgas totais</span></div><div class="mini-stat"><strong id="totalHours">0h</strong><span>Horas previstas*</span></div></div><section class="surface holiday-stats" aria-label="Resumo mensal"><div class="holiday-stats-head"><label for="statsMonth">Mês</label><input id="statsMonth" type="month" aria-label="Selecionar o mês das estatísticas" /></div><div class="monthly-summary-grid"><div class="driving-stat"><strong id="statsMonthDriving">0h</strong><span>Horas de condução no mês (calculadas)</span></div><div class="night-driving-stat"><strong id="statsMonthNightDriving">0h</strong><span>Horas noturnas (20h00–08h00)</span></div><div><strong id="statsMonthOvertime">0h</strong><span>Horas extra do mês</span></div><div><strong id="statsMonthHolidays">0</strong><span>Feriados trabalhados</span></div><div><strong id="statsMonthServices">0</strong><span>Serviços no mês</span></div><div><strong id="statsMonthOffs">0</strong><span>Folgas registadas</span></div><div class="ft-month-stat"><strong id="statsMonthWorkedOff">0</strong><span>Folgas trabalhadas (FT)</span></div><div class="ft-month-stat"><strong id="statsMonthWorkedOffHours">0h</strong><span>Horas em folga trabalhada</span></div></div>
 <p class="driving-coverage" id="drivingCoverage" role="status">As horas de condução são calculadas automaticamente a partir da entrada e saída de cada serviço. As horas noturnas contam apenas o período entre as 20h00 e as 08h00.</p>
 
 <div class="stats-compare" id="statsCompare" role="status"></div>
@@ -536,13 +562,13 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 </section>
 <section class="view" id="view-settings" aria-label="Cópias de segurança"><p class="eyebrow">DADOS E PRIVACIDADE</p><h2 class="section-title">Os teus registos</h2><p class="section-description">Os serviços, folgas e férias permanecem neste navegador. Não guardamos as capturas dos serviços.</p><div class="setting-card surface"><h3>Aparência</h3><p>Escolhe o modo claro ou escuro. A preferência fica guardada neste dispositivo.</p><button type="button" class="btn btn-quiet btn-full" id="themeButton" aria-pressed="false"><span class="theme-button-label"><span class="theme-button-symbol" id="themeSymbol" aria-hidden="true">☾</span><span id="themeButtonLabel">Ativar modo escuro</span></span><span aria-hidden="true">⇄</span></button></div><div class="setting-card surface"><h3>Informação sobre a Escala</h3><p>Aplicação independente para registo pessoal. Consulta novamente o aviso sobre a confirmação do escalamento oficial.</p><button class="btn btn-quiet btn-full" id="reopenLegalNotice" type="button">Ler aviso de utilização</button></div>
 <div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Adiciona a Escala ao ecrã principal para um acesso mais rápido.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se necessário, escolhe Adicionar ao ecrã principal no menu do navegador.</p></div><div class="version-notice" id="versionNotice">Antes de mudares de telemóvel, guarda uma cópia de segurança.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><button class="btn btn-quiet btn-full" type="button" id="recoverMirror" disabled>Consultar segunda cópia local</button><p class="caption" style="margin-top:10px">Para maior segurança, exporta regularmente uma cópia dos teus dados.</p></div><div class="setting-card surface"><h3>Procurar serviços antigos</h3><p>Procura serviços antigos que ainda possam estar disponíveis. Os teus registos atuais não são alterados.</p><button type="button" class="btn btn-quiet btn-full" id="scanOldRecords">Procurar registos antigos</button><p id="oldRecordsStatus" class="caption" role="status" style="margin-top:10px"></p><div id="oldRecordsFound" class="hidden" style="margin-top:10px"><button type="button" class="btn btn-primary btn-full" id="mergeOldRecords">Recuperar apenas datas em falta</button></div></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Guarda uma cópia dos teus serviços, folgas e férias para os poderes recuperar quando precisares.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Verifica ou recupera uma cópia de segurança. Antes de substituir registos existentes, será pedida confirmação.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
-<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro verificado.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade.</strong> Os serviços ficam guardados neste dispositivo. Faz cópias de segurança regularmente.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.33</p></footer></section>
+<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro verificado.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade.</strong> Os serviços ficam guardados neste dispositivo. Faz cópias de segurança regularmente.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.34</p></footer></section>
 </main></div>
 <nav class="bottom-nav" aria-label="Navegação"><button class="nav-btn current" data-view="calendar"><svg><use href="#i-calendar"/></svg><span>Calendário</span></button><button class="nav-btn" data-view="history"><svg><use href="#i-search"/></svg><span>Histórico</span></button><button class="nav-btn" data-view="stats"><svg><use href="#i-chart"/></svg><span>Resumo</span></button><button class="nav-btn" data-view="vacations"><svg><use href="#i-sun"/></svg><span>Férias</span></button><button class="nav-btn" data-view="settings"><svg><use href="#i-settings"/></svg><span>Dados</span></button></nav>
 <button class="fab" id="fabAdd" aria-label="Adicionar serviço"><svg><use href="#i-plus"/></svg></button>
 <div id="daySheet" class="overlay day-drawer hidden" role="presentation"><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="daySheetTitle" tabindex="-1"><div class="sheet-handle"></div><div class="sheet-header"><div><p class="eyebrow">REGISTO DIÁRIO</p><h2 id="daySheetTitle">Detalhes do dia</h2></div><button type="button" class="icon-button" id="closeDaySheet" aria-label="Fechar detalhes"><svg><use href="#i-close"/></svg></button></div><section class="surface day-panel" id="dayPanel" aria-live="polite"></section></section></div>
 <div id="modal" class="overlay hidden" role="presentation"><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1"><div class="sheet-handle"></div><div class="sheet-header"><div><p class="eyebrow">REGISTAR SERVIÇO</p><h2 id="modalTitle">Adicionar serviço</h2></div><button class="icon-button" id="closeModal" aria-label="Fechar"><svg><use href="#i-close"/></svg></button></div>
-<form id="serviceForm"><label class="upload-area"><svg><use href="#i-upload"/></svg><span><strong id="uploadLabel">Carregar imagem do serviço</strong><span>A imagem é lida, mas não é guardada.</span></span><input type="file" id="captureInput" accept="image/*" aria-label="Captura da Tripulantes" /></label><div class="ocr-row"><button type="button" class="btn btn-quiet" id="scanButton">Ler imagem</button><p class="ocr-message" id="ocrMessage" role="status">Requer internet na primeira leitura.</p></div>
+<form id="serviceForm"><div id="workedOffBanner" class="ft-form-banner hidden">FT · Folga trabalhada — preenche os dados do serviço.</div><label class="upload-area"><svg><use href="#i-upload"/></svg><span><strong id="uploadLabel">Carregar imagem do serviço</strong><span>A imagem é lida, mas não é guardada.</span></span><input type="file" id="captureInput" accept="image/*" aria-label="Captura da Tripulantes" /></label><div class="ocr-row"><button type="button" class="btn btn-quiet" id="scanButton">Ler imagem</button><p class="ocr-message" id="ocrMessage" role="status">Requer internet na primeira leitura.</p></div>
 <div class="field"><label for="fDate">Data do serviço</label><input id="fDate" name="date" type="date" required /></div><p class="field-group-title"><svg><use href="#i-briefcase"/></svg> Identificação</p><div class="two-cols"><div class="field"><label for="fService">Altura</label><input id="fService" autocomplete="off" /></div><div class="field"><label for="fVehicle">Serviço</label><input id="fVehicle" autocomplete="off" /></div></div>
 <p class="field-group-title"><svg><use href="#i-sun"/></svg> Horário e locais</p><div class="two-cols"><div class="field"><label for="fStart">Entrada</label><input id="fStart" type="text" inputmode="numeric" maxlength="5" autocomplete="off" spellcheck="false" aria-describedby="carrisClockHelp" /></div><div class="field"><label for="fEnd">Saída</label><input id="fEnd" type="text" inputmode="numeric" maxlength="5" autocomplete="off" spellcheck="false" aria-describedby="carrisClockHelp" /></div></div><p id="carrisClockHelp" class="caption" style="margin:6px 0 11px">Formato horário da Carris (HH:MM), incluindo horas superiores a 24:00.</p><div class="two-cols"><div class="field"><label for="fFrom">Local de entrada</label><input id="fFrom" autocomplete="off" /></div><div class="field"><label for="fTo">Local de saída</label><input id="fTo" autocomplete="off" /></div></div><div class="field"><label for="fType">Tipo de afetação</label><input id="fType" list="affectationOptions" autocomplete="off" /><datalist id="affectationOptions"><option value="Normal"></option><option value="Normal FO"></option></datalist><p class="caption" style="margin-top:5px">Normal FO = feriado obrigatório trabalhado. Também é reconhecido nas observações.</p></div><div class="field"><label for="fObservations">Observações do serviço</label><input id="fObservations" autocomplete="off" maxlength="240" /><p class="caption" style="margin-top:5px">Normal FO nas observações também conta como feriado obrigatório trabalhado (uma vez por dia).</p></div><div class="field driving-field"><label for="fDrivingDuration">Horas de condução do dia — cálculo automático</label><input id="fDrivingDuration" type="text" readonly aria-describedby="drivingHoursHelp"/><p class="caption" id="drivingHoursHelp" style="margin-top:5px">Calculado automaticamente pela diferença entre entrada e saída do serviço, incluindo horários 25:00 e 26:00. Não precisas de preencher este campo.</p></div><div class="field"><label for="fNightDuration">Horas noturnas (20h00–08h00) — automáticas</label><input id="fNightDuration" type="text" readonly/><p class="caption" style="margin-top:5px">Conta apenas o tempo de condução dentro do período noturno, mesmo quando o serviço começa antes das 20h00.</p></div>
 <div class="field"><label for="fOvertime">Horas extra (HH:MM) — opcional</label><input id="fOvertime" type="text" inputmode="text" maxlength="5" autocomplete="off" spellcheck="false" /><p class="caption" style="margin-top:5px">Tempo extra deste serviço. Ex.: 02:00 = 2 horas. Conta separadamente das horas de condução e das horas noturnas, no mês da data do serviço.</p></div><div class="field"><label for="fBreakMinutes">Pausas (minutos) — opcional</label><input id="fBreakMinutes" type="number" min="0" max="1200" step="1" inputmode="numeric" /><p class="caption" style="margin-top:5px">O intervalo após pausas só é calculado quando as introduzes. Não equivale automaticamente a horas remuneradas.</p></div><div class="separator"></div><div class="field"><label for="fNote">Nota por extenso (podes corrigir livremente)</label><textarea id="fNote"></textarea></div><button type="button" class="link-button" id="regenerateNote" style="margin-top:9px">Gerar nota a partir dos campos <svg><use href="#i-arrow"/></svg></button>
@@ -654,6 +680,8 @@ function parseOvertime(value){
  const hours=Number(match[1]),minutes=Number(match[2]||0);
  return hours<=24&&(hours!==24||minutes===0)?hours*60+minutes:null;
 }
+function isWorkedOff(r){return r?.kind==='service'&&r.workedOff===true}
+function workedOffMinutes(r){return isWorkedOff(r)?(calcMinutes(r.start,r.end)??0):0}
 function overtimeFor(r){return r?.kind==='service'&&Number.isInteger(r.overtimeMinutes)&&r.overtimeMinutes>0?r.overtimeMinutes:0}
 function updateDrivingPreview(){
   const start=normalizeTimeInput($('fStart').value);
@@ -696,7 +724,7 @@ function isHolidayWorked(record){
   if(!(record.observations||'').trim())return hasNormalFO(record.note);
   return false;
 }
-function normalizedRecord(r){if(!r||typeof r!=='object')return null;if(r.kind==='off')return {kind:'off'};if(r.kind==='vacation')return {kind:'vacation'};if(r.kind!=='service')return null;return {kind:'service',service:safeStr(r.service,32),vehicle:safeStr(r.vehicle,40),start:timeValid(r.start)?r.start:'',end:timeValid(r.end)?r.end:'',from:safeStr(r.from,180),to:safeStr(r.to,180),type:safeStr(r.type,80),observations:safeStr(r.observations,240),breakMinutes:(r.breakMinutes===null||r.breakMinutes===''||r.breakMinutes===undefined)?null:(Number.isInteger(Number(r.breakMinutes))&&Number(r.breakMinutes)>=0&&Number(r.breakMinutes)<=1200?Number(r.breakMinutes):null),drivingMinutes:calcMinutes(r.start,r.end),overtimeMinutes:(Number.isInteger(Number(r.overtimeMinutes))&&Number(r.overtimeMinutes)>=0&&Number(r.overtimeMinutes)<=1440)?Number(r.overtimeMinutes):0,note:safeStr(r.note,maxNote),extraNotes:safeStr(r.extraNotes,8000)}}
+function normalizedRecord(r){if(!r||typeof r!=='object')return null;if(r.kind==='off')return {kind:'off'};if(r.kind==='vacation')return {kind:'vacation'};if(r.kind!=='service')return null;return {kind:'service',workedOff:r.workedOff===true,service:safeStr(r.service,32),vehicle:safeStr(r.vehicle,40),start:timeValid(r.start)?r.start:'',end:timeValid(r.end)?r.end:'',from:safeStr(r.from,180),to:safeStr(r.to,180),type:safeStr(r.type,80),observations:safeStr(r.observations,240),breakMinutes:(r.breakMinutes===null||r.breakMinutes===''||r.breakMinutes===undefined)?null:(Number.isInteger(Number(r.breakMinutes))&&Number(r.breakMinutes)>=0&&Number(r.breakMinutes)<=1200?Number(r.breakMinutes):null),drivingMinutes:calcMinutes(r.start,r.end),overtimeMinutes:(Number.isInteger(Number(r.overtimeMinutes))&&Number(r.overtimeMinutes)>=0&&Number(r.overtimeMinutes)<=1440)?Number(r.overtimeMinutes):0,note:safeStr(r.note,maxNote),extraNotes:safeStr(r.extraNotes,8000)}}
 function getLegacy(){let converted={};let rawNotes=localStorage.getItem(LEGACY_NOTES),rawOff=localStorage.getItem(LEGACY_OFF);let oldNotes=rawNotes?JSON.parse(rawNotes):{},oldOff=rawOff?JSON.parse(rawOff):{};if(oldNotes&&typeof oldNotes==='object'&&!Array.isArray(oldNotes)){for(let [d,v] of Object.entries(oldNotes)){if(validDate(d)&&typeof v==='string'&&v.trim()!=='Folga.')converted[d]={kind:'service',service:'',vehicle:'',start:'',end:'',from:'',to:'',type:'',note:v.slice(0,maxNote)}}}if(oldOff&&typeof oldOff==='object'&&!Array.isArray(oldOff)){for(let [d,v] of Object.entries(oldOff)){if(validDate(d)&&v===true)converted[d]={kind:'off'}}}return converted}
 // Recuperação de uma revisão anterior e espelho IndexedDB, quando suportado.
 const PREVIOUS='minha-escala-previous-v07', DB_NAME='minha-escala-backup-local', DB_STORE='snapshots';
@@ -967,13 +995,13 @@ function deleteRecord(d){if(protectedService(d)){warnPastService();return false}
 function notify(msg,kind='success'){const n=$('toast');n.textContent=msg;n.className='toast'+(kind==='error'?' error':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>n.classList.add('hidden'),4600)}
 function goView(view){closeDaySheet();currentView=view;document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active',el.id==='view-'+view));document.querySelectorAll('[data-view]').forEach(btn=>{let active=btn.dataset.view===view;btn.classList.toggle('current',active);if(active)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current')});syncCalendarAddAccess();if(view==='history')renderHistory();if(view==='stats')renderStats();if(view==='vacations')renderVacations();if(view==='settings')renderBackupDate();window.scrollTo({top:0,behavior:'instant'})}
 function monthData(y,m){
-  let service=0,offs=0,vacations=0,mins=0,holidays=0,withTimes=0,estimatedMinutes=0,withBreaks=0,overnight=0,drivingMinutes=0,nightDrivingMinutes=0,overtimeMinutes=0,withDriving=0;
+  let service=0,offs=0,vacations=0,mins=0,holidays=0,withTimes=0,estimatedMinutes=0,withBreaks=0,overnight=0,drivingMinutes=0,nightDrivingMinutes=0,overtimeMinutes=0,withDriving=0,workedOff=0,workedOffMinutesTotal=0;
   const periods={morning:0,afternoon:0,night:0,unknown:0};
   for(const [d,r] of Object.entries(records)){
     if(d.slice(0,7)!==`${y}-${pad(m+1)}`)continue;
     if(r.kind==='off'){offs++;continue}
     if(r.kind==='vacation'){vacations++;continue}
-    service++;overtimeMinutes+=overtimeFor(r);if(isHolidayWorked(r))holidays++;
+    service++;overtimeMinutes+=overtimeFor(r);if(isWorkedOff(r)){workedOff++;workedOffMinutesTotal+=workedOffMinutes(r)}if(isHolidayWorked(r))holidays++;
     const derivedDriving=drivingMinutesFor(r);if(derivedDriving!==null){drivingMinutes+=derivedDriving;withDriving++;nightDrivingMinutes+=nightMinutesFor(r)??0}
     const p=startPeriod(r.start);periods[p||'unknown']++;
     const val=calcMinutes(r.start,r.end);
@@ -981,7 +1009,7 @@ function monthData(y,m){
     const net=effectiveMinutes(r);
     if(net!==null){estimatedMinutes+=net;withBreaks++}
   }
-  return {service,offs,vacations,mins,holidays,withTimes,estimatedMinutes,withBreaks,overnight,drivingMinutes,nightDrivingMinutes,overtimeMinutes,withDriving,periods,averageMinutes:withTimes?Math.round(mins/withTimes):null};
+  return {service,offs,vacations,mins,holidays,withTimes,estimatedMinutes,withBreaks,overnight,drivingMinutes,nightDrivingMinutes,overtimeMinutes,workedOff,workedOffMinutesTotal,withDriving,periods,averageMinutes:withTimes?Math.round(mins/withTimes):null};
 }
 function renderCalendar(){
   let heading=new Date(calendarYear,calendarMonth,1).toLocaleDateString('pt-PT',{month:'long',year:'numeric'}).replace(/ de /g,' ');
@@ -992,7 +1020,7 @@ function renderCalendar(){
   for(let i=0;i<offset;i++){const holder=document.createElement('span');holder.className='date-cell outside';days.append(holder)}
   for(let d=1;d<=n;d++){
     const k=keyOf(calendarYear,calendarMonth,d),rec=records[k],b=document.createElement('button');
-    b.type='button';b.className='date-cell'+(selected===k?' is-selected':'')+(k===dateKey(today)?' is-today':'')+(rec?' '+rec.kind:'')+(rec?.kind==='service'&&!rec.start&&!rec.end?' no-times':'');
+    b.type='button';b.className='date-cell'+(selected===k?' is-selected':'')+(k===dateKey(today)?' is-today':'')+(rec?' '+rec.kind:'')+(isWorkedOff(rec)?' worked-off':'')+(rec?.kind==='service'&&!rec.start&&!rec.end?' no-times':'');
     const num=document.createElement('span');num.className='day-number';num.textContent=String(d);
     const indicator=document.createElement('i');indicator.className='indicator';b.append(num,indicator);
     if(rec?.kind==='service'){
@@ -1000,24 +1028,26 @@ function renderCalendar(){
       const start=document.createElement('span');start.textContent=rec.start||'—';
       const end=document.createElement('span');end.className='end';end.textContent=rec.end||'—';
       times.append(start,end);b.append(times);
+      if(isWorkedOff(rec)){const ft=document.createElement('span');ft.className='ft-mark';ft.textContent='FT';ft.title='Folga trabalhada';b.append(ft)}
       if(isHolidayWorked(rec)){const fo=document.createElement('span');fo.className='holiday-mark';fo.textContent='FO';fo.title='Feriado obrigatório trabalhado';b.append(fo)}
 
     }
-    const description=!rec?'sem registo':rec.kind==='off'?'folga':rec.kind==='vacation'?'férias':`serviço ${rec.service||'sem número'}, ${rec.start||'hora não indicada'} a ${rec.end||'hora não indicada'}`;
+    const description=!rec?'sem registo':rec.kind==='off'?'folga':rec.kind==='vacation'?'férias':`${isWorkedOff(rec)?'folga trabalhada, ':''}serviço ${rec.service||'sem número'}, ${rec.start||'hora não indicada'} a ${rec.end||'hora não indicada'}`;
     b.setAttribute('aria-label',`${prettyDate(k)}, ${description}`);
     b.onclick=()=>{selected=k;renderCalendar();openDaySheet()};days.append(b);
   }
   const stats=monthData(calendarYear,calendarMonth);
-  $('monthServices').textContent=stats.service;$('monthOffs').textContent=stats.offs;$('monthVacations').textContent=stats.vacations;$('monthHours').textContent=hm(stats.mins);$('monthHolidays').textContent=stats.holidays;$('monthDriving').textContent=hm(stats.drivingMinutes);$('monthNightDriving').textContent=hm(stats.nightDrivingMinutes);$('monthOvertime').textContent=hm(stats.overtimeMinutes);renderSelected();
+  $('monthServices').textContent=stats.service;$('monthOffs').textContent=stats.offs;$('monthVacations').textContent=stats.vacations;$('monthHours').textContent=hm(stats.mins);$('monthHolidays').textContent=stats.holidays;$('monthDriving').textContent=hm(stats.drivingMinutes);$('monthNightDriving').textContent=hm(stats.nightDrivingMinutes);$('monthOvertime').textContent=hm(stats.overtimeMinutes);$('monthWorkedOff').textContent=stats.workedOff;$('monthWorkedOffHours').textContent=hm(stats.workedOffMinutesTotal);renderSelected();
 }
 function showDate(d,details=true){selected=d;let dt=dateObj(d);calendarYear=dt.getFullYear();calendarMonth=dt.getMonth();goView('calendar');renderCalendar();if(details)openDaySheet()}
 function moveMonth(v){let d=new Date(calendarYear,calendarMonth+v,1);calendarYear=d.getFullYear();calendarMonth=d.getMonth();selected=keyOf(calendarYear,calendarMonth,Math.min(dateObj(selected).getDate(),new Date(calendarYear,calendarMonth+1,0).getDate()));renderCalendar()}
 function renderQuick(){
   const r=records[selected],iconEl=$('quickIcon');
-  iconEl.className='quick-status'+(r?' '+r.kind:'');
+  iconEl.className='quick-status'+(r?' '+r.kind:'')+(isWorkedOff(r)?' worked-off':'');
   iconEl.innerHTML=icon(r?.kind==='off'?'sun':r?.kind==='vacation'?'calendar':r?.kind==='service'?'briefcase':'note');
   $('quickTitle').textContent=cap(prettyDate(selected,{weekday:'short',day:'numeric',month:'long',year:'numeric'}));
-  $('quickSubtitle').textContent=!r?'Sem registo · toca para adicionar':r.kind==='off'?'Folga · sem nota':r.kind==='vacation'?'Férias · dia assinalado':([r.service?'Altura '+r.service:'',r.vehicle?'Serviço '+r.vehicle:''].filter(Boolean).join(' · ')||'Serviço registado')+(r.start?' · '+r.start:'')+(r.end?'–'+r.end:'');
+  $('quickSubtitle').textContent=!r?'Sem registo · toca para adicionar':r.kind==='off'?'Folga · sem nota':r.kind==='vacation'?'Férias · dia assinalado':(isWorkedOff(r)?'FT · ':'')+([r.service?'Altura '+r.service:'',r.vehicle?'Serviço '+r.vehicle:''].filter(Boolean).join(' · ')||'Serviço registado')+(r.start?' · '+r.start:'')+(r.end?'–'+r.end:'');
+  const ftIndicator=$('quickFt');if(ftIndicator){ftIndicator.classList.toggle('hidden',!isWorkedOff(r));ftIndicator.textContent=isWorkedOff(r)?'FT do dia · '+(r.start&&r.end?hm(workedOffMinutes(r)):'horário não indicado'):''}
   const overtimeQuick=$('quickOvertime');overtimeQuick.classList.toggle('hidden',!overtimeFor(r));overtimeQuick.textContent=overtimeFor(r)?'Horas extra do dia: '+hm(overtimeFor(r)):'';
   const drivingQuick=$('quickDriving'),derivedDriving=drivingMinutesFor(r);drivingQuick.classList.toggle('hidden',derivedDriving===null);drivingQuick.textContent=derivedDriving!==null?'Condução do dia: '+hm(derivedDriving)+(nightMinutesFor(r)>0?' · Noturnas: '+hm(nightMinutesFor(r)):'') : '';
 }
@@ -1026,7 +1056,7 @@ function openDaySheet(){
   const sheet=$('daySheet');sheet.classList.remove('hidden');document.body.style.overflow='hidden';sheet.querySelector('.sheet').focus();
 }
 function closeDaySheet(){const sheet=$('daySheet');if(!sheet||sheet.classList.contains('hidden'))return;sheet.classList.add('hidden');if(!isModalOpen)document.body.style.overflow=''}
-function renderSelected(){let p=$('dayPanel'),r=records[selected];renderQuick();syncCalendarAddAccess();p.replaceChildren();let header=document.createElement('div');header.className='day-panel-top';let date=document.createElement('div');date.className='date-display';date.textContent=cap(prettyDate(selected));let tag=document.createElement('span');tag.className='tag'+(r?' '+r.kind:'');tag.textContent=!r?'Sem registo':r.kind==='off'?'Folga':r.kind==='vacation'?'Férias':'Serviço';header.append(date,tag);p.append(header);
+function renderSelected(){let p=$('dayPanel'),r=records[selected];renderQuick();syncCalendarAddAccess();p.replaceChildren();let header=document.createElement('div');header.className='day-panel-top';let date=document.createElement('div');date.className='date-display';date.textContent=cap(prettyDate(selected));let tag=document.createElement('span');tag.className='tag'+(r?' '+r.kind:'');tag.textContent=!r?'Sem registo':r.kind==='off'?'Folga':r.kind==='vacation'?'Férias':isWorkedOff(r)?'Folga trabalhada · FT':'Serviço';if(isWorkedOff(r))tag.classList.add('worked-off');header.append(date,tag);p.append(header);
 if(protectedService(selected)){
   const info=document.createElement('div');info.className='past-readonly';
   const heading=document.createElement('strong');heading.textContent='Serviço encerrado · apenas consulta';
@@ -1036,7 +1066,7 @@ if(protectedService(selected)){
 if(!r){let empty=document.createElement('div');empty.className='empty-day';empty.innerHTML=`<div class="empty-icon">${icon('note')}</div><p>Este dia ainda não tem nenhum serviço registado.</p>`;p.append(empty);let row=document.createElement('div');row.className='cta-row';let a=makeButton('Adicionar serviço','btn btn-primary','plus',()=>openModal(selected));let b=makeButton('Marcar folga','btn btn-quiet','sun',()=>markOff(selected));let c=makeButton('Marcar férias','btn btn-vacation','calendar',()=>markVacationDay(selected));row.classList.add('day-cta-three');if(!isPastServiceDate(selected))row.append(a);
 row.append(b,c);p.append(row);return}
 if(r.kind==='off'){let empty=document.createElement('div');empty.className='empty-day';empty.innerHTML=`<div class="empty-icon">${icon('sun')}</div><p>Dia de folga. Não é necessário escrever uma nota.</p>`;p.append(empty);let row=document.createElement('div');row.className='cta-row';row.append(makeButton('Retirar folga','btn btn-quiet','close',()=>removeDay(selected)),makeButton('Marcar férias','btn btn-vacation','calendar',()=>markVacationDay(selected)));
-if(!isPastServiceDate(selected))row.append(makeButton('Registar serviço','btn btn-primary','plus',()=>{if(confirm('Substituir esta folga por um serviço?'))openModal(selected)}));row.classList.add('day-cta-three');p.append(row);return}
+if(!isPastServiceDate(selected)){row.append(makeButton('Registar folga trabalhada','btn btn-worked-off','briefcase',()=>openModal(selected,true)));row.append(makeButton('Registar serviço normal','btn btn-quiet','plus',()=>{if(confirm('Substituir esta folga por um serviço normal?'))openModal(selected)}))}row.classList.add('day-cta-three');p.append(row);return}
 if(r.kind==='vacation'){const box=document.createElement('div');box.className='empty-day';box.innerHTML=`<div class="empty-icon vacation-icon">${icon('calendar')}</div><p>Dia assinalado como férias. Conta para o ano correspondente.</p>`;p.append(box);const row=document.createElement('div');row.className='cta-row';row.append(makeButton('Retirar férias','btn btn-quiet','close',()=>removeDay(selected)));
 if(!isPastServiceDate(selected))row.append(makeButton('Registar serviço','btn btn-primary','plus',()=>{if(confirm('Substituir estas férias por um serviço?'))openModal(selected)}));p.append(row);return}
 let div=document.createElement('div');div.className='day-service';
@@ -1050,6 +1080,7 @@ const detail=(name,value)=>{
   const text=document.createElement('div');text.className='detail-value'+(!value?' empty':'');text.textContent=value||'Não indicado';
   item.append(label,text);grid.append(item)
 };
+if(isWorkedOff(r))detail('Folga trabalhada','Sim · FT');
 detail('Altura',r.service);detail('Serviço',r.vehicle);
 detail('Hora de entrada',displayClock(r.start));detail('Local de entrada',r.from);
 detail('Hora de saída',displayClock(r.end));detail('Local de saída',r.to);
@@ -1074,6 +1105,7 @@ if(!protectedService(selected)){
 }
 row.append(makeButton('Copiar nota','btn btn-quiet','note',()=>copyNote(r.note||makeNote(r,selected))));p.append(row);
 if(!protectedService(selected)){
+  if(isWorkedOff(r)){const back=document.createElement('div');back.className='cta-row';const revert=makeButton('Voltar a folga','btn btn-quiet','sun',()=>markOff(selected));revert.style.width='100%';back.append(revert);p.append(back)}
   const delRow=document.createElement('div');delRow.className='cta-row';
   const remove=makeButton('Apagar registo','btn btn-danger','trash',()=>removeDay(selected));remove.style.width='100%';delRow.append(remove);p.append(delRow);
   const vacationRow=document.createElement('div');vacationRow.className='cta-row';
@@ -1092,7 +1124,7 @@ function markOff(d){if(protectedService(d)){warnPastService();return}if(records[
 function removeDay(d){if(!records[d])return;if(protectedService(d)){warnPastService();return}if(!confirm(`Apagar o registo de ${prettyDate(d)}? Esta ação não pode ser anulada sem uma cópia de segurança.`))return;if(deleteRecord(d)){refreshAllViews();notify('Registo removido.')}}
 function locationText(value){let place=safeStr(value,180).replace(/\bSto\.\s*Amaro\b/i,'Santo Amaro').replace(/\(Est\.\)/gi,'(Estação)');let prep=/^(Estrela|Pontinha|Ajuda|Graça|Mouraria|Alameda)\b/i.test(place)?'na ': /^(Cais|Campo|Rossio|Martim|Santo|São|Alto)\b/i.test(place)?'em ': 'em ';return prep+place}
 function makeNote(r,d=$('fDate').value){
-let parts=[];let introduction=validDate(d)?`No dia ${prettyDate(d,{day:'numeric',month:'long',year:'numeric'})}, `:'';
+let parts=[];if(isWorkedOff(r))parts.push('Folga trabalhada (FT).');let introduction=validDate(d)?`No dia ${prettyDate(d,{day:'numeric',month:'long',year:'numeric'})}, `:'';
 let introVerb=r.vehicle?`realizei o serviço ${r.vehicle}${r.service?' (altura '+r.service+')':''}`:(r.service?`realizei a altura ${r.service}`:'registei um serviço');
 let details=[];
 if(r.start)details.push(`entrada às ${timeText(r.start)}${r.from?' '+locationText(r.from):''}`);
@@ -1109,7 +1141,7 @@ const derivedDriving=drivingMinutesFor(r);if(derivedDriving!==null)parts.push(`T
 if(overtimeFor(r)>0)parts.push(`Horas extra: ${hm(overtimeFor(r))}.`);
 return parts.join(' ')
 }
-function formObject(){return {kind:'service',service:safeStr($('fService').value,32),vehicle:safeStr($('fVehicle').value,40),start:normalizeTimeInput($('fStart').value),end:normalizeTimeInput($('fEnd').value),from:safeStr($('fFrom').value,180),to:safeStr($('fTo').value,180),type:safeStr($('fType').value,80),observations:safeStr($('fObservations').value,240),breakMinutes:$('fBreakMinutes').value===''?null:Number($('fBreakMinutes').value),drivingMinutes:calcMinutes(normalizeTimeInput($('fStart').value),normalizeTimeInput($('fEnd').value)),overtimeMinutes:parseOvertime($('fOvertime').value),note:$('fNote').value.trim().slice(0,maxNote),extraNotes:$('fExtraNotes').value.trim().slice(0,8000)}}
+function formObject(){return {kind:'service',workedOff:creatingWorkedOff,service:safeStr($('fService').value,32),vehicle:safeStr($('fVehicle').value,40),start:normalizeTimeInput($('fStart').value),end:normalizeTimeInput($('fEnd').value),from:safeStr($('fFrom').value,180),to:safeStr($('fTo').value,180),type:safeStr($('fType').value,80),observations:safeStr($('fObservations').value,240),breakMinutes:$('fBreakMinutes').value===''?null:Number($('fBreakMinutes').value),drivingMinutes:calcMinutes(normalizeTimeInput($('fStart').value),normalizeTimeInput($('fEnd').value)),overtimeMinutes:parseOvertime($('fOvertime').value),note:$('fNote').value.trim().slice(0,maxNote),extraNotes:$('fExtraNotes').value.trim().slice(0,8000)}}
 const inputs=['fService','fVehicle','fStart','fEnd','fFrom','fTo','fType','fObservations','fBreakMinutes','fOvertime'];
 function fillForm(r){for(let name of inputs){let field={'fService':'service','fVehicle':'vehicle','fStart':'start','fEnd':'end','fFrom':'from','fTo':'to','fType':'type','fObservations':'observations','fBreakMinutes':'breakMinutes','fOvertime':'overtimeMinutes'}[name];$(name).value=name==='fOvertime'?(r.overtimeMinutes?drivingClock(r.overtimeMinutes):''):(r[field]??'')}updateDrivingPreview();$('fNote').value=r.note||'';$('fExtraNotes').value=r.extraNotes||'';setExtraNotesExpanded(Boolean(r.extraNotes))}
 
@@ -1128,8 +1160,9 @@ $('toggleExtraNotes').addEventListener('click',()=>{
 });
 $('fExtraNotes').addEventListener('input',()=>{formDirty=true;if($('extraNotesPanel').classList.contains('hidden'))setExtraNotesExpanded(false)});
 function hasData(r){return !!(r.service||r.vehicle||r.start||r.end||r.from||r.to||r.type||r.observations||r.breakMinutes!==null||r.overtimeMinutes>0||drivingMinutesFor(r)!==null||r.extraNotes)}
-function openModal(date){if(protectedService(date)||(isPastServiceDate(date)&&records[date]?.kind!=='service')){warnPastService();return}scanEpoch++;closeDaySheet();ocrDidRun=false;$('ocrMessage').classList.remove('ocr-warning');let r=records[date],existing=r?.kind==='service'?r:null;isModalOpen=true;formDirty=false;noteEdited=!!existing;editingOriginalDate=existing?date:null;$('fDate').min=existing?date:dateKey(new Date());$('fDate').value=date;fillForm(existing||{});$('modalTitle').textContent=existing?'Editar serviço':'Adicionar serviço';$('captureInput').value='';$('scanButton').disabled=false;$('uploadLabel').textContent='Carregar imagem do serviço';$('ocrMessage').textContent='Requer internet na primeira leitura.';$('modal').classList.remove('hidden');document.body.style.overflow='hidden';$('modal').querySelector('.sheet').focus();syncServiceSaveAccess()}
-function closeModal(force=false){if(!isModalOpen)return;if(!force&&formDirty&&!confirm('Descartar alterações deste serviço?'))return;scanEpoch++;isModalOpen=false;formDirty=false;noteEdited=false;editingOriginalDate=null;$('modal').classList.add('hidden');document.body.style.overflow='';if(externalChangePending)refreshExternalState()}
+let creatingWorkedOff=false;
+function openModal(date,asWorkedOff=false){if(protectedService(date)||(isPastServiceDate(date)&&records[date]?.kind!=='service')){warnPastService();return}scanEpoch++;closeDaySheet();ocrDidRun=false;$('ocrMessage').classList.remove('ocr-warning');let r=records[date],existing=r?.kind==='service'?r:null;isModalOpen=true;formDirty=false;noteEdited=!!existing;editingOriginalDate=existing?date:null;creatingWorkedOff=Boolean(existing?existing.workedOff:asWorkedOff&&r?.kind==='off');$('workedOffBanner').classList.toggle('hidden',!creatingWorkedOff);$('fDate').disabled=creatingWorkedOff;$('fDate').min=existing?date:dateKey(new Date());$('fDate').value=date;fillForm(existing||{});$('modalTitle').textContent=existing?'Editar serviço':'Adicionar serviço';$('captureInput').value='';$('scanButton').disabled=false;$('uploadLabel').textContent='Carregar imagem do serviço';$('ocrMessage').textContent='Requer internet na primeira leitura.';$('modal').classList.remove('hidden');document.body.style.overflow='hidden';$('modal').querySelector('.sheet').focus();syncServiceSaveAccess()}
+function closeModal(force=false){if(!isModalOpen)return;if(!force&&formDirty&&!confirm('Descartar alterações deste serviço?'))return;scanEpoch++;isModalOpen=false;formDirty=false;noteEdited=false;editingOriginalDate=null;creatingWorkedOff=false;$('fDate').disabled=false;$('modal').classList.add('hidden');document.body.style.overflow='';if(externalChangePending)refreshExternalState()}
 function regen(force=false){updateDrivingPreview();if(noteEdited&&!force)return;let r=formObject();$('fNote').value=makeNote(r);updateDrivingPreview();formDirty=true;if(force)noteEdited=false}
 inputs.forEach(id=>$(id).addEventListener('input',()=>{formDirty=true;regen()}));
 $('fOvertime').addEventListener('blur',()=>{const n=parseOvertime($('fOvertime').value);if(n!==null&&$('fOvertime').value.trim())$('fOvertime').value=drivingClock(n)});
@@ -1165,7 +1198,7 @@ $('serviceForm').onsubmit=e=>{
    if(missing.length&&!confirm('A leitura ainda tem campos em falta: '+missing.join(', ')+'.\n\nGuardar mesmo assim?'))return;
  }
  const previous=records[d];
- if(previous&&d!==editingOriginalDate){
+ if(previous&&d!==editingOriginalDate&&!(previous.kind==='off'&&r.workedOff)){
    const existingLabel=previous.kind==='off'?'Folga':previous.kind==='vacation'?'Férias':('Altura '+(previous.service||'não indicada'));
    const incomingLabel='Altura '+(r.service||'não indicada');
    const same=previous.kind==='service'&&Object.keys(r).every(k=>r[k]===previous[k]);
@@ -1198,7 +1231,7 @@ function renderHistory(){
     if(vehicle&&!(r.vehicle||'').toLocaleLowerCase('pt-PT').includes(vehicle))return false;
     if(type&&!(r.type||'').toLocaleLowerCase('pt-PT').includes(type))return false;
     if(!terms.length)return true;
-    const hay=`${d} ${prettyDate(d)} ${r.note||''} ${r.extraNotes||''} ${r.service||''} ${r.vehicle||''} ${r.from||''} ${r.to||''} ${r.type||''} ${r.observations||''} ${r.start||''} ${r.end||''}`.toLocaleLowerCase('pt-PT');
+    const hay=`${d} ${prettyDate(d)} ${r.note||''} ${r.extraNotes||''} ${r.service||''} ${r.vehicle||''} ${r.from||''} ${r.to||''} ${r.type||''} ${r.observations||''} ${isWorkedOff(r)?'FT folga trabalhada':''} ${r.start||''} ${r.end||''}`.toLocaleLowerCase('pt-PT');
     return terms.every(t=>hay.includes(t));
   }).sort((a,b)=>sort==='asc'?a[0].localeCompare(b[0]):b[0].localeCompare(a[0]));
   $('historyCount').textContent=`${matches.length} ${matches.length===1?'resultado':'resultados'}`;
@@ -1206,10 +1239,10 @@ function renderHistory(){
   const batch=document.createDocumentFragment();
   for(const [date,r] of matches.slice(0,historyShown)){
     const row=document.createElement('button');row.type='button';row.className='history-row';
-    const ico=document.createElement('span');ico.className='history-icon'+(r.kind==='off'?' off':r.kind==='vacation'?' vacation':'');ico.innerHTML=icon(r.kind==='off'?'sun':r.kind==='vacation'?'calendar':'briefcase');
+    const ico=document.createElement('span');ico.className='history-icon'+(r.kind==='off'?' off':r.kind==='vacation'?' vacation':isWorkedOff(r)?' worked-off':'');ico.innerHTML=icon(r.kind==='off'?'sun':r.kind==='vacation'?'calendar':'briefcase');
     const desc=document.createElement('span');desc.className='history-text';
     const strong=document.createElement('strong');strong.textContent=cap(prettyDate(date));
-    const small=document.createElement('small');small.textContent=r.kind==='off'?'Folga':r.kind==='vacation'?'Férias':[r.service?'Altura '+r.service:'',r.vehicle?'Serviço '+r.vehicle:'',[r.start,r.end].filter(Boolean).join('–'),r.from,isHolidayWorked(r)?'FO':''].filter(Boolean).join(' · ')||'Serviço registado';
+    const small=document.createElement('small');small.textContent=r.kind==='off'?'Folga':r.kind==='vacation'?'Férias':[(isWorkedOff(r)?'FT':''),r.service?'Altura '+r.service:'',r.vehicle?'Serviço '+r.vehicle:'',[r.start,r.end].filter(Boolean).join('–'),r.from,isHolidayWorked(r)?'FO':''].filter(Boolean).join(' · ')||'Serviço registado';
     desc.append(strong,small);
     const arrow=document.createElement('span');arrow.className='chevron';arrow.innerHTML=icon('chevron-right');row.append(ico,desc,arrow);
     row.onclick=()=>showDate(date);batch.append(row);
@@ -1232,7 +1265,7 @@ function renderStats(){
   const current=monthData(yy,mm-1);
   $('statsMonthHolidays').textContent=current.holidays;
   $('statsMonthServices').textContent=current.service;
-  $('statsMonthOffs').textContent=current.offs;
+  $('statsMonthOffs').textContent=current.offs;$('statsMonthWorkedOff').textContent=current.workedOff;$('statsMonthWorkedOffHours').textContent=hm(current.workedOffMinutesTotal);
   $('statsMonthDriving').textContent=hm(current.drivingMinutes);
    $('statsMonthNightDriving').textContent=hm(current.nightDrivingMinutes);$('statsMonthOvertime').textContent=hm(current.overtimeMinutes);
   $('drivingCoverage').textContent=`Horas de condução calculadas automaticamente a partir da entrada e saída: ${current.withDriving} de ${current.service} serviços têm ambos os horários. Os restantes não entram no total.`;
@@ -1254,7 +1287,7 @@ function renderStats(){
     const lab=document.createElement('span');lab.textContent=v.label;$('chartLabels').append(lab);
     const row=document.createElement('div');row.className='holiday-month-row';
     const label=document.createElement('span');label.textContent=v.full;
-    const values=document.createElement('strong');values.textContent=`${v.holidays} FO · ${v.service} serviços · ${hm(v.drivingMinutes)} condução · ${hm(v.nightDrivingMinutes)} noturnas · ${hm(v.overtimeMinutes)} extras (${v.withDriving}/${v.service})`;
+    const values=document.createElement('strong');values.textContent=`${v.holidays} FO · ${v.workedOff} FT (${hm(v.workedOffMinutesTotal)}) · ${v.service} serviços · ${hm(v.drivingMinutes)} condução · ${hm(v.nightDrivingMinutes)} noturnas · ${hm(v.overtimeMinutes)} extras (${v.withDriving}/${v.service})`;
     row.append(label,values);$('holidayMonthList').append(row);
   }
 }
@@ -1660,7 +1693,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
 <script>
 (()=>{
   'use strict';
-  const APP_VERSION='1.5.33';
+  const APP_VERSION='1.5.34';
   const SEEN_KEY='escala:last-announced-version';
   const banner=document.getElementById('escalaUpdate');
   const title=document.getElementById('escalaUpdateTitle');
