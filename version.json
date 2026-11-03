@@ -1,7 +1,7 @@
 {
-  "version": "1.5.37",
+  "version": "1.5.38",
   "date": "2026-11-03",
   "changes": [
-    "Adicionado botão «Ajuda e sugestões» na aba Dados para abrir o email com destinatário preenchido."
+    "Simplificado o código publicado, removendo comentários desnecessários dos scripts."
   ]
 }
