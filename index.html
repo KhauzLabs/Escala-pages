@@ -535,8 +535,8 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
   </section>
 </section>
 <section class="view" id="view-settings" aria-label="Cópias de segurança"><p class="eyebrow">DADOS E PRIVACIDADE</p><h2 class="section-title">Os teus registos</h2><p class="section-description">Os serviços, folgas e férias permanecem neste navegador. Não guardamos as capturas dos serviços.</p><div class="setting-card surface"><h3>Aparência</h3><p>Escolhe o modo claro ou escuro. A preferência fica guardada neste dispositivo.</p><button type="button" class="btn btn-quiet btn-full" id="themeButton" aria-pressed="false"><span class="theme-button-label"><span class="theme-button-symbol" id="themeSymbol" aria-hidden="true">☾</span><span id="themeButtonLabel">Ativar modo escuro</span></span><span aria-hidden="true">⇄</span></button></div><div class="setting-card surface"><h3>Informação sobre a Escala</h3><p>Aplicação independente para registo pessoal. Consulta novamente o aviso sobre a confirmação do escalamento oficial.</p><button class="btn btn-quiet btn-full" id="reopenLegalNotice" type="button">Ler aviso de utilização</button></div>
-<div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Depois de abrir este endereço no Chrome, instala a Escala no ecrã inicial, com ícone próprio e sem a Play Store.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se a instalação não aparecer, usa o menu ⋮ do Chrome → Adicionar ao ecrã principal.</p></div><div class="version-notice" id="versionNotice">A versão 1.5.12 permite assinalar férias por dia ou período e consultar o histórico anual. Calcula automaticamente as horas de condução a partir da entrada e saída, com totais mensais e histórico. «Normal FO» no tipo de afetação ou nas observações conta como um feriado trabalhado. Antes de mudar de endereço, exporta um JSON e confirma o download.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><p class="caption" style="margin-top:10px">A segunda cópia local é apenas uma proteção adicional, não substitui a exportação JSON para fora do dispositivo.</p></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Descarrega um ficheiro JSON com todos os serviços, folgas e férias. O ficheiro inclui uma verificação de integridade (SHA-256 quando suportada). Guarda-o fora do telemóvel; a aplicação não sincroniza os dados.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Confirma primeiro se o JSON está íntegro, sem alterar os serviços. O restauro combina os novos registos e pede confirmação antes de substituir datas coincidentes.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
-<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro validado nesta sessão.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade local.</strong> Os dados ficam no navegador deste dispositivo e não são sincronizados com servidores. Isto não é um sistema de login: alguém com acesso ao teu telemóvel desbloqueado poderá ver os registos. A leitura OCR requer internet para descarregar o motor de reconhecimento, mas processa a imagem no dispositivo.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.30</p></footer></section>
+<div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Depois de abrir este endereço no Chrome, instala a Escala no ecrã inicial, com ícone próprio e sem a Play Store.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se a instalação não aparecer, usa o menu ⋮ do Chrome → Adicionar ao ecrã principal.</p></div><div class="version-notice" id="versionNotice">Antes de mudares de telemóvel ou reinstalares a Escala, exporta um backup JSON e confirma que ficou descarregado. As atualizações normais não exigem remover a aplicação.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><button class="btn btn-quiet btn-full" type="button" id="recoverMirror" disabled>Consultar segunda cópia local</button><p class="caption" style="margin-top:10px">A segunda cópia local é apenas uma proteção adicional, não substitui a exportação JSON para fora do dispositivo.</p></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Descarrega um ficheiro JSON com todos os serviços, folgas e férias. O ficheiro inclui uma verificação de integridade (SHA-256 quando suportada). Guarda-o fora do telemóvel; a aplicação não sincroniza os dados.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Confirma primeiro se o JSON está íntegro, sem alterar os serviços. O restauro combina os novos registos e pede confirmação antes de substituir datas coincidentes.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
+<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro validado nesta sessão.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade local.</strong> Os dados ficam no navegador deste dispositivo e não são sincronizados com servidores. Isto não é um sistema de login: alguém com acesso ao teu telemóvel desbloqueado poderá ver os registos. A leitura OCR requer internet para descarregar o motor de reconhecimento, mas processa a imagem no dispositivo.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.31</p></footer></section>
 </main></div>
 <nav class="bottom-nav" aria-label="Navegação"><button class="nav-btn current" data-view="calendar"><svg><use href="#i-calendar"/></svg><span>Calendário</span></button><button class="nav-btn" data-view="history"><svg><use href="#i-search"/></svg><span>Histórico</span></button><button class="nav-btn" data-view="stats"><svg><use href="#i-chart"/></svg><span>Resumo</span></button><button class="nav-btn" data-view="vacations"><svg><use href="#i-sun"/></svg><span>Férias</span></button><button class="nav-btn" data-view="settings"><svg><use href="#i-settings"/></svg><span>Dados</span></button></nav>
 <button class="fab" id="fabAdd" aria-label="Adicionar serviço"><svg><use href="#i-plus"/></svg></button>
@@ -700,7 +700,7 @@ function normalizedRecord(r){if(!r||typeof r!=='object')return null;if(r.kind===
 function getLegacy(){let converted={};let rawNotes=localStorage.getItem(LEGACY_NOTES),rawOff=localStorage.getItem(LEGACY_OFF);let oldNotes=rawNotes?JSON.parse(rawNotes):{},oldOff=rawOff?JSON.parse(rawOff):{};if(oldNotes&&typeof oldNotes==='object'&&!Array.isArray(oldNotes)){for(let [d,v] of Object.entries(oldNotes)){if(validDate(d)&&typeof v==='string'&&v.trim()!=='Folga.')converted[d]={kind:'service',service:'',vehicle:'',start:'',end:'',from:'',to:'',type:'',note:v.slice(0,maxNote)}}}if(oldOff&&typeof oldOff==='object'&&!Array.isArray(oldOff)){for(let [d,v] of Object.entries(oldOff)){if(validDate(d)&&v===true)converted[d]={kind:'off'}}}return converted}
 // Recuperação de uma revisão anterior e espelho IndexedDB, quando suportado.
 const PREVIOUS='minha-escala-previous-v07', DB_NAME='minha-escala-backup-local', DB_STORE='snapshots';
-let mirrorQueue=Promise.resolve(), idbAvailable=false, storageIssue='';
+let mirrorQueue=Promise.resolve(), idbAvailable=false, storageIssue='', mirrorHasSnapshot=false;
 function parseSavedState(raw){
   const obj=JSON.parse(raw);
   if(!obj||typeof obj!=='object'||Array.isArray(obj))throw Error('Registos locais inválidos');
@@ -748,33 +748,58 @@ async function mirrorRead(){
   })}finally{db.close()}
 }
 function queueMirror(payload){
-  mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>mirrorWrite(payload)).then(()=>{idbAvailable=true;renderStorageStatus()}).catch(()=>{idbAvailable=false;renderStorageStatus()});
+  mirrorQueue=mirrorQueue.catch(()=>{}).then(()=>mirrorWrite(payload)).then(()=>{
+    idbAvailable=true;mirrorHasSnapshot=true;renderStorageStatus();
+  }).catch(()=>{idbAvailable=false;renderStorageStatus()});
 }
 function renderStorageStatus(){
   const elem=$('storageStatus');if(!elem)return;
-  elem.textContent=!storageOk?'Atenção: o armazenamento principal não está disponível. Faz uma cópia de segurança antes de fechar.':idbAvailable?'Registos guardados neste navegador, com uma segunda cópia local de recuperação.':'Registos guardados neste navegador. A segunda cópia local ainda não está disponível.';
+  elem.textContent=!storageOk?'Atenção: o armazenamento principal não está disponível. Faz imediatamente uma cópia JSON antes de fechar.':idbAvailable?'Registos guardados neste navegador, com uma segunda cópia local de recuperação.':'Registos guardados neste navegador. A segunda cópia local ainda não está disponível.';
   elem.className='storage-message'+(!storageOk?' danger':'');
   const btn=$('recoverPrevious');if(btn){let ok=false;try{ok=!!localStorage.getItem(PREVIOUS)}catch{}btn.disabled=!ok}
+  const mirrorButton=$('recoverMirror');if(mirrorButton)mirrorButton.disabled=!mirrorHasSnapshot;
 }
 async function bootMirror(){
   try{
     const snap=await mirrorRead();idbAvailable=true;
     if(snap?.payload){
       if(snap.checksum!==snapshotChecksum(snap.payload))throw Error('Espelho corrompido');
-      const previousCopy=parseSavedState(snap.payload);
-      // Se o armazenamento principal está vazio/corrompido, recuperar a cópia já existente.
-      if(!primaryLoaded && Object.keys(previousCopy).length && !externalChangePending && localStorage.getItem(STORE)===lastKnownPayload){
-        const hasNewEdits=Object.keys(records).length>0 && !storageOk;
-        if(!hasNewEdits){
-          records=previousCopy;
-          try{localStorage.setItem(STORE,snap.payload);lastKnownPayload=snap.payload;storageOk=true;primaryLoaded=true}catch{}
-          renderCalendar();renderHistory();renderStats();renderVacations();
-          notify('Histórico recuperado da segunda cópia local. Faz uma exportação JSON.');
+      const mirrorRecords=parseSavedState(snap.payload);
+      mirrorHasSnapshot=true;
+      // Nunca substituir silenciosamente um histórico já recuperado de uma revisão anterior.
+      // Uma cópia IndexedDB pode ser mais antiga. O utilizador escolhe explicitamente se a restaura.
+      if(!primaryLoaded && !Object.keys(records).length && Object.keys(mirrorRecords).length
+          && !externalChangePending && localStorage.getItem(STORE)===lastKnownPayload){
+        const current=localStorage.getItem(STORE);
+        if(!current || current==='{}'){
+          if(persist(mirrorRecords,true)){
+            renderCalendar();renderHistory();renderStats();renderVacations();
+            notify('Histórico recuperado da segunda cópia local. Exporta um backup JSON.');
+          }
         }
       }
-    }else if(storageOk)queueMirror(JSON.stringify(records));
+    }else if(storageOk&&primaryLoaded)queueMirror(JSON.stringify(records));
   }catch(e){idbAvailable=false;}
   renderStorageStatus();renderBackupReminder();
+}
+async function recoverMirror(){
+  try{
+    await mirrorQueue.catch(()=>{});
+    const snap=await mirrorRead();
+    if(!snap?.payload)throw Error('A segunda cópia local não está disponível');
+    if(snap.checksum!==snapshotChecksum(snap.payload))throw Error('A segunda cópia está corrompida');
+    const restored=parseSavedState(snap.payload);
+    const count=Object.keys(restored).length;
+    if(!count)throw Error('A segunda cópia não contém registos');
+    if(JSON.stringify(restored)===JSON.stringify(records)){
+      notify('A segunda cópia local corresponde aos registos atuais.');return;
+    }
+    if(!confirm(`A segunda cópia local contém ${count} datas.\n\nA recuperação substitui os registos atuais. Confirma primeiro que tens um backup JSON recente.\n\nQueres continuar?`))return;
+    if(persist(restored,true)){
+      renderCalendar();renderHistory();renderStats();renderVacations();renderBackupReminder();
+      notify('Segunda cópia recuperada. Exporta um novo backup JSON.');
+    }
+  }catch(e){notify('Não foi possível recuperar a segunda cópia: '+e.message,'error')}
 }
 function recoverPrevious(){
   try{
@@ -822,6 +847,11 @@ function refreshExternalState(){
   try{raw=localStorage.getItem(STORE)}catch{return}
   if(raw===lastKnownPayload){externalChangePending=false;return}
   try{
+    if(!raw && Object.keys(records).length){
+      externalChangePending=true;
+      notify('O histórico foi eliminado noutra janela. Os dados desta sessão foram preservados; exporta uma cópia de segurança.','error');
+      return;
+    }
     const incoming=raw?parseSavedState(raw):{};
     records=incoming;lastKnownPayload=raw;primaryLoaded=Boolean(raw);storageOk=true;externalChangePending=false;
     renderCalendar();renderHistory();renderStats();renderVacations();renderBackupReminder();renderStorageStatus();
@@ -1103,6 +1133,7 @@ function renderHistory(){
   const type=$('historyType').value.trim().toLocaleLowerCase('pt-PT');
   const sort=$('historySort').value;
   const parent=$('historyList');parent.replaceChildren();
+  const terms=query?query.split(/\s+/):[];
   const matches=Object.entries(records).filter(([d,r])=>{
     if(historyFilter!=='all'&&r.kind!==historyFilter)return false;
     if(validDate(from)&&d<from)return false;
@@ -1110,11 +1141,13 @@ function renderHistory(){
     if(code&&!(r.service||'').toLocaleLowerCase('pt-PT').includes(code))return false;
     if(vehicle&&!(r.vehicle||'').toLocaleLowerCase('pt-PT').includes(vehicle))return false;
     if(type&&!(r.type||'').toLocaleLowerCase('pt-PT').includes(type))return false;
+    if(!terms.length)return true;
     const hay=`${d} ${prettyDate(d)} ${r.note||''} ${r.extraNotes||''} ${r.service||''} ${r.vehicle||''} ${r.from||''} ${r.to||''} ${r.type||''} ${r.observations||''} ${r.start||''} ${r.end||''}`.toLocaleLowerCase('pt-PT');
-    return !query||query.split(/\s+/).every(t=>hay.includes(t));
+    return terms.every(t=>hay.includes(t));
   }).sort((a,b)=>sort==='asc'?a[0].localeCompare(b[0]):b[0].localeCompare(a[0]));
   $('historyCount').textContent=`${matches.length} ${matches.length===1?'resultado':'resultados'}`;
   if(!matches.length){const msg=document.createElement('div');msg.className='empty-list';msg.textContent='Não existem registos correspondentes aos filtros.';parent.append(msg)}
+  const batch=document.createDocumentFragment();
   for(const [date,r] of matches.slice(0,historyShown)){
     const row=document.createElement('button');row.type='button';row.className='history-row';
     const ico=document.createElement('span');ico.className='history-icon'+(r.kind==='off'?' off':r.kind==='vacation'?' vacation':'');ico.innerHTML=icon(r.kind==='off'?'sun':r.kind==='vacation'?'calendar':'briefcase');
@@ -1123,8 +1156,9 @@ function renderHistory(){
     const small=document.createElement('small');small.textContent=r.kind==='off'?'Folga':r.kind==='vacation'?'Férias':[r.service?'Altura '+r.service:'',r.vehicle?'Serviço '+r.vehicle:'',[r.start,r.end].filter(Boolean).join('–'),r.from,isHolidayWorked(r)?'FO':''].filter(Boolean).join(' · ')||'Serviço registado';
     desc.append(strong,small);
     const arrow=document.createElement('span');arrow.className='chevron';arrow.innerHTML=icon('chevron-right');row.append(ico,desc,arrow);
-    row.onclick=()=>showDate(date);parent.append(row);
+    row.onclick=()=>showDate(date);batch.append(row);
   }
+  parent.append(batch);
   const more=$('historyMore');more.classList.toggle('hidden',historyShown>=matches.length);
   more.textContent=`Mostrar mais (${Math.min(60,matches.length-historyShown)})`;
 }
@@ -1348,9 +1382,12 @@ function parseServiceCapture(raw, blocks=[]) {
   if(!from&&candidates[0])from=candidates[0];
   if(!to&&candidates[1])to=candidates[1];
   // Na eventualidade de Tesseract ler primeiro os horários da direita, não inventar locais.
+  // Um turno de duração absurda ou horas iguais podem resultar de horas repetidas no print.
+  const duration=calcMinutes(start,end);
+  const timeNeedsConfirmation=Boolean(start&&end&&(duration===0||duration>16*60));
   const result={date,service,vehicle,start,end,from,to,type,observations};
   const missing=Object.entries(result).filter(([k,v])=>k!=='observations'&&!v).map(([k])=>k);
-  return {...result,missing,complete:missing.length===0,matchedFields:8-missing.length,heightNeedsConfirmation};
+  return {...result,missing,complete:missing.length===0,matchedFields:8-missing.length,heightNeedsConfirmation,timeNeedsConfirmation};
 }
 // Não cortar as observações no fundo de uma captura: leitura inclui quase toda a área útil.
 function prepareCapture(img){return new Promise((resolve,reject)=>{const url=URL.createObjectURL(img),photo=new Image();photo.onload=()=>{try{let ratio=photo.height/photo.width,top=ratio>1.2?0.055:0,cropH=ratio>1.2?0.89:1;let x=0,y=Math.round(photo.height*top),w=photo.width,h=Math.min(photo.height-y,Math.round(photo.height*cropH));const maxW=1500,maxH=2700,scale=Math.min(2,maxW/w,maxH/h),canvas=document.createElement('canvas');canvas.width=Math.round(w*scale);canvas.height=Math.round(h*scale);let ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(photo,x,y,w,h,0,0,canvas.width,canvas.height);let data=ctx.getImageData(0,0,canvas.width,canvas.height);for(let i=0;i<data.data.length;i+=4){let gray=.299*data.data[i]+.587*data.data[i+1]+.114*data.data[i+2];let val=gray<175?0:255;data.data[i]=data.data[i+1]=data.data[i+2]=val}ctx.putImageData(data,0,0);resolve(canvas)}catch(e){reject(e)}finally{URL.revokeObjectURL(url)}};photo.onerror=()=>{URL.revokeObjectURL(url);reject(Error('Imagem inválida'))};photo.src=url})}
@@ -1384,6 +1421,7 @@ async function scan(){
     }});
     if(!active())return;
     const result=await worker.recognize(canvas,{}, {text:true,blocks:true});
+    canvas.width=0;canvas.height=0; // Libertar a memória do processamento da imagem.
     if(!active())return;
     const touched=Object.entries(snapshot).some(([id,value])=>$(id).value!==value);
     if(touched&&!confirm('Alteraste dados durante a leitura. Queres aplicar o resultado do print por cima desses campos?'))return;
@@ -1404,10 +1442,11 @@ async function scan(){
     updateDrivingPreview();regen(true);formDirty=true;ocrDidRun=true;
     const missing=extracted.missing.map(k=>friendlyField[k]);
     const ocrSummary=missing.length?'Leitura parcial. Confirma os dados; por verificar: '+missing.join(', ')+'.':'8 campos identificados. Confirma os dados antes de guardar.';
-    $('ocrMessage').textContent=extracted.heightNeedsConfirmation
-      ? 'Atenção: o reconhecimento pode ter lido S como 5 na Altura. Foi proposta '+extracted.service+'. Confirma a Altura no print antes de guardar. '+ocrSummary
-      : ocrSummary;
-    $('ocrMessage').classList.toggle('ocr-warning',missing.length>0||extracted.heightNeedsConfirmation);
+    const warnings=[];
+    if(extracted.heightNeedsConfirmation)warnings.push('A Altura pode ter sido lida com 5 em vez de S; confirma '+extracted.service+' no print.');
+    if(extracted.timeNeedsConfirmation)warnings.push('As horas identificadas produzem um serviço com duração invulgar; confirma entrada e saída.');
+    $('ocrMessage').textContent=(warnings.length?'Atenção: '+warnings.join(' '):'')+ocrSummary;
+    $('ocrMessage').classList.toggle('ocr-warning',missing.length>0||warnings.length>0);
     notify('Leitura terminada. Confirma a nota antes de guardar.');
   }catch(e){if(active()){$('ocrMessage').textContent=(e.message||'Falha no reconhecimento')+' Preenche manualmente.';notify('Não foi possível ler a captura.','error')}}
   finally{
@@ -1492,7 +1531,7 @@ function addVacationRange(){
 }
 
 // Event handlers.
-$('vacationYear').addEventListener('change',renderVacations);$('vacationAddRange').addEventListener('click',addVacationRange);$('jumpDate').onchange=e=>{if(validDate(e.target.value))showDate(e.target.value,false);e.target.value=''};$('openDayDetails').onclick=openDaySheet;$('closeDaySheet').onclick=closeDaySheet;$('daySheet').addEventListener('click',e=>{if(e.target===$('daySheet'))closeDaySheet()});$('prevMonth').onclick=()=>moveMonth(-1);$('nextMonth').onclick=()=>moveMonth(1);$('goToday').onclick=()=>showDate(dateKey(today));$('statsMonth').addEventListener('change',renderStats);$('fabAdd').onclick=()=>openModal(selected);$('settingsTop').onclick=()=>goView('settings');document.querySelectorAll('[data-view]').forEach(el=>el.onclick=()=>goView(el.dataset.view));document.querySelectorAll('[data-filter]').forEach(el=>el.onclick=()=>{historyShown=60;historyFilter=el.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('selected',x===el));renderHistory()});let historySearchTimer=null;$('historySearch').oninput=()=>{historyShown=60;clearTimeout(historySearchTimer);historySearchTimer=setTimeout(renderHistory,130)};['historyFrom','historyTo','historyCode','historyVehicle','historyType','historySort'].forEach(id=>$(id).addEventListener('input',()=>{historyShown=60;renderHistory()}));$('clearHistoryFilters').onclick=()=>{['historyFrom','historyTo','historyCode','historyVehicle','historyType'].forEach(id=>$(id).value='');$('historySort').value='desc';$('historySearch').value='';historyShown=60;renderHistory()};$('historyMore').onclick=()=>{historyShown+=60;renderHistory()};$('closeModal').onclick=()=>closeModal();$('cancelModal').onclick=()=>closeModal();$('scanButton').onclick=scan;$('captureInput').onchange=e=>{const file=e.target.files?.[0];$('uploadLabel').textContent=file?.name||'Carregar captura da Tripulantes';if(file)scan()};$('backupFromCalendar').onclick=exportBackup;$('exportBackup').onclick=exportBackup;$('recoverPrevious').onclick=recoverPrevious;$('importBackup').onclick=()=>$('backupFile').click();$('verifyBackup').onclick=()=>$('verifyFile').click();$('verifyFile').onchange=e=>verifyBackupFile(e.target.files?.[0]);$('backupFile').onchange=e=>importBackup(e.target.files?.[0]);document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(isModalOpen)closeModal();else closeDaySheet()}});window.addEventListener('beforeunload',e=>{if(isModalOpen&&formDirty){e.preventDefault();e.returnValue=''}});
+$('vacationYear').addEventListener('change',renderVacations);$('vacationAddRange').addEventListener('click',addVacationRange);$('jumpDate').onchange=e=>{if(validDate(e.target.value))showDate(e.target.value,false);e.target.value=''};$('openDayDetails').onclick=openDaySheet;$('closeDaySheet').onclick=closeDaySheet;$('daySheet').addEventListener('click',e=>{if(e.target===$('daySheet'))closeDaySheet()});$('prevMonth').onclick=()=>moveMonth(-1);$('nextMonth').onclick=()=>moveMonth(1);$('goToday').onclick=()=>showDate(dateKey(today));$('statsMonth').addEventListener('change',renderStats);$('fabAdd').onclick=()=>openModal(selected);$('settingsTop').onclick=()=>goView('settings');document.querySelectorAll('[data-view]').forEach(el=>el.onclick=()=>goView(el.dataset.view));document.querySelectorAll('[data-filter]').forEach(el=>el.onclick=()=>{historyShown=60;historyFilter=el.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('selected',x===el));renderHistory()});let historySearchTimer=null;$('historySearch').oninput=()=>{historyShown=60;clearTimeout(historySearchTimer);historySearchTimer=setTimeout(renderHistory,130)};['historyFrom','historyTo','historyCode','historyVehicle','historyType','historySort'].forEach(id=>$(id).addEventListener('input',()=>{historyShown=60;renderHistory()}));$('clearHistoryFilters').onclick=()=>{['historyFrom','historyTo','historyCode','historyVehicle','historyType'].forEach(id=>$(id).value='');$('historySort').value='desc';$('historySearch').value='';historyShown=60;renderHistory()};$('historyMore').onclick=()=>{historyShown+=60;renderHistory()};$('closeModal').onclick=()=>closeModal();$('cancelModal').onclick=()=>closeModal();$('scanButton').onclick=scan;$('captureInput').onchange=e=>{const file=e.target.files?.[0];$('uploadLabel').textContent=file?.name||'Carregar captura da Tripulantes';if(file)scan()};$('backupFromCalendar').onclick=exportBackup;$('exportBackup').onclick=exportBackup;$('recoverPrevious').onclick=recoverPrevious;$('recoverMirror').onclick=recoverMirror;$('importBackup').onclick=()=>$('backupFile').click();$('verifyBackup').onclick=()=>$('verifyFile').click();$('verifyFile').onchange=e=>verifyBackupFile(e.target.files?.[0]);$('backupFile').onchange=e=>importBackup(e.target.files?.[0]);document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(isModalOpen)closeModal();else closeDaySheet()}});window.addEventListener('beforeunload',e=>{if(isModalOpen&&formDirty){e.preventDefault();e.returnValue=''}});
 let touchStart=null;const panel=document.querySelector('.calendar-panel');panel.addEventListener('touchstart',e=>{if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});panel.addEventListener('touchend',e=>{if(!touchStart||!e.changedTouches.length)return;let dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>85&&Math.abs(dy)<60)moveMonth(dx<0?1:-1)},{passive:true});
 // Instalação PWA: requer alojamento HTTPS e o navegador Chrome/Android.
 let deferredInstallPrompt=null;
@@ -1565,7 +1604,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
 <script>
 (()=>{
   'use strict';
-  const APP_VERSION='1.5.30';
+  const APP_VERSION='1.5.31';
   const SEEN_KEY='escala:last-announced-version';
   const banner=document.getElementById('escalaUpdate');
   const title=document.getElementById('escalaUpdateTitle');
@@ -1573,7 +1612,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
   const updateButton=document.getElementById('escalaUpdateNow');
   const laterButton=document.getElementById('escalaUpdateLater');
   const subtitle=banner.querySelector('.escala-update-subtitle');
-  let pending=null, currentRelease=null, dismissed=null, lastCheck=0;
+  let pending=null, currentRelease=null, dismissed=null, lastCheck=0, deferredRelease=null;
   const parts=v=>String(v||'').split('.').map(x=>Number(x)||0);
   function compare(a,b){const x=parts(a),y=parts(b);for(let i=0;i<Math.max(x.length,y.length);i++){const d=(x[i]||0)-(y[i]||0);if(d)return d>0?1:-1;}return 0;}
   function getSeen(){try{return localStorage.getItem(SEEN_KEY)}catch(_){return null}}
@@ -1584,8 +1623,14 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
     for(const change of list){if(typeof change!=='string')continue;const li=document.createElement('li');li.textContent=change.slice(0,260);notes.appendChild(li)}
     if(!notes.childElementCount){const li=document.createElement('li');li.textContent='Melhorias e correções na Escala.';notes.appendChild(li)}
   }
+  function screenBusy(){
+    return ['modal','daySheet','escalaNotice'].some(id=>{
+      const el=document.getElementById(id);return el&&!el.classList.contains('hidden');
+    });
+  }
   function showPending(release){
     if(!release||release.version===dismissed)return;
+    if(screenBusy()){deferredRelease={type:'pending',release};return;}
     pending=release;
     title.textContent='Nova versão '+release.version+' disponível';
     subtitle.textContent='Novidades desta atualização:';
@@ -1596,8 +1641,9 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
     fillNotes(release.changes);
     banner.classList.remove('hidden');
   }
-  function showInstalled(release){
+    function showInstalled(release){
     if(!release||getSeen()===APP_VERSION)return;
+    if(screenBusy()){deferredRelease={type:'installed',release};return;}
     currentRelease=release;
     pending=null;
     title.textContent='Escala atualizada — versão '+APP_VERSION;
@@ -1630,8 +1676,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
   updateButton.addEventListener('click',async()=>{
     if(!pending)return;
     // Impedir perder edições ainda não guardadas.
-    const modal=document.getElementById('modal');
-    if(modal&&!modal.classList.contains('hidden')&&!confirm('Tens um serviço aberto. Guarda as alterações antes de atualizar. Continuar mesmo assim?'))return;
+    if(screenBusy()){banner.classList.add('hidden');deferredRelease={type:'pending',release:pending};return;}
     updateButton.disabled=true;
     updateButton.textContent='A atualizar…';
     try{if('serviceWorker' in navigator){const reg=await navigator.serviceWorker.getRegistration('./');if(reg)await reg.update()}}catch(_){}
@@ -1642,6 +1687,13 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
   window.addEventListener('online',()=>checkVersion(true));
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkVersion(true)});
   window.addEventListener('pageshow',()=>checkVersion(true));
+  // Se uma atualização chegou durante uma edição, só apresentar o aviso ao fechar a janela.
+  setInterval(()=>{
+    if(deferredRelease&&!screenBusy()){
+      const item=deferredRelease;deferredRelease=null;
+      if(item.type==='pending')showPending(item.release);else showInstalled(item.release);
+    }
+  },3000);
   setInterval(()=>{if(!document.hidden)checkVersion()},5*60*1000);
   setTimeout(()=>checkVersion(true),2500);
 })();

@@ -1,9 +1,9 @@
 {
-  "version": "1.5.30",
+  "version": "1.5.31",
   "date": "2026-11-03",
   "changes": [
-    "Corrigido o aviso de atualizações: confirmação e resumo das novidades após instalar uma versão nova.",
-    "O resumo é apresentado uma única vez por versão, sem alterar serviços ou backups.",
-    "Mantidas as horas extra, o prazo de edição e as estatísticas da 1.5.29."
+    "Proteção contra recuperação automática de cópias locais mais antigas e opção de recuperação manual do espelho.",
+    "Avisos de atualização adiados durante a edição de um serviço, sem interromper o preenchimento.",
+    "OCR sinaliza horários de duração invulgar; pesquisa de histórico e processamento de imagens mais leves."
   ]
 }
