@@ -1,9 +1,9 @@
 {
-  "version": "1.5.29",
+  "version": "1.5.30",
   "date": "2026-11-03",
   "changes": [
-    "Campo de horas extra em cada serviço, com total diário, mensal e histórico por mês.",
-    "Edição de serviços existentes até às 23h59 do dia seguinte.",
-    "Férias: apenas dias gozados e total assinalado."
+    "Corrigido o aviso de atualizações: confirmação e resumo das novidades após instalar uma versão nova.",
+    "O resumo é apresentado uma única vez por versão, sem alterar serviços ou backups.",
+    "Mantidas as horas extra, o prazo de edição e as estatísticas da 1.5.29."
   ]
 }

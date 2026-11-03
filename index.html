@@ -536,7 +536,7 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 </section>
 <section class="view" id="view-settings" aria-label="Cópias de segurança"><p class="eyebrow">DADOS E PRIVACIDADE</p><h2 class="section-title">Os teus registos</h2><p class="section-description">Os serviços, folgas e férias permanecem neste navegador. Não guardamos as capturas dos serviços.</p><div class="setting-card surface"><h3>Aparência</h3><p>Escolhe o modo claro ou escuro. A preferência fica guardada neste dispositivo.</p><button type="button" class="btn btn-quiet btn-full" id="themeButton" aria-pressed="false"><span class="theme-button-label"><span class="theme-button-symbol" id="themeSymbol" aria-hidden="true">☾</span><span id="themeButtonLabel">Ativar modo escuro</span></span><span aria-hidden="true">⇄</span></button></div><div class="setting-card surface"><h3>Informação sobre a Escala</h3><p>Aplicação independente para registo pessoal. Consulta novamente o aviso sobre a confirmação do escalamento oficial.</p><button class="btn btn-quiet btn-full" id="reopenLegalNotice" type="button">Ler aviso de utilização</button></div>
 <div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Depois de abrir este endereço no Chrome, instala a Escala no ecrã inicial, com ícone próprio e sem a Play Store.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se a instalação não aparecer, usa o menu ⋮ do Chrome → Adicionar ao ecrã principal.</p></div><div class="version-notice" id="versionNotice">A versão 1.5.12 permite assinalar férias por dia ou período e consultar o histórico anual. Calcula automaticamente as horas de condução a partir da entrada e saída, com totais mensais e histórico. «Normal FO» no tipo de afetação ou nas observações conta como um feriado trabalhado. Antes de mudar de endereço, exporta um JSON e confirma o download.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><p class="caption" style="margin-top:10px">A segunda cópia local é apenas uma proteção adicional, não substitui a exportação JSON para fora do dispositivo.</p></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Descarrega um ficheiro JSON com todos os serviços, folgas e férias. O ficheiro inclui uma verificação de integridade (SHA-256 quando suportada). Guarda-o fora do telemóvel; a aplicação não sincroniza os dados.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Confirma primeiro se o JSON está íntegro, sem alterar os serviços. O restauro combina os novos registos e pede confirmação antes de substituir datas coincidentes.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
-<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro validado nesta sessão.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade local.</strong> Os dados ficam no navegador deste dispositivo e não são sincronizados com servidores. Isto não é um sistema de login: alguém com acesso ao teu telemóvel desbloqueado poderá ver os registos. A leitura OCR requer internet para descarregar o motor de reconhecimento, mas processa a imagem no dispositivo.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.29</p></footer></section>
+<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro validado nesta sessão.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade local.</strong> Os dados ficam no navegador deste dispositivo e não são sincronizados com servidores. Isto não é um sistema de login: alguém com acesso ao teu telemóvel desbloqueado poderá ver os registos. A leitura OCR requer internet para descarregar o motor de reconhecimento, mas processa a imagem no dispositivo.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.30</p></footer></section>
 </main></div>
 <nav class="bottom-nav" aria-label="Navegação"><button class="nav-btn current" data-view="calendar"><svg><use href="#i-calendar"/></svg><span>Calendário</span></button><button class="nav-btn" data-view="history"><svg><use href="#i-search"/></svg><span>Histórico</span></button><button class="nav-btn" data-view="stats"><svg><use href="#i-chart"/></svg><span>Resumo</span></button><button class="nav-btn" data-view="vacations"><svg><use href="#i-sun"/></svg><span>Férias</span></button><button class="nav-btn" data-view="settings"><svg><use href="#i-settings"/></svg><span>Dados</span></button></nav>
 <button class="fab" id="fabAdd" aria-label="Adicionar serviço"><svg><use href="#i-plus"/></svg></button>
@@ -1565,25 +1565,46 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
 <script>
 (()=>{
   'use strict';
-  const APP_VERSION='1.5.29';
+  const APP_VERSION='1.5.30';
+  const SEEN_KEY='escala:last-announced-version';
   const banner=document.getElementById('escalaUpdate');
   const title=document.getElementById('escalaUpdateTitle');
   const notes=document.getElementById('escalaUpdateNotes');
   const updateButton=document.getElementById('escalaUpdateNow');
   const laterButton=document.getElementById('escalaUpdateLater');
-  let nextRelease=null;
-  let dismissedVersion=null;
-  let lastCheck=0;
+  const subtitle=banner.querySelector('.escala-update-subtitle');
+  let pending=null, currentRelease=null, dismissed=null, lastCheck=0;
   const parts=v=>String(v||'').split('.').map(x=>Number(x)||0);
-  function newer(a,b){const x=parts(a),y=parts(b);for(let i=0;i<Math.max(x.length,y.length);i++){if((x[i]||0)!==(y[i]||0))return (x[i]||0)>(y[i]||0)}return false}
-  function showUpdate(release){
-    if(!release||typeof release.version!=='string'||!newer(release.version,APP_VERSION)||release.version===dismissedVersion)return;
-    nextRelease=release;
-    title.textContent='Nova versao '+release.version+' disponivel';
+  function compare(a,b){const x=parts(a),y=parts(b);for(let i=0;i<Math.max(x.length,y.length);i++){const d=(x[i]||0)-(y[i]||0);if(d)return d>0?1:-1;}return 0;}
+  function getSeen(){try{return localStorage.getItem(SEEN_KEY)}catch(_){return null}}
+  function markSeen(version){try{localStorage.setItem(SEEN_KEY,version)}catch(_){}}
+  function fillNotes(changes){
     notes.replaceChildren();
-    const list=Array.isArray(release.changes)?release.changes.slice(0,6):[];
+    const list=Array.isArray(changes)?changes.slice(0,6):[];
     for(const change of list){if(typeof change!=='string')continue;const li=document.createElement('li');li.textContent=change.slice(0,260);notes.appendChild(li)}
-    if(!notes.childElementCount){const li=document.createElement('li');li.textContent='Melhorias e correcoes na Escala.';notes.appendChild(li)}
+    if(!notes.childElementCount){const li=document.createElement('li');li.textContent='Melhorias e correções na Escala.';notes.appendChild(li)}
+  }
+  function showPending(release){
+    if(!release||release.version===dismissed)return;
+    pending=release;
+    title.textContent='Nova versão '+release.version+' disponível';
+    subtitle.textContent='Novidades desta atualização:';
+    updateButton.textContent='Atualizar agora';
+    updateButton.disabled=false;
+    updateButton.hidden=false;
+    laterButton.textContent='Mais tarde';
+    fillNotes(release.changes);
+    banner.classList.remove('hidden');
+  }
+  function showInstalled(release){
+    if(!release||getSeen()===APP_VERSION)return;
+    currentRelease=release;
+    pending=null;
+    title.textContent='Escala atualizada — versão '+APP_VERSION;
+    subtitle.textContent='O que mudou:';
+    updateButton.hidden=true;
+    laterButton.textContent='Fechar';
+    fillNotes(release.changes);
     banner.classList.remove('hidden');
   }
   async function checkVersion(force=false){
@@ -1596,23 +1617,26 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
       const response=await fetch(url.href,{cache:'no-store'});
       if(!response.ok)return;
       const release=await response.json();
-      showUpdate(release);
-    }catch(_){/* Nao interrompe a app quando esta offline */}
+      if(typeof release.version!=='string')return;
+      if(compare(release.version,APP_VERSION)>0)showPending(release);
+      else if(compare(release.version,APP_VERSION)===0)showInstalled(release);
+    }catch(_){/* Sem ligação, a aplicação continua a funcionar. */}
   }
-  laterButton.addEventListener('click',()=>{dismissedVersion=nextRelease?.version||null;banner.classList.add('hidden')});
+  laterButton.addEventListener('click',()=>{
+    if(pending)dismissed=pending.version;
+    else if(currentRelease)markSeen(APP_VERSION);
+    banner.classList.add('hidden');
+  });
   updateButton.addEventListener('click',async()=>{
-    if(!nextRelease)return;
-    if(!document.getElementById('modal')?.classList.contains('hidden') && !confirm('Tens um servico aberto para edicao. Guarda as alteracoes antes de atualizar. Continuar mesmo assim?'))return;
+    if(!pending)return;
+    // Impedir perder edições ainda não guardadas.
+    const modal=document.getElementById('modal');
+    if(modal&&!modal.classList.contains('hidden')&&!confirm('Tens um serviço aberto. Guarda as alterações antes de atualizar. Continuar mesmo assim?'))return;
     updateButton.disabled=true;
-    updateButton.textContent='A atualizar...';
-    try{
-      if('serviceWorker' in navigator){
-        const registration=await navigator.serviceWorker.getRegistration('./');
-        if(registration)await registration.update();
-      }
-    }catch(_){/* A navegacao ira tentar a versao mais recente */}
+    updateButton.textContent='A atualizar…';
+    try{if('serviceWorker' in navigator){const reg=await navigator.serviceWorker.getRegistration('./');if(reg)await reg.update()}}catch(_){}
     const dest=new URL('./',location.href);
-    dest.searchParams.set('v',nextRelease.version);
+    dest.searchParams.set('v',pending.version);
     location.replace(dest.href);
   });
   window.addEventListener('online',()=>checkVersion(true));
