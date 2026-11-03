@@ -1,9 +1,9 @@
 {
-  "version": "1.5.31",
+  "version": "1.5.32",
   "date": "2026-11-03",
   "changes": [
-    "Proteção contra recuperação automática de cópias locais mais antigas e opção de recuperação manual do espelho.",
-    "Avisos de atualização adiados durante a edição de um serviço, sem interromper o preenchimento.",
-    "OCR sinaliza horários de duração invulgar; pesquisa de histórico e processamento de imagens mais leves."
+    "Novos visitantes recebem uma indicação de como instalar a Escala a partir do separador Dados.",
+    "A mensagem aparece apenas após o aviso inicial e não é repetida depois de ser apresentada.",
+    "Sem alterações aos serviços, estatísticas ou formato das cópias de segurança."
   ]
 }
