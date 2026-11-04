@@ -1,7 +1,7 @@
 {
-  "version": "1.5.38",
-  "date": "2026-11-03",
+  "version": "1.5.39",
+  "date": "2026-11-04",
   "changes": [
-    "Simplificado o código publicado, removendo comentários desnecessários dos scripts."
+    "Removido o botão «Registar serviço normal» dos dias marcados como folga."
   ]
 }
