@@ -1,5 +1,5 @@
-/* Escala v1.5.45 — cache offline controlada; pedidos JSON nunca recebem HTML. */
-const CACHE = 'escala-pages-v1545-review-backup-undo';
+/* Escala v1.5.46 — cache offline controlada; pedidos JSON nunca recebem HTML. */
+const CACHE = 'escala-pages-v1546-reminder-spacing';
 const CORE = './index.html';
 const OPTIONAL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 
