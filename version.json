@@ -1,7 +1,8 @@
 {
-  "version": "1.5.39",
+  "version": "1.5.40",
   "date": "2026-11-04",
   "changes": [
-    "Removido o botão «Registar serviço normal» dos dias marcados como folga."
+    "Removido o indicador «A saída é no dia seguinte» dos detalhes do serviço.",
+    "Removida a caixa «Intervalo entrada–saída» dos detalhes do serviço."
   ]
 }
