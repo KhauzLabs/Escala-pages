@@ -1,8 +1,8 @@
-
 {
-  "version": "1.5.41",
+  "version": "1.5.42",
   "date": "2026-11-04",
   "changes": [
-    "O calendário passa a mostrar o serviço associado a cada dia, juntamente com os horários de entrada e saída."
+    "Legenda do calendário reorganizada: Serviço, Folga, Folga trabalhada e Férias.",
+    "A opção Instalar no telemóvel passou para o início da aba Dados."
   ]
 }
