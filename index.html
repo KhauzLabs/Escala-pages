@@ -451,15 +451,15 @@ html.escala-onboarding,html.escala-onboarding body{overflow:hidden!important}
 
 
 /* Atualizacoes — barra discreta, sem alterar o armazenamento dos servicos */
-.escala-update{position:fixed;z-index:61;top:calc(9px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:calc(100% - 24px);max-width:486px;background:#16243a;color:#f2f6ff;border:1px solid #d4ae65;border-radius:16px;padding:13px 14px;box-shadow:0 14px 45px #101c3260;font-size:13px;line-height:1.45}
+.escala-update{position:fixed;z-index:61;top:calc(9px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);width:calc(100% - 24px);max-width:486px;background:var(--surface);color:var(--text);border:1px solid var(--gold);border-radius:16px;padding:13px 14px;box-shadow:var(--shadow);font-size:13px;line-height:1.45}
 .escala-update-title{font-weight:800;font-size:14px;margin-bottom:4px}
-.escala-update-subtitle{color:#d1deef;font-size:12px}
-.escala-update ul{margin:9px 0 10px;padding-left:19px;color:#e2e9f3;font-size:12px}
+.escala-update-subtitle{color:var(--muted);font-size:12px}
+.escala-update ul{margin:9px 0 10px;padding-left:19px;color:var(--text);font-size:12px}
 .escala-update li+li{margin-top:4px}
 .escala-update-actions{display:flex;gap:9px;align-items:center}
 .escala-update-actions button{min-height:38px;padding:9px 13px;border-radius:10px;font-weight:750;font-size:12px}
 .escala-update-now{background:#e7bd6b;color:#152238;flex:1}
-.escala-update-later{background:#293850;color:#f2f6ff}
+.escala-update-later{background:var(--surface2);color:var(--text)}
 
 /* Escala 1.5.36 — Resumo mensal em grelha. */
 .date-cell.service.worked-off{background:#ffe1b9;border-color:#e7a34f;color:#88450c}
@@ -1737,7 +1737,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
 <script>
 (()=>{
   'use strict';
-  const APP_VERSION='1.5.43';
+  const APP_VERSION='1.5.44';
   const SEEN_KEY='escala:last-announced-version';
   const banner=document.getElementById('escalaUpdate');
   const title=document.getElementById('escalaUpdateTitle');
