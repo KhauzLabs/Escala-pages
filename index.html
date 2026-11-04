@@ -1065,7 +1065,15 @@ function renderCalendar(){
       const times=document.createElement('span');times.className='cell-hours';
       const start=document.createElement('span');start.textContent=rec.start||'—';
       const end=document.createElement('span');end.className='end';end.textContent=rec.end||'—';
-      times.append(start,end);b.append(times);
+      
+times.append(start,end);b.append(times);
+if(rec.vehicle){
+  const service=document.createElement('span');
+  service.className='cell-service';
+  service.textContent=rec.vehicle;
+  service.style.cssText='display:block;width:100%;font-size:9px;font-weight:800;line-height:12px;text-align:center;overflow-wrap:anywhere;margin-top:2px';
+  b.append(service);
+};b.append(times);
       if(isWorkedOff(rec)){const ft=document.createElement('span');ft.className='ft-mark';ft.textContent='FT';ft.title='Folga trabalhada';b.append(ft)}
       if(isHolidayWorked(rec)){const fo=document.createElement('span');fo.className='holiday-mark';fo.textContent='FO';fo.title='Feriado obrigatório trabalhado';b.append(fo)}
 
@@ -1724,7 +1732,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
 <script>
 (()=>{
   'use strict';
-  const APP_VERSION='1.5.40';
+  const APP_VERSION='1.5.41';;
   const SEEN_KEY='escala:last-announced-version';
   const banner=document.getElementById('escalaUpdate');
   const title=document.getElementById('escalaUpdateTitle');
