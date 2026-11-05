@@ -1,7 +1,9 @@
 {
-  "version": "1.5.50",
+  "version": "1.5.51",
   "date": "2026-11-05",
   "changes": [
-    "Corrigida a identificação de «Serviço de Viatura» nas capturas, mantendo o cardinal (#) no campo Serviço quando reconhecido."
+    "Seleção de grupos 1 a 8 ou Folga fixa, com preenchimento das folgas de 2027 após confirmação.",
+    "Folga fixa inclui fins de semana, feriados nacionais, 13 de junho e Carnaval de 9 de fevereiro.",
+    "Os serviços e férias existentes são preservados na alteração de grupo."
   ]
 }
