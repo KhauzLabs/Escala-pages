@@ -522,11 +522,16 @@ html[data-theme="dark"] .date-cell .cell-service{color:#f3c875}
 .date-cell.service.worked-off .cell-service{color:#88450c}
 html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a2}
 @media(max-width:360px){.date-cell.service{min-height:73px}.date-cell .cell-service{font-size:8px;line-height:10px}}
-/* v1.5.50 — revisão da leitura, cópias e desfazer */
+/* v1.5.51 — revisão da leitura, cópias e desfazer */
 .service-review{width:calc(100% - 28px);max-width:470px;max-height:88dvh;overflow:auto;padding:22px;border:1px solid var(--stroke);border-radius:20px;background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
 .service-review::backdrop{background:#02060ba6}
 .service-review h2{margin-bottom:9px}.service-review dl{display:grid;grid-template-columns:minmax(90px,1fr) 2fr;gap:10px;margin:18px 0}.service-review dt{color:var(--muted);font-size:12px}.service-review dd{margin:0;font-size:13px;font-weight:650;overflow-wrap:anywhere;white-space:pre-wrap}.service-review .review-missing{color:var(--red)}
 .undo-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:10px 12px;border:1px solid var(--stroke);border-radius:13px;background:var(--surface2);color:var(--text);font-size:12px}.undo-row button{flex-shrink:0}.backup-reminder span{min-width:0}
+
+.group-off-controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin:0 0 14px;padding:10px 12px;border:1px solid var(--stroke);border-radius:14px;background:var(--surface)}
+.group-off-controls label{font-size:12px;font-weight:800;color:var(--text)}
+.group-off-controls select{min-height:38px;flex:1;min-width:140px;max-width:230px;border-radius:10px;padding:7px 10px;border:1px solid var(--stroke);background:var(--surface2);color:var(--text);font:inherit;font-size:13px}
+.group-off-hint{width:100%;font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -557,6 +562,7 @@ html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a
 <header class="topbar"><div class="branding"><span class="logo"><svg><use href="#i-calendar"/></svg></span><div><h1>Escala</h1></div></div></header>
 <section class="view active" id="view-calendar" aria-label="Calendário">
   <div class="hero"><div><p class="eyebrow">O MEU CALENDÁRIO</p><h2 id="monthTitle"></h2></div><div class="hero-right"><label class="round-button date-jump" title="Ir para uma data"><svg><use href="#i-calendar"/></svg><input type="date" id="jumpDate" aria-label="Escolher uma data" /></label><button class="round-button" id="prevMonth" aria-label="Mês anterior"><svg><use href="#i-chevron-left"/></svg></button><button class="round-button" id="nextMonth" aria-label="Mês seguinte"><svg><use href="#i-chevron-right"/></svg></button></div></div>
+  <div class="group-off-controls"><label for="offGroup2027">Grupo de folgas (2027)</label><select id="offGroup2027" aria-label="Grupo de folgas de 2027"><option value="">Sem grupo</option><option value="1">Grupo 1</option><option value="2">Grupo 2</option><option value="3">Grupo 3</option><option value="4">Grupo 4</option><option value="5">Grupo 5</option><option value="6">Grupo 6</option><option value="7">Grupo 7</option><option value="8">Grupo 8</option><option value="fixed">Folga fixa</option></select><span class="group-off-hint">Preenche apenas as datas livres de 2027; os registos existentes são preservados.</span></div>
   <div class="surface calendar-panel"><div class="week-grid" aria-hidden="true"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span></div><div class="month-grid" id="monthGrid"></div><div class="cal-bottom"><div class="legend"><span><i></i>Serviço</span><span><i class="green"></i>Folga</span><span><i class="orange"></i>Folga trabalhada</span><span><i class="purple"></i>Férias</span></div><button class="link-button" id="goToday">Hoje <svg><use href="#i-arrow"/></svg></button></div></div>
   <div id="undoRow" class="undo-row hidden" role="status"><span id="undoSummary"></span><button type="button" class="btn btn-quiet" id="undoCalendar">Desfazer</button></div>
   <section class="surface day-quick" id="dayQuick" aria-label="Dia selecionado"><span class="quick-status" id="quickIcon"><svg><use href="#i-note"/></svg></span><div class="quick-main"><strong id="quickTitle">Dia selecionado</strong><span id="quickSubtitle">Toca para ver os detalhes</span><span id="quickDriving" class="quick-driving hidden"></span><span id="quickOvertime" class="quick-driving hidden"></span><span id="quickFt" class="ft-day-indicator hidden"></span></div><button type="button" class="round-button" id="openDayDetails" aria-label="Abrir detalhes do dia"><svg><use href="#i-chevron-right"/></svg></button></section>
@@ -615,7 +621,7 @@ html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a
 </section>
 <section class="view" id="view-settings" aria-label="Cópias de segurança"><p class="eyebrow">DADOS E PRIVACIDADE</p><h2 class="section-title">Os teus registos</h2><p class="section-description">Os serviços, folgas e férias permanecem neste navegador. Não guardamos as capturas dos serviços.</p><div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Adiciona a Escala ao ecrã principal para um acesso mais rápido.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se necessário, escolhe Adicionar ao ecrã principal no menu do navegador.</p></div><div class="setting-card surface"><h3>Aparência</h3><p>Escolhe o modo claro ou escuro. A preferência fica guardada neste dispositivo.</p><button type="button" class="btn btn-quiet btn-full" id="themeButton" aria-pressed="false"><span class="theme-button-label"><span class="theme-button-symbol" id="themeSymbol" aria-hidden="true">☾</span><span id="themeButtonLabel">Ativar modo escuro</span></span><span aria-hidden="true">⇄</span></button></div><div class="setting-card surface"><h3>Informação sobre a Escala</h3><p>Aplicação independente para registo pessoal. Consulta novamente o aviso sobre a confirmação do escalamento oficial.</p><button class="btn btn-quiet btn-full" id="reopenLegalNotice" type="button">Ler aviso de utilização</button></div>
 <div class="setting-card surface" aria-labelledby="supportTitle"><h3 id="supportTitle">Ajuda e sugestões</h3><p>Tens alguma dúvida ou sugestão para melhorar a Escala? Envia-nos uma mensagem.</p><a class="btn btn-quiet btn-full support-email-link" href="mailto:khauzlabs@gmail.com?subject=Escala%20%E2%80%94%20Ajuda%20e%20sugest%C3%B5es" aria-label="Enviar email para ajuda e sugestões"><svg aria-hidden="true"><use href="#i-upload"/></svg> Enviar email</a></div><div class="version-notice" id="versionNotice">Antes de mudares de telemóvel, guarda uma cópia de segurança.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="undoSettings" disabled>Desfazer última alteração</button><p class="caption">Até dez alterações nesta sessão. Ao fechar ou recarregar a app, este histórico termina. Mantêm-se os limites de edição dos serviços passados.</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><button class="btn btn-quiet btn-full" type="button" id="recoverMirror" disabled>Consultar segunda cópia local</button><p class="caption" style="margin-top:10px">Para maior segurança, exporta regularmente uma cópia dos teus dados.</p></div><div class="setting-card surface"><h3>Procurar serviços antigos</h3><p>Procura serviços antigos que ainda possam estar disponíveis. Os teus registos atuais não são alterados.</p><button type="button" class="btn btn-quiet btn-full" id="scanOldRecords">Procurar registos antigos</button><p id="oldRecordsStatus" class="caption" role="status" style="margin-top:10px"></p><div id="oldRecordsFound" class="hidden" style="margin-top:10px"><button type="button" class="btn btn-primary btn-full" id="mergeOldRecords">Recuperar apenas datas em falta</button></div></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Guarda uma cópia dos teus serviços, folgas e férias para os poderes recuperar quando precisares.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p><p id="backupFreshness" class="caption" role="status" style="margin-top:8px"></p><p class="caption" style="margin-top:8px">Os registos estão neste navegador. Guarda o ficheiro descarregado num local seguro, de preferência fora do telemóvel.</p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Verifica ou recupera uma cópia de segurança. Antes de substituir registos existentes, será pedida confirmação.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
-<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro verificado.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade.</strong> Os serviços ficam guardados neste dispositivo. Faz cópias de segurança regularmente.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.50</p></footer></section>
+<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro verificado.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade.</strong> Os serviços ficam guardados neste dispositivo. Faz cópias de segurança regularmente.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.51</p></footer></section>
 </main></div>
 <nav class="bottom-nav" aria-label="Navegação"><button class="nav-btn current" data-view="calendar"><svg><use href="#i-calendar"/></svg><span>Calendário</span></button><button class="nav-btn" data-view="history"><svg><use href="#i-search"/></svg><span>Histórico</span></button><button class="nav-btn" data-view="stats"><svg><use href="#i-chart"/></svg><span>Resumo</span></button><button class="nav-btn" data-view="vacations"><svg><use href="#i-sun"/></svg><span>Férias</span></button><button class="nav-btn" data-view="settings"><svg><use href="#i-settings"/></svg><span>Dados</span></button></nav>
 <button class="fab" id="fabAdd" aria-label="Adicionar serviço"><svg><use href="#i-plus"/></svg></button>
@@ -1109,6 +1115,54 @@ function monthData(y,m){
   }
   return {service,offs,vacations,mins,holidays,withTimes,estimatedMinutes,withBreaks,overnight,drivingMinutes,nightDrivingMinutes,overtimeMinutes,workedOff,workedOffMinutesTotal,withDriving,periods,averageMinutes:withTimes?Math.round(mins/withTimes):null};
 }
+
+// Folgas de 2027 transcritas por mês e por grupo da tabela disponibilizada.
+const GROUP_OFF_2027=[["7,8,15,16,17,23,24,30,31","1,8,9,10,16,17,23,24,25","1,2,3,9,10,16,17,18,25,26","2,3,9,10,11,18,19,26,27","2,3,4,11,12,19,20,27,28","4,5,12,13,20,21,28,29","5,6,13,14,21,22,29,30,31","6,7,14,15,22,23,24,30,31"],["1,8,9,16,17,24,25","1,2,9,10,17,18,25,26","2,3,10,11,18,19,26,27,28","3,4,11,12,19,20,21,27,28","4,5,12,13,14,20,21,27,28","5,6,7,13,14,20,21,22","6,7,13,14,15,22,23","6,7,8,15,16,23,24"],["4,5,12,13,14,20,21,27,28,29","5,6,7,13,14,20,21,22,29,30","6,7,13,14,15,22,23,30,31","6,7,8,15,16,23,24,31","1,8,9,16,17,24,25","1,2,9,10,17,18,25,26","2,3,10,11,18,19,26,27,28","3,4,11,12,19,20,21,27,28"],["5,6,13,14,21,22,29,30","6,7,14,15,22,23,30","7,8,15,16,23,24,25","1,8,9,16,17,18,24,25","1,2,9,10,11,17,18,24,25,26","2,3,4,10,11,17,18,19,26,27","3,4,10,11,12,19,20,27,28","3,4,5,12,13,20,21,28,29"],["7,8,9,15,16,22,23,24,31","1,2,8,9,15,16,17,24,25","1,2,8,9,10,17,18,25,26","1,2,3,10,11,18,19,26,27","3,4,11,12,19,20,27,28","4,5,12,13,20,21,28,29,30","5,6,13,14,21,22,23,29,30","6,7,14,15,16,22,23,29,30,31"],["1,8,9,16,17,24,25","1,2,9,10,17,18,25,26,27","2,3,10,11,18,19,20,26,27","3,4,11,12,13,19,20,26,27,28","4,5,6,12,13,19,20,21,28,29","5,6,12,13,14,21,22,29,30","5,6,7,14,15,22,23,30","7,8,15,16,23,24"],["2,3,4,10,11,17,18,19,26,27","3,4,10,11,12,19,20,27,28","3,4,5,12,13,20,21,28,29","5,6,13,14,21,22,29,30","6,7,14,15,22,23,30,31","7,8,15,16,23,24,25,31","1,8,9,16,17,18,24,25,31","1,2,9,10,11,17,18,24,25,26"],["3,4,11,12,19,20,27,28,29","4,5,12,13,20,21,22,28,29","5,6,13,14,15,21,22,28,29,30","6,7,8,14,15,21,22,23,30,31","1,7,8,14,15,16,23,24,31","1,7,8,9,16,17,24,25","1,2,9,10,17,18,25,26","2,3,10,11,18,19,26,27"],["4,5,11,12,13,20,21,28,29","4,5,6,13,14,21,22,29,30","6,7,14,15,22,23,30","7,8,15,16,23,24","1,8,9,16,17,24,25,26","1,2,9,10,17,18,19,25,26","2,3,10,11,12,18,19,25,26,27","3,4,5,11,12,18,19,20,27,28"],["6,7,14,15,22,23,24,30,31","7,8,15,16,17,23,24,30,31","1,8,9,10,16,17,23,24,25","1,2,3,9,10,16,17,18,25,26","2,3,9,10,11,18,19,26,27","2,3,4,11,12,19,20,27,28","4,5,12,13,20,21,28,29","5,6,13,14,21,22,29,30,31"],["6,7,8,15,16,23,24","1,8,9,16,17,24,25","1,2,9,10,17,18,25,26","2,3,10,11,18,19,26,27,28","3,4,11,12,19,20,21,27,28","4,5,12,13,14,20,21,27,28,29","5,6,7,13,14,20,21,22,29,30","6,7,13,14,15,22,23,30"],["1,2,9,10,17,18,19,25,26","2,3,10,11,12,18,19,25,26,27","3,4,5,11,12,18,19,20,27,28","4,5,11,12,13,20,21,28,29","4,5,6,13,14,21,22,29,30","6,7,14,15,22,23,30,31","7,8,15,16,23,24,31","1,8,9,16,17,24,25,26"]];
+const GROUP_OFF_KEY_2027='escala:off-group-2027',GROUP_OFF_AUTO_KEY_2027='escala:off-auto-dates-2027';
+// Feriados nacionais, municipal de Lisboa (13 de junho) e Carnaval solicitado (9 fevereiro).
+const FIXED_HOLIDAYS_2027=new Set(['2027-01-01','2027-02-09','2027-03-26','2027-03-28','2027-04-25','2027-05-01','2027-05-27','2027-06-10','2027-06-13','2027-08-15','2027-10-05','2027-11-01','2027-12-01','2027-12-08','2027-12-25']);
+function offDatesForGroup2027(group){
+  const out=new Set();
+  if(group==='fixed'){
+    for(let m=0;m<12;m++)for(let d=1;d<=new Date(2027,m+1,0).getDate();d++){
+      const date=keyOf(2027,m,d),dow=new Date(2027,m,d).getDay();
+      if(dow===0||dow===6||FIXED_HOLIDAYS_2027.has(date))out.add(date);
+    }
+  }else if(/^[1-8]$/.test(group)){
+    for(let m=0;m<12;m++)for(const d of GROUP_OFF_2027[m][Number(group)-1].split(',').map(Number))out.add(keyOf(2027,m,d));
+  }
+  return out;
+}
+function initGroupOff2027(){
+  const el=$('offGroup2027');if(!el)return;
+  let previous='';
+  try{previous=localStorage.getItem(GROUP_OFF_KEY_2027)||''}catch(_){}
+  if(!['','1','2','3','4','5','6','7','8','fixed'].includes(previous))previous='';
+  el.value=previous;
+  el.addEventListener('change',()=>{
+    const group=el.value,desired=offDatesForGroup2027(group);
+    let oldAuto=[];
+    try{const saved=JSON.parse(localStorage.getItem(GROUP_OFF_AUTO_KEY_2027)||'[]');if(Array.isArray(saved))oldAuto=saved.filter(d=>/^2027-\d{2}-\d{2}$/.test(d))}catch(_){}
+    const remove=oldAuto.filter(d=>records[d]?.kind==='off'&&!desired.has(d));
+    const add=[...desired].filter(d=>!records[d]);
+    const occupied=[...desired].filter(d=>records[d]&&records[d].kind!=='off');
+    const detail='Adicionar '+add.length+' folgas de 2027, retirar '+remove.length+' folgas automáticas anteriores e preservar '+occupied.length+' serviços/férias já registados?';
+    if(!confirm(detail)){el.value=previous;return}
+    const next={...records};
+    for(const d of remove)delete next[d];
+    for(const d of add)next[d]={kind:'off'};
+    if((add.length||remove.length)&&!persist(next)){el.value=previous;return}
+    const tracked=[...new Set([...oldAuto.filter(d=>desired.has(d)&&records[d]?.kind==='off'),...add])].sort();
+    try{
+      localStorage.setItem(GROUP_OFF_KEY_2027,group);
+      localStorage.setItem(GROUP_OFF_AUTO_KEY_2027,JSON.stringify(tracked));
+    }catch(_){notify('Folgas preenchidas, mas a preferência do grupo não ficou guardada. Exporta uma cópia.','error')}
+    previous=group;
+    renderCalendar();renderHistory();renderStats();renderVacations();renderBackupReminder();
+    notify('Folgas de 2027 atualizadas: '+add.length+' adicionadas, '+remove.length+' removidas.');
+  });
+}
+
 function renderCalendar(){
   let heading=new Date(calendarYear,calendarMonth,1).toLocaleDateString('pt-PT',{month:'long',year:'numeric'}).replace(/ de /g,' ');
   $('monthTitle').textContent=cap(heading);
@@ -1747,7 +1801,7 @@ window.addEventListener('appinstalled',()=>notify('Escala instalada no telemóve
 if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{}));
 }
-$('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);renderCalendar();renderVacations();renderBackupDate();bootMirror();scheduleNextMidnightRefresh();if(!storageOk)notify('Não foi possível guardar dados. Faz uma cópia de segurança.','error');
+$('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);initGroupOff2027();renderCalendar();renderVacations();renderBackupDate();bootMirror();scheduleNextMidnightRefresh();if(!storageOk)notify('Não foi possível guardar dados. Faz uma cópia de segurança.','error');
 })();
 </script>
 
@@ -1800,7 +1854,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);rend
 <script>
 (()=>{
   'use strict';
-  const APP_VERSION='1.5.50';
+  const APP_VERSION='1.5.51';
   const SEEN_KEY='escala:last-announced-version';
   const banner=document.getElementById('escalaUpdate');
   const title=document.getElementById('escalaUpdateTitle');
