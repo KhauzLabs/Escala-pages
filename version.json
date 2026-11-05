@@ -1,8 +1,7 @@
 {
-  "version": "1.5.49",
+  "version": "1.5.50",
   "date": "2026-11-05",
   "changes": [
-    "Corrigida a leitura de serviços de viatura em capturas, incluindo códigos com cardinal e barra final, mesmo quando o OCR os separa.",
-    "O aviso de atualização mostra apenas as novidades desta versão, sem repetir alterações antigas."
+    "Corrigida a identificação de «Serviço de Viatura» nas capturas, mantendo o cardinal (#) no campo Serviço quando reconhecido."
   ]
 }
