@@ -1,13 +1,8 @@
 {
-  "version": "1.5.48",
-  "date": "2026-11-04",
+  "version": "1.5.49",
+  "date": "2026-11-05",
   "changes": [
-    "Leitura de capturas: reconhecer serviços de viatura no formato 702/01#/, preservando cardinal e barra final.",
-    "Lembrete de cópia de segurança reposicionado abaixo do resumo mensal.",
-    "Espaçamento uniforme entre o calendário e o lembrete de cópia de segurança.",
-    "Resumo de confirmação antes de guardar serviços lidos de capturas.",
-    "Avisos de cópia desatualizada e data da última exportação mais claros.",
-    "Opção de desfazer até dez alterações durante a sessão.",
-    "Exportação de cópias consistente mesmo quando os registos mudam durante a preparação."
+    "Corrigida a leitura de serviços de viatura em capturas, incluindo códigos com cardinal e barra final, mesmo quando o OCR os separa.",
+    "O aviso de atualização mostra apenas as novidades desta versão, sem repetir alterações antigas."
   ]
 }
