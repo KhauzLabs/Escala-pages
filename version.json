@@ -1,9 +1,8 @@
 {
-  "version": "1.5.51",
-  "date": "2026-11-05",
+  "version": "1.5.52",
+  "date": "2026-11-06",
   "changes": [
-    "Seleção de grupos 1 a 8 ou Folga fixa, com preenchimento das folgas de 2027 após confirmação.",
-    "Folga fixa inclui fins de semana, feriados nacionais, 13 de junho e Carnaval de 9 de fevereiro.",
-    "Os serviços e férias existentes são preservados na alteração de grupo."
+    "Confirmação de grupo de folgas com janela própria da Escala, sem o endereço do navegador.",
+    "Aviso claro para conferir as folgas de 2027 e lembrar que podem ser alteradas manualmente."
   ]
 }
