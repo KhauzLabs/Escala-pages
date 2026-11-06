@@ -522,7 +522,7 @@ html[data-theme="dark"] .date-cell .cell-service{color:#f3c875}
 .date-cell.service.worked-off .cell-service{color:#88450c}
 html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a2}
 @media(max-width:360px){.date-cell.service{min-height:73px}.date-cell .cell-service{font-size:8px;line-height:10px}}
-/* v1.5.51 — revisão da leitura, cópias e desfazer */
+/* v1.5.52 — revisão da leitura, cópias e desfazer */
 .service-review{width:calc(100% - 28px);max-width:470px;max-height:88dvh;overflow:auto;padding:22px;border:1px solid var(--stroke);border-radius:20px;background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
 .service-review::backdrop{background:#02060ba6}
 .service-review h2{margin-bottom:9px}.service-review dl{display:grid;grid-template-columns:minmax(90px,1fr) 2fr;gap:10px;margin:18px 0}.service-review dt{color:var(--muted);font-size:12px}.service-review dd{margin:0;font-size:13px;font-weight:650;overflow-wrap:anywhere;white-space:pre-wrap}.service-review .review-missing{color:var(--red)}
@@ -532,6 +532,13 @@ html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a
 .group-off-controls label{font-size:12px;font-weight:800;color:var(--text)}
 .group-off-controls select{min-height:38px;flex:1;min-width:140px;max-width:230px;border-radius:10px;padding:7px 10px;border:1px solid var(--stroke);background:var(--surface2);color:var(--text);font:inherit;font-size:13px}
 .group-off-hint{width:100%;font-size:11px;color:var(--muted)}
+.group-off-dialog{width:min(420px,calc(100% - 32px));max-height:85dvh;overflow:auto;border:1px solid var(--stroke);border-radius:20px;background:var(--surface);color:var(--text);padding:24px 20px;box-shadow:var(--shadow)}
+.group-off-dialog::backdrop{background:rgba(5,12,26,.62)}
+.group-off-dialog h2{margin:0 0 14px;font-size:20px;line-height:1.3;color:var(--text)}
+.group-off-dialog p{font-size:14px;line-height:1.6;margin:0 0 14px;color:var(--text)}
+.group-off-dialog .group-off-confirm-note{font-size:12px;color:var(--muted)}
+.group-off-dialog-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
+.group-off-dialog-actions button{min-height:44px;padding:10px 15px}
 </style>
 </head>
 <body>
@@ -621,7 +628,7 @@ html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a
 </section>
 <section class="view" id="view-settings" aria-label="Cópias de segurança"><p class="eyebrow">DADOS E PRIVACIDADE</p><h2 class="section-title">Os teus registos</h2><p class="section-description">Os serviços, folgas e férias permanecem neste navegador. Não guardamos as capturas dos serviços.</p><div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Adiciona a Escala ao ecrã principal para um acesso mais rápido.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se necessário, escolhe Adicionar ao ecrã principal no menu do navegador.</p></div><div class="setting-card surface"><h3>Aparência</h3><p>Escolhe o modo claro ou escuro. A preferência fica guardada neste dispositivo.</p><button type="button" class="btn btn-quiet btn-full" id="themeButton" aria-pressed="false"><span class="theme-button-label"><span class="theme-button-symbol" id="themeSymbol" aria-hidden="true">☾</span><span id="themeButtonLabel">Ativar modo escuro</span></span><span aria-hidden="true">⇄</span></button></div><div class="setting-card surface"><h3>Informação sobre a Escala</h3><p>Aplicação independente para registo pessoal. Consulta novamente o aviso sobre a confirmação do escalamento oficial.</p><button class="btn btn-quiet btn-full" id="reopenLegalNotice" type="button">Ler aviso de utilização</button></div>
 <div class="setting-card surface" aria-labelledby="supportTitle"><h3 id="supportTitle">Ajuda e sugestões</h3><p>Tens alguma dúvida ou sugestão para melhorar a Escala? Envia-nos uma mensagem.</p><a class="btn btn-quiet btn-full support-email-link" href="mailto:khauzlabs@gmail.com?subject=Escala%20%E2%80%94%20Ajuda%20e%20sugest%C3%B5es" aria-label="Enviar email para ajuda e sugestões"><svg aria-hidden="true"><use href="#i-upload"/></svg> Enviar email</a></div><div class="version-notice" id="versionNotice">Antes de mudares de telemóvel, guarda uma cópia de segurança.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="undoSettings" disabled>Desfazer última alteração</button><p class="caption">Até dez alterações nesta sessão. Ao fechar ou recarregar a app, este histórico termina. Mantêm-se os limites de edição dos serviços passados.</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><button class="btn btn-quiet btn-full" type="button" id="recoverMirror" disabled>Consultar segunda cópia local</button><p class="caption" style="margin-top:10px">Para maior segurança, exporta regularmente uma cópia dos teus dados.</p></div><div class="setting-card surface"><h3>Procurar serviços antigos</h3><p>Procura serviços antigos que ainda possam estar disponíveis. Os teus registos atuais não são alterados.</p><button type="button" class="btn btn-quiet btn-full" id="scanOldRecords">Procurar registos antigos</button><p id="oldRecordsStatus" class="caption" role="status" style="margin-top:10px"></p><div id="oldRecordsFound" class="hidden" style="margin-top:10px"><button type="button" class="btn btn-primary btn-full" id="mergeOldRecords">Recuperar apenas datas em falta</button></div></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Guarda uma cópia dos teus serviços, folgas e férias para os poderes recuperar quando precisares.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p><p id="backupFreshness" class="caption" role="status" style="margin-top:8px"></p><p class="caption" style="margin-top:8px">Os registos estão neste navegador. Guarda o ficheiro descarregado num local seguro, de preferência fora do telemóvel.</p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Verifica ou recupera uma cópia de segurança. Antes de substituir registos existentes, será pedida confirmação.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
-<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro verificado.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade.</strong> Os serviços ficam guardados neste dispositivo. Faz cópias de segurança regularmente.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.51</p></footer></section>
+<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro verificado.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade.</strong> Os serviços ficam guardados neste dispositivo. Faz cópias de segurança regularmente.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.52</p></footer></section>
 </main></div>
 <nav class="bottom-nav" aria-label="Navegação"><button class="nav-btn current" data-view="calendar"><svg><use href="#i-calendar"/></svg><span>Calendário</span></button><button class="nav-btn" data-view="history"><svg><use href="#i-search"/></svg><span>Histórico</span></button><button class="nav-btn" data-view="stats"><svg><use href="#i-chart"/></svg><span>Resumo</span></button><button class="nav-btn" data-view="vacations"><svg><use href="#i-sun"/></svg><span>Férias</span></button><button class="nav-btn" data-view="settings"><svg><use href="#i-settings"/></svg><span>Dados</span></button></nav>
 <button class="fab" id="fabAdd" aria-label="Adicionar serviço"><svg><use href="#i-plus"/></svg></button>
@@ -634,6 +641,12 @@ html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a
 <div class="extra-note-section"><button type="button" class="btn btn-quiet btn-full extra-note-toggle" id="toggleExtraNotes" aria-expanded="false" aria-controls="extraNotesPanel"><svg><use href="#i-plus"/></svg><span id="extraNotesButtonLabel">Adicionar notas adicionais</span><span aria-hidden="true" id="extraNotesChevron">＋</span></button>
 <div id="extraNotesPanel" class="extra-note-panel hidden"><div class="field"><label for="fExtraNotes">Notas adicionais deste dia (opcional)</label><textarea id="fExtraNotes" rows="4" maxlength="8000"></textarea><p class="caption" style="margin-top:7px">Apontamentos pessoais sobre o serviço. Ficam separados da nota gerada e podem ser editados mais tarde.</p></div></div></div>
 <p id="serviceLockWarning" class="past-readonly hidden" role="status">O prazo de edição terminou às 23h59 do dia seguinte à data do serviço.</p><div class="sheet-actions"><button type="button" class="btn btn-quiet" id="cancelModal">Cancelar</button><button type="submit" class="btn btn-primary" id="saveServiceButton"><svg><use href="#i-check"/></svg> Guardar serviço</button></div><p class="tiny-warning">Confirma sempre os horários e os locais. A leitura pode trocar horários ou locais; confirma cada campo.</p></form></section></div>
+<dialog id="groupOffConfirm" class="group-off-dialog" aria-labelledby="groupOffConfirmTitle" aria-describedby="groupOffConfirmText">
+  <h2 id="groupOffConfirmTitle">Confirmar folgas de 2027</h2>
+  <p id="groupOffConfirmText">As folgas de 2027 serão preenchidas automaticamente de acordo com o grupo selecionado. Verifica se os dias ficaram corretamente assinalados no calendário. Podes alterar manualmente os dias de folga sempre que precisares.</p>
+  <p class="group-off-confirm-note">Ao mudar de grupo, as folgas automáticas anteriores podem ser substituídas. Os serviços e as férias já registados serão preservados.</p>
+  <div class="group-off-dialog-actions"><button type="button" class="btn btn-quiet" id="groupOffCancel">Cancelar</button><button type="button" class="btn btn-primary" id="groupOffApply">Confirmar</button></div>
+</dialog>
 <dialog id="serviceReview" class="service-review" aria-labelledby="serviceReviewTitle" aria-describedby="serviceReviewHelp">
 <h2 id="serviceReviewTitle">Confirmar serviço lido</h2><p id="serviceReviewHelp" class="caption">Compara estes dados com a captura. Ainda não foram guardados.</p><dl id="serviceReviewFields"></dl><p id="serviceReviewWarnings" class="caption"></p>
 <div class="sheet-actions"><button type="button" class="btn btn-quiet" id="serviceReviewEdit" autofocus>Corrigir dados</button><button type="button" class="btn btn-primary" id="serviceReviewSave">Confirmar e guardar</button></div>
@@ -1133,21 +1146,33 @@ function offDatesForGroup2027(group){
   }
   return out;
 }
+function confirmGroupOff2027(){
+  const dialog=$('groupOffConfirm');
+  if(!dialog||typeof dialog.showModal!=='function')return Promise.resolve(false);
+  return new Promise(resolve=>{
+    const cancel=$('groupOffCancel'),apply=$('groupOffApply');
+    const finish=approved=>{dialog.close();resolve(approved)};
+    cancel.onclick=()=>finish(false);
+    apply.onclick=()=>finish(true);
+    dialog.oncancel=e=>{e.preventDefault();finish(false)};
+    dialog.showModal();
+  });
+}
 function initGroupOff2027(){
   const el=$('offGroup2027');if(!el)return;
   let previous='';
   try{previous=localStorage.getItem(GROUP_OFF_KEY_2027)||''}catch(_){}
   if(!['','1','2','3','4','5','6','7','8','fixed'].includes(previous))previous='';
   el.value=previous;
-  el.addEventListener('change',()=>{
+  el.addEventListener('change',async()=>{
     const group=el.value,desired=offDatesForGroup2027(group);
     let oldAuto=[];
     try{const saved=JSON.parse(localStorage.getItem(GROUP_OFF_AUTO_KEY_2027)||'[]');if(Array.isArray(saved))oldAuto=saved.filter(d=>/^2027-\d{2}-\d{2}$/.test(d))}catch(_){}
     const remove=oldAuto.filter(d=>records[d]?.kind==='off'&&!desired.has(d));
     const add=[...desired].filter(d=>!records[d]);
     const occupied=[...desired].filter(d=>records[d]&&records[d].kind!=='off');
-    const detail='Adicionar '+add.length+' folgas de 2027, retirar '+remove.length+' folgas automáticas anteriores e preservar '+occupied.length+' serviços/férias já registados?';
-    if(!confirm(detail)){el.value=previous;return}
+    const approved=await confirmGroupOff2027();
+    if(!approved){el.value=previous;return}
     const next={...records};
     for(const d of remove)delete next[d];
     for(const d of add)next[d]={kind:'off'};
@@ -1854,7 +1879,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);init
 <script>
 (()=>{
   'use strict';
-  const APP_VERSION='1.5.51';
+  const APP_VERSION='1.5.52';
   const SEEN_KEY='escala:last-announced-version';
   const banner=document.getElementById('escalaUpdate');
   const title=document.getElementById('escalaUpdateTitle');
