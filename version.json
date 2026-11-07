@@ -1,8 +1,8 @@
 {
-  "version": "1.5.53",
+  "version": "1.5.54",
   "date": "2026-11-07",
   "changes": [
-    "Reorganizados os cartões do Calendário: dia selecionado, calendário mensal e seleção do grupo de folgas.",
-    "Mantidos o resumo mensal, os serviços registados e os controlos existentes."
+    "Corrigido o espaçamento entre a caixa do dia selecionado e o calendário mensal.",
+    "Mantida a disposição dos cartões e os registos existentes."
   ]
 }
