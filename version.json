@@ -1,8 +1,7 @@
 {
-  "version": "1.5.54",
+  "version": "1.5.55",
   "date": "2026-11-07",
   "changes": [
-    "Corrigido o espaçamento entre a caixa do dia selecionado e o calendário mensal.",
-    "Mantida a disposição dos cartões e os registos existentes."
+    "Separação explícita de 20 px entre o cartão do dia e o calendário mensal, sem cartões encostados."
   ]
 }
