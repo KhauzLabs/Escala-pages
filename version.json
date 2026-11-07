@@ -1,8 +1,8 @@
 {
-  "version": "1.5.52",
-  "date": "2026-11-06",
+  "version": "1.5.53",
+  "date": "2026-11-07",
   "changes": [
-    "Confirmação de grupo de folgas com janela própria da Escala, sem o endereço do navegador.",
-    "Aviso claro para conferir as folgas de 2027 e lembrar que podem ser alteradas manualmente."
+    "Reorganizados os cartões do Calendário: dia selecionado, calendário mensal e seleção do grupo de folgas.",
+    "Mantidos o resumo mensal, os serviços registados e os controlos existentes."
   ]
 }
