@@ -1,7 +1,9 @@
 {
-  "version": "1.5.55",
+  "version": "1.5.56",
   "date": "2026-11-07",
   "changes": [
-    "Separação explícita de 20 px entre o cartão do dia e o calendário mensal, sem cartões encostados."
+    "Chapas horárias guardadas por Altura, com consulta automática e sem duplicar fotografias entre serviços.",
+    "Fotografias comprimidas e guardadas separadamente em IndexedDB, incluindo serviços já encerrados.",
+    "Exportação e recuperação independentes das fotografias na área Dados."
   ]
 }
