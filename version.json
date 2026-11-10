@@ -1,8 +1,8 @@
 {
-  "version": "1.5.58",
+  "version": "1.5.59",
   "date": "2026-11-10",
   "changes": [
-    "Caixa informativa apenas em serviços com cardinal (#), distinguindo diferenças à entrada, à saída e divisão por chapas.",
-    "Leitura de capturas melhorada para preservar códigos completos com cardinal no início, meio ou fim, incluindo vários códigos de chapa."
+    "Aviso de diferenças à entrada ou saída e de serviços repartidos por chapas, apenas quando existe cardinal (#).",
+    "Preservação do código completo na leitura OCR, incluindo # no início, meio ou fim e a notação final #/."
   ]
 }
