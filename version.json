@@ -1,8 +1,9 @@
 {
-  "version": "1.5.59",
+  "version": "1.5.60",
   "date": "2026-11-10",
   "changes": [
-    "Aviso de diferenças à entrada ou saída e de serviços repartidos por chapas, apenas quando existe cardinal (#).",
-    "Preservação do código completo na leitura OCR, incluindo # no início, meio ou fim e a notação final #/."
+    "Captura usada no OCR guardada após confirmação do serviço e apresentada no fundo dos detalhes do dia.",
+    "Permite anexar, substituir e remover capturas por data, mesmo em serviços antigos.",
+    "Backup independente para exportar e restaurar as capturas na área Dados."
   ]
 }
