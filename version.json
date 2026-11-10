@@ -1,8 +1,8 @@
 {
-  "version": "1.5.57",
-  "date": "2026-11-07",
+  "version": "1.5.58",
+  "date": "2026-11-10",
   "changes": [
-    "Novo aviso após guardar uma chapa, explicando que apagar a foto da galeria não remove a cópia da Escala.",
-    "Aviso sobre o risco de perda ao apagar dados do site, com indicação da exportação de segurança das chapas."
+    "Caixa informativa apenas em serviços com cardinal (#), distinguindo diferenças à entrada, à saída e divisão por chapas.",
+    "Leitura de capturas melhorada para preservar códigos completos com cardinal no início, meio ou fim, incluindo vários códigos de chapa."
   ]
 }
