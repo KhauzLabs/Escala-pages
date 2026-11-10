@@ -1,9 +1,8 @@
 {
-  "version": "1.5.60",
+  "version": "1.5.61",
   "date": "2026-11-10",
   "changes": [
-    "Captura usada no OCR guardada após confirmação do serviço e apresentada no fundo dos detalhes do dia.",
-    "Permite anexar, substituir e remover capturas por data, mesmo em serviços antigos.",
-    "Backup independente para exportar e restaurar as capturas na área Dados."
+    "Capturas dos serviços guardadas automaticamente por data após confirmação, com consulta nos detalhes do dia e exportação própria.",
+    "Correção de segurança: uma nova tentativa de OCR não reutiliza fotografias de leituras anteriores."
   ]
 }
