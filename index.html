@@ -522,7 +522,7 @@ html[data-theme="dark"] .date-cell .cell-service{color:#f3c875}
 .date-cell.service.worked-off .cell-service{color:#88450c}
 html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a2}
 @media(max-width:360px){.date-cell.service{min-height:73px}.date-cell .cell-service{font-size:8px;line-height:10px}}
-/* v1.5.59 — revisão da leitura, cópias e desfazer */
+/* v1.5.60 — revisão da leitura, cópias e desfazer */
 .service-review{width:calc(100% - 28px);max-width:470px;max-height:88dvh;overflow:auto;padding:22px;border:1px solid var(--stroke);border-radius:20px;background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
 .service-review::backdrop{background:#02060ba6}
 .service-review h2{margin-bottom:9px}.service-review dl{display:grid;grid-template-columns:minmax(90px,1fr) 2fr;gap:10px;margin:18px 0}.service-review dt{color:var(--muted);font-size:12px}.service-review dd{margin:0;font-size:13px;font-weight:650;overflow-wrap:anywhere;white-space:pre-wrap}.service-review .review-missing{color:var(--red)}
@@ -560,6 +560,12 @@ html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a
 .service-cardinal-info strong{display:block;font-size:13px;font-weight:850;margin-bottom:5px}
 .service-cardinal-info p{margin:0;font-size:12px;line-height:1.55;color:var(--text)}
 .service-cardinal-info p+p{margin-top:4px}
+
+.service-source-card{margin-top:16px;padding:14px;border:1px solid var(--stroke);border-radius:14px;background:var(--surface2)}
+.service-source-card h3{font-size:14px;margin:0 0 7px}.service-source-card p{font-size:12px;color:var(--muted);margin:0 0 10px}
+.service-source-card img{width:100%;max-height:540px;height:auto;object-fit:contain;border:1px solid var(--stroke);border-radius:10px}
+.service-source-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.service-source-actions .btn{min-height:40px;padding:10px 12px;font-size:12px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -649,7 +655,7 @@ html[data-theme="dark"] .date-cell.service.worked-off .cell-service{color:#ffd7a
 </section>
 <section class="view" id="view-settings" aria-label="Cópias de segurança"><p class="eyebrow">DADOS E PRIVACIDADE</p><h2 class="section-title">Os teus registos</h2><p class="section-description">Os serviços, folgas, férias e fotografias das chapas permanecem neste dispositivo. As capturas utilizadas para leitura automática não são guardadas.</p><div class="setting-card surface"><h3>Instalar no telemóvel</h3><p>Adiciona a Escala ao ecrã principal para um acesso mais rápido.</p><button type="button" class="btn btn-primary btn-full" id="installApp">Instalar aplicação</button><p class="caption" id="installHint" style="margin-top:9px">Se necessário, escolhe Adicionar ao ecrã principal no menu do navegador.</p></div><div class="setting-card surface"><h3>Aparência</h3><p>Escolhe o modo claro ou escuro. A preferência fica guardada neste dispositivo.</p><button type="button" class="btn btn-quiet btn-full" id="themeButton" aria-pressed="false"><span class="theme-button-label"><span class="theme-button-symbol" id="themeSymbol" aria-hidden="true">☾</span><span id="themeButtonLabel">Ativar modo escuro</span></span><span aria-hidden="true">⇄</span></button></div><div class="setting-card surface"><h3>Informação sobre a Escala</h3><p>Aplicação independente para registo pessoal. Consulta novamente o aviso sobre a confirmação do escalamento oficial.</p><button class="btn btn-quiet btn-full" id="reopenLegalNotice" type="button">Ler aviso de utilização</button></div>
 <div class="setting-card surface" aria-labelledby="supportTitle"><h3 id="supportTitle">Ajuda e sugestões</h3><p>Tens alguma dúvida ou sugestão para melhorar a Escala? Envia-nos uma mensagem.</p><a class="btn btn-quiet btn-full support-email-link" href="mailto:khauzlabs@gmail.com?subject=Escala%20%E2%80%94%20Ajuda%20e%20sugest%C3%B5es" aria-label="Enviar email para ajuda e sugestões"><svg aria-hidden="true"><use href="#i-upload"/></svg> Enviar email</a></div><div class="version-notice" id="versionNotice">Antes de mudares de telemóvel, guarda uma cópia de segurança.</div><div class="setting-card surface"><h3>Estado do armazenamento</h3><p class="storage-message" id="storageStatus">A verificar…</p><button class="btn btn-quiet btn-full" type="button" id="undoSettings" disabled>Desfazer última alteração</button><p class="caption">Até dez alterações nesta sessão. Ao fechar ou recarregar a app, este histórico termina. Mantêm-se os limites de edição dos serviços passados.</p><button class="btn btn-quiet btn-full" type="button" id="recoverPrevious">Recuperar revisão anterior</button><button class="btn btn-quiet btn-full" type="button" id="recoverMirror" disabled>Consultar segunda cópia local</button><p class="caption" style="margin-top:10px">Para maior segurança, exporta regularmente uma cópia dos teus dados.</p></div><div class="setting-card surface"><h3>Procurar serviços antigos</h3><p>Procura serviços antigos que ainda possam estar disponíveis. Os teus registos atuais não são alterados.</p><button type="button" class="btn btn-quiet btn-full" id="scanOldRecords">Procurar registos antigos</button><p id="oldRecordsStatus" class="caption" role="status" style="margin-top:10px"></p><div id="oldRecordsFound" class="hidden" style="margin-top:10px"><button type="button" class="btn btn-primary btn-full" id="mergeOldRecords">Recuperar apenas datas em falta</button></div></div><div class="setting-card surface"><h3>Cópia de segurança</h3><p>Guarda uma cópia dos teus serviços, folgas e férias. As chapas horárias têm exportação própria nesta página.</p><button class="btn btn-primary btn-full" id="exportBackup"><svg><use href="#i-download"/></svg> Exportar cópia de segurança</button><p id="lastBackup" class="caption" style="margin-top:11px"></p><p id="backupFreshness" class="caption" role="status" style="margin-top:8px"></p><p class="caption" style="margin-top:8px">Os registos estão neste navegador. Guarda o ficheiro descarregado num local seguro, de preferência fora do telemóvel.</p></div><div class="setting-card surface"><h3>Validar ou restaurar um ficheiro</h3><p>Verifica ou recupera uma cópia de segurança. Antes de substituir registos existentes, será pedida confirmação.</p><button type="button" class="btn btn-quiet btn-full" id="verifyBackup"><svg><use href="#i-check"/></svg> Testar ficheiro de backup</button><input id="verifyFile" type="file" accept="application/json,.json" />
-<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro verificado.</p></div><div class="setting-card surface"><h3>Fotografias das chapas horárias</h3><p>As fotografias são guardadas neste dispositivo e associadas à Altura. A cópia normal dos serviços não inclui fotografias.</p><button type="button" class="btn btn-quiet btn-full" id="exportChapas">Exportar fotografias das chapas</button><button type="button" class="btn btn-quiet btn-full" id="importChapas">Restaurar fotografias das chapas</button><input type="file" id="importChapasFile" accept="application/json,.json" hidden /><p class="caption" id="chapaBackupStatus" role="status">Guarda este ficheiro separadamente quando mudares de telemóvel ou limpares os dados do navegador.</p></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade.</strong> Os serviços ficam guardados neste dispositivo. Faz cópias de segurança regularmente.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.59</p></footer></section>
+<button type="button" class="btn btn-quiet btn-full" id="importBackup"><svg><use href="#i-upload"/></svg> Restaurar cópia de segurança</button><input id="backupFile" type="file" accept="application/json,.json" /><p class="backup-verify-status" id="verifyStatus" role="status">Nenhum ficheiro verificado.</p></div><div class="setting-card surface"><h3>Fotografias das chapas horárias</h3><p>As fotografias são guardadas neste dispositivo e associadas à Altura. A cópia normal dos serviços não inclui fotografias.</p><button type="button" class="btn btn-quiet btn-full" id="exportChapas">Exportar fotografias das chapas</button><button type="button" class="btn btn-quiet btn-full" id="importChapas">Restaurar fotografias das chapas</button><input type="file" id="importChapasFile" accept="application/json,.json" hidden /><p class="caption" id="chapaBackupStatus" role="status">Guarda este ficheiro separadamente quando mudares de telemóvel ou limpares os dados do navegador.</p></div><div class="setting-card surface"><h3>Capturas originais dos serviços</h3><p>As capturas guardadas por data não entram nas cópias de segurança dos serviços ou das chapas. Exporta-as separadamente.</p><button class="btn btn-quiet btn-full" type="button" id="exportSourceImages">Exportar capturas</button><button class="btn btn-quiet btn-full" type="button" id="importSourceImages">Restaurar capturas</button><input id="sourceBackupFile" type="file" accept=".json,application/json" hidden /></div><div class="security-info"><svg><use href="#i-lock"/></svg><strong>Privacidade.</strong> Os serviços ficam guardados neste dispositivo. Faz cópias de segurança regularmente.</div><footer class="app-footer-credit" style="margin:22px 2px 12px;text-align:center"><p style="font-size:13px;font-weight:750;color:var(--text);margin:0">Powered by KhauzLabs</p><p class="caption" style="margin-top:4px;font-size:11px">Versão 1.5.60</p></footer></section>
 </main></div>
 <nav class="bottom-nav" aria-label="Navegação"><button class="nav-btn current" data-view="calendar"><svg><use href="#i-calendar"/></svg><span>Calendário</span></button><button class="nav-btn" data-view="history"><svg><use href="#i-search"/></svg><span>Histórico</span></button><button class="nav-btn" data-view="stats"><svg><use href="#i-chart"/></svg><span>Resumo</span></button><button class="nav-btn" data-view="vacations"><svg><use href="#i-sun"/></svg><span>Férias</span></button><button class="nav-btn" data-view="settings"><svg><use href="#i-settings"/></svg><span>Dados</span></button></nav>
 <button class="fab" id="fabAdd" aria-label="Adicionar serviço"><svg><use href="#i-plus"/></svg></button>
@@ -1469,6 +1475,108 @@ function updateServiceCardinalForm(){
   appendServiceCardinalInfo($('serviceCardinalFormInfo'),$('fVehicle').value);
 }
 
+
+const SOURCE_DB='escala-service-source-v1',SOURCE_STORE='screenshots';
+let pendingServiceScreenshot=null,sourceViewIndex=0;
+function sourceDb(){
+ return new Promise((resolve,reject)=>{
+  const req=indexedDB.open(SOURCE_DB,1);
+  req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains(SOURCE_STORE))req.result.createObjectStore(SOURCE_STORE)};
+  req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||Error('Armazenamento de imagens indisponível'));
+ });
+}
+async function sourceRead(date){
+ const db=await sourceDb();
+ try{return await new Promise((resolve,reject)=>{
+  const req=db.transaction(SOURCE_STORE,'readonly').objectStore(SOURCE_STORE).get(date);
+  req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error||Error('Falha na leitura da captura'));
+ })}finally{db.close()}
+}
+async function sourceModify(date,blob){
+ const db=await sourceDb();
+ try{await new Promise((resolve,reject)=>{
+  const tx=db.transaction(SOURCE_STORE,'readwrite');
+  if(blob)tx.objectStore(SOURCE_STORE).put(blob,date);else tx.objectStore(SOURCE_STORE).delete(date);
+  tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||Error('Falha na gravação da captura'));tx.onabort=()=>reject(tx.error||Error('Gravação cancelada'));
+ })}finally{db.close()}
+}
+async function sourceSave(date,file){await sourceModify(date,await chapaCompress(file))}
+async function sourceList(){
+ const db=await sourceDb();
+ try{return await new Promise((resolve,reject)=>{
+  const result=[],req=db.transaction(SOURCE_STORE,'readonly').objectStore(SOURCE_STORE).openCursor();
+  req.onsuccess=()=>{const item=req.result;if(item){result.push({date:item.key,blob:item.value});item.continue()}else resolve(result)};
+  req.onerror=()=>reject(req.error||Error('Falha ao listar capturas'));
+ })}finally{db.close()}
+}
+function showSourceImage(parent,date){
+ const epoch=++sourceViewIndex;
+ const box=document.createElement('section');box.className='service-source-card';
+ const heading=document.createElement('h3');heading.textContent='Captura original do serviço';
+ const info=document.createElement('p');info.textContent='Imagem associada a esta data, não à Altura.';
+ const preview=document.createElement('div');preview.textContent='A consultar…';
+ const actions=document.createElement('div');actions.className='service-source-actions';
+ const label=document.createElement('label');label.className='btn btn-quiet';label.textContent='Anexar captura';
+ const file=document.createElement('input');file.type='file';file.accept='image/*';file.hidden=true;label.append(file);
+ const remove=document.createElement('button');remove.type='button';remove.className='btn btn-quiet';remove.textContent='Remover captura';remove.hidden=true;
+ actions.append(label,remove);box.append(heading,info,preview,actions);parent.append(box);
+ async function refresh(){
+  try{
+   const blob=await sourceRead(date);if(!box.isConnected||epoch!==sourceViewIndex)return;
+   if(preview._url){URL.revokeObjectURL(preview._url);preview._url=null}
+   preview.replaceChildren();
+   if(blob){
+    const url=URL.createObjectURL(blob),img=document.createElement('img');preview._url=url;img.src=url;img.alt='Captura de '+prettyDate(date);preview.append(img);
+    label.firstChild.textContent='Substituir captura';remove.hidden=false;
+   }else{preview.textContent='Ainda não há captura guardada.';label.firstChild.textContent='Anexar captura';remove.hidden=true}
+  }catch(e){if(box.isConnected)preview.textContent='Captura indisponível: '+e.message}
+ }
+ file.onchange=async()=>{
+  const value=file.files?.[0];if(!value)return;
+  try{
+   if(await sourceRead(date)&&!confirm('Substituir a captura associada a '+prettyDate(date)+'?'))return;
+   await sourceSave(date,value);await refresh();notify('Captura guardada no serviço.');
+  }catch(e){notify('Falha ao guardar captura: '+e.message,'error')}
+  finally{file.value=''}
+ };
+ remove.onclick=async()=>{
+  if(!confirm('Remover a captura deste dia sem apagar o serviço?'))return;
+  try{await sourceModify(date,null);await refresh();notify('Captura removida.')}
+  catch(e){notify('Falha ao remover captura: '+e.message,'error')}
+ };
+ refresh();
+}
+async function exportSourceImages(){
+ try{
+  const images=await sourceList();if(!images.length){notify('Não existem capturas para exportar.');return}
+  const output=[];
+  for(const item of images)output.push({date:item.date,image:await chapaFileBase64(item.blob)});
+  downloadBlob(new Blob([JSON.stringify({format:'escala-source-images-v1',images:output})],{type:'application/json'}),'Escala-capturas-'+dateKey(new Date())+'.json');
+  notify('Cópia de capturas preparada. Confirma que guardaste o ficheiro.');
+ }catch(e){notify('Falha na exportação das capturas: '+e.message,'error')}
+}
+async function importSourceImages(file){
+ if(!file)return;
+ try{
+  if(file.size>150*1024*1024)throw Error('Ficheiro demasiado grande');
+  const doc=JSON.parse(await file.text());
+  if(doc?.format!=='escala-source-images-v1'||!Array.isArray(doc.images)||doc.images.length>500)throw Error('Backup inválido');
+  if(!confirm('Importar '+doc.images.length+' capturas? As existentes serão preservadas.'))return;
+  let count=0;
+  for(const row of doc.images){
+   if(!validDate(row.date)||typeof row.image!=='string'||row.image.length>5*1024*1024||!/^data:image\/(?:png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(row.image))throw Error('Imagem inválida');
+   if(await sourceRead(row.date))continue;
+   const blob=await(await fetch(row.image)).blob();if(blob.size>3*1024*1024)throw Error('Imagem demasiado grande');
+   await sourceModify(row.date,blob);count++;
+  }
+  notify('Capturas importadas: '+count+'.');
+ }catch(e){notify('Falha na importação: '+e.message,'error')}
+ finally{$('sourceBackupFile').value=''}
+}
+$('exportSourceImages').onclick=exportSourceImages;
+$('importSourceImages').onclick=()=>$('sourceBackupFile').click();
+$('sourceBackupFile').onchange=e=>importSourceImages(e.target.files?.[0]);
+
 function renderQuick(){
   const r=records[selected],iconEl=$('quickIcon');
   iconEl.className='quick-status'+(r?' '+r.kind:'')+(isWorkedOff(r)?' worked-off':'');
@@ -1536,6 +1644,7 @@ if(!protectedService(selected)){
   const vacationRow=document.createElement('div');vacationRow.className='cta-row';
   const mark=makeButton('Marcar férias neste dia','btn btn-vacation','calendar',()=>markVacationDay(selected));mark.style.width='100%';vacationRow.append(mark);p.append(vacationRow);
 }
+showSourceImage(p,selected);
 }
 async function copyNote(value){
  try{
@@ -1586,8 +1695,8 @@ $('toggleExtraNotes').addEventListener('click',()=>{
 $('fExtraNotes').addEventListener('input',()=>{formDirty=true;if($('extraNotesPanel').classList.contains('hidden'))setExtraNotesExpanded(false)});
 function hasData(r){return !!(r.service||r.vehicle||r.start||r.end||r.from||r.to||r.type||r.observations||r.breakMinutes!==null||r.overtimeMinutes>0||drivingMinutesFor(r)!==null||r.extraNotes)}
 let creatingWorkedOff=false;
-function openModal(date,asWorkedOff=false){if(protectedService(date)||(isPastServiceDate(date)&&records[date]?.kind!=='service')){warnPastService();return}scanEpoch++;closeDaySheet();ocrDidRun=false;reviewedService=null;$('ocrMessage').classList.remove('ocr-warning');let r=records[date],existing=r?.kind==='service'?r:null;isModalOpen=true;formDirty=false;noteEdited=!!existing;editingOriginalDate=existing?date:null;creatingWorkedOff=Boolean(existing?existing.workedOff:asWorkedOff&&r?.kind==='off');$('workedOffBanner').classList.toggle('hidden',!creatingWorkedOff);$('fDate').disabled=creatingWorkedOff;$('fDate').min=existing?date:dateKey(new Date());$('fDate').value=date;fillForm(existing||{});updateServiceCardinalForm();updateChapaForm();$('modalTitle').textContent=existing?'Editar serviço':'Adicionar serviço';$('captureInput').value='';$('scanButton').disabled=false;$('uploadLabel').textContent='Carregar imagem do serviço';$('ocrMessage').textContent='Requer internet na primeira leitura.';$('modal').classList.remove('hidden');document.body.style.overflow='hidden';$('modal').querySelector('.sheet').focus();syncServiceSaveAccess()}
-function closeModal(force=false){if(!isModalOpen)return;if(!force&&formDirty&&!confirm('Descartar alterações deste serviço?'))return;scanEpoch++;chapaFormRequest++;$('serviceReview').close();reviewedService=null;isModalOpen=false;formDirty=false;noteEdited=false;editingOriginalDate=null;creatingWorkedOff=false;$('fDate').disabled=false;$('modal').classList.add('hidden');document.body.style.overflow='';if(externalChangePending)refreshExternalState()}
+function openModal(date,asWorkedOff=false){if(protectedService(date)||(isPastServiceDate(date)&&records[date]?.kind!=='service')){warnPastService();return}scanEpoch++;closeDaySheet();ocrDidRun=false;pendingServiceScreenshot=null;reviewedService=null;$('ocrMessage').classList.remove('ocr-warning');let r=records[date],existing=r?.kind==='service'?r:null;isModalOpen=true;formDirty=false;noteEdited=!!existing;editingOriginalDate=existing?date:null;creatingWorkedOff=Boolean(existing?existing.workedOff:asWorkedOff&&r?.kind==='off');$('workedOffBanner').classList.toggle('hidden',!creatingWorkedOff);$('fDate').disabled=creatingWorkedOff;$('fDate').min=existing?date:dateKey(new Date());$('fDate').value=date;fillForm(existing||{});updateServiceCardinalForm();updateChapaForm();$('modalTitle').textContent=existing?'Editar serviço':'Adicionar serviço';$('captureInput').value='';$('scanButton').disabled=false;$('uploadLabel').textContent='Carregar imagem do serviço';$('ocrMessage').textContent='Requer internet na primeira leitura.';$('modal').classList.remove('hidden');document.body.style.overflow='hidden';$('modal').querySelector('.sheet').focus();syncServiceSaveAccess()}
+function closeModal(force=false){if(!isModalOpen)return;if(!force&&formDirty&&!confirm('Descartar alterações deste serviço?'))return;scanEpoch++;chapaFormRequest++;pendingServiceScreenshot=null;$('serviceReview').close();reviewedService=null;isModalOpen=false;formDirty=false;noteEdited=false;editingOriginalDate=null;creatingWorkedOff=false;$('fDate').disabled=false;$('modal').classList.add('hidden');document.body.style.overflow='';if(externalChangePending)refreshExternalState()}
 function regen(force=false){updateDrivingPreview();if(noteEdited&&!force)return;let r=formObject();$('fNote').value=makeNote(r);updateDrivingPreview();formDirty=true;if(force)noteEdited=false}
 inputs.forEach(id=>$(id).addEventListener('input',()=>{formDirty=true;regen();if(id==='fVehicle')updateServiceCardinalForm()}));
 $('fOvertime').addEventListener('blur',()=>{const n=parseOvertime($('fOvertime').value);if(n!==null&&$('fOvertime').value.trim())$('fOvertime').value=drivingClock(n)});
@@ -1638,7 +1747,11 @@ $('serviceForm').onsubmit=e=>{
  const next={...records};
  if(editingOriginalDate&&editingOriginalDate!==d)delete next[editingOriginalDate];
  next[d]=r;
- if(persist(next)){closeModal(true);showDate(d);notify('Serviço guardado com sucesso.')}
+ if(persist(next)){
+ const screenshot=pendingServiceScreenshot;
+ closeModal(true);showDate(d);notify('Serviço guardado com sucesso.');
+ if(screenshot)sourceSave(d,screenshot).then(()=>{if(selected===d)renderSelected();notify('Captura original guardada no serviço.')}).catch(e=>notify('Serviço guardado, mas a captura falhou: '+e.message,'error'));
+}
 };
 let historyShown=60;
 function renderHistory(){
@@ -1964,7 +2077,7 @@ async function scan(){
     for(const [field,value] of Object.entries({fService:extracted.service,fVehicle:extracted.vehicle,fStart:extracted.start,fEnd:extracted.end,fFrom:extracted.from,fTo:extracted.to,fType:extracted.type,fObservations:extracted.observations})){
       if(value)$(field).value=value;
     }
-    updateDrivingPreview();regen(true);updateChapaForm();updateServiceCardinalForm();formDirty=true;ocrDidRun=true;
+    pendingServiceScreenshot=file;updateDrivingPreview();regen(true);updateChapaForm();updateServiceCardinalForm();formDirty=true;ocrDidRun=true;
     const missing=extracted.missing.map(k=>friendlyField[k]);
     const ocrSummary=missing.length?'Leitura parcial. Confirma os dados; por verificar: '+missing.join(', ')+'.':'8 campos identificados. Confirma os dados antes de guardar.';
     const warnings=[];
@@ -2127,7 +2240,7 @@ $('vacationFrom').value=dateKey(today);$('vacationTo').value=dateKey(today);init
 <script>
 (()=>{
   'use strict';
-  const APP_VERSION='1.5.59';
+  const APP_VERSION='1.5.60';
   const SEEN_KEY='escala:last-announced-version';
   const banner=document.getElementById('escalaUpdate');
   const title=document.getElementById('escalaUpdateTitle');
