@@ -1,8 +1,8 @@
 {
-  "version": "1.5.61",
+  "version": "1.5.62",
   "date": "2026-11-10",
   "changes": [
-    "Capturas dos serviços guardadas automaticamente por data após confirmação, com consulta nos detalhes do dia e exportação própria.",
-    "Correção de segurança: uma nova tentativa de OCR não reutiliza fotografias de leituras anteriores."
+    "Novo interruptor em Dados para ativar ou desativar a anexação automática da captura ao guardar um serviço lido por OCR.",
+    "A preferência não altera a leitura OCR, as capturas já guardadas nem a possibilidade de anexar imagens manualmente."
   ]
 }
