@@ -1,8 +1,8 @@
 {
-  "version": "1.5.62",
-  "date": "2026-11-10",
+  "version": "1.5.63",
+  "date": "2026-11-14",
   "changes": [
-    "Novo interruptor em Dados para ativar ou desativar a anexação automática da captura ao guardar um serviço lido por OCR.",
-    "A preferência não altera a leitura OCR, as capturas já guardadas nem a possibilidade de anexar imagens manualmente."
+    "Agora é possível fechar os detalhes do dia deslizando o cabeçalho para baixo.",
+    "Removido o botão X do canto superior direito dos detalhes do dia."
   ]
 }
